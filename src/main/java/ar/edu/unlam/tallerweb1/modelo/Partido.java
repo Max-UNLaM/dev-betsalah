@@ -1,19 +1,30 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Partido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private Equipo equipo1;
+    @ManyToOne
     private Equipo equipo2;
-    private Integer golesEquipo1;
-    private Integer golesEquipo2;
+    @ManyToOne
+    private Fase fase;
+    @ManyToOne
+    private Jugador figura;
+
+    public Partido(){
+
+    }
+
+    public Partido(Equipo equipo1, Equipo equipo2, Fase fase) {
+        this.equipo1 = equipo1;
+        this.equipo2 = equipo2;
+        this.fase = fase;
+    }
 
     public Long getId() {
         return id;
@@ -39,19 +50,19 @@ public class Partido {
         this.equipo2 = equipo2;
     }
 
-    public Integer getGolesEquipo1() {
-        return golesEquipo1;
+    public Fase getFase() {
+        return fase;
     }
 
-    public void setGolesEquipo1(Integer golesEquipo1) {
-        this.golesEquipo1 = golesEquipo1;
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
 
-    public Integer getGolesEquipo2() {
-        return golesEquipo2;
+    public Jugador getFigura() {
+        return figura;
     }
 
-    public void setGolesEquipo2(Integer golesEquipo2) {
-        this.golesEquipo2 = golesEquipo2;
+    public void setFigura(Jugador figura) {
+        this.figura = figura;
     }
 }
