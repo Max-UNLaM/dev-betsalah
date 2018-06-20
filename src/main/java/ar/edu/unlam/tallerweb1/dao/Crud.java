@@ -1,8 +1,4 @@
 package ar.edu.unlam.tallerweb1.dao;
-
-import com.sun.xml.internal.bind.v2.model.core.ID;
-import org.springframework.stereotype.Repository;
-
 import java.io.Serializable;
 import java.util.List;
 

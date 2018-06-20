@@ -20,6 +20,13 @@ public class Usuario {
 	private String email;
 	private String password;
 
+	public Usuario(){}
+
+	public Usuario(String email,  String password) {
+	    this.email = email;
+	    this.password = password;
+    }
+
 	public Long getId() {
 		return id;
 	}
