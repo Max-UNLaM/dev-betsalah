@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.modelo;
+package ar.edu.unlam.tallerweb1.equipo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +12,19 @@ public class Equipo {
     private Long id;
     private String nombre;
     private String nombre3caracteres;
+    private String grupo;
+    private Integer ordenEnGrupo;
+
+    public Equipo(){
+
+    }
+
+    public Equipo(String nombre, String nombre3caracteres, String grupo, Integer ordenEnGrupo) {
+        this.nombre = nombre;
+        this.nombre3caracteres = nombre3caracteres;
+        this.grupo = grupo;
+        this.ordenEnGrupo = ordenEnGrupo;
+    }
 
     public Long getId() {
         return id;
@@ -35,5 +48,21 @@ public class Equipo {
 
     public void setNombre3caracteres(String nombre3caracteres) {
         this.nombre3caracteres = nombre3caracteres;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    public Integer getOrdenEnGrupo() {
+        return ordenEnGrupo;
+    }
+
+    public void setOrdenEnGrupo(Integer ordenEnGrupo) {
+        this.ordenEnGrupo = ordenEnGrupo;
     }
 }

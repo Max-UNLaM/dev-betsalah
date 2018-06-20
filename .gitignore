@@ -128,3 +128,4 @@ fabric.properties
 /src/test/java/ar/edu/unlam/tallerweb1/testsClase/
 /src/main/java/ar/edu/unlam/tallerweb1/nota/
 /src/test/java/ar/edu/unlam/tallerweb1/persistencia/UsuarioABMTest.java
+/classes/

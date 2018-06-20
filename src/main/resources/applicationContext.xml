@@ -27,7 +27,12 @@
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.dao" />
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.servicios" />
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.simulacion" />
-	
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.equipo" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.partido" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.fase" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.jugador" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.servicios.inicializador" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.servicios.preparacion" />
 
 </beans>
 
