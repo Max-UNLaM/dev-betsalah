@@ -214,6 +214,25 @@ public class ServicioCargaJugadores {
         jugadores.add(new Jugador("Rodrigo ", espana));
         jugadores.add(new Jugador("Lucas", espana));
 
+        //Marruecos
+        jugadores.add(new Jugador("Munir", marruecos));
+        jugadores.add(new Jugador("Bono", marruecos));
+        jugadores.add(new Jugador("Ahmed Reda Tagnaouti", marruecos));
+        jugadores.add(new Jugador("Mehdi Benatia", marruecos));
+        jugadores.add(new Jugador("Romain Saiss", marruecos));
+        jugadores.add(new Jugador("Manuel Da Costa", marruecos));
+        jugadores.add(new Jugador("Badr Benoun", marruecos));
+        jugadores.add(new Jugador("Nabil Dirar", marruecos));
+        jugadores.add(new Jugador("Achraf Hakimi", marruecos));
+        jugadores.add(new Jugador("Hamza Mendyl", marruecos));
+        jugadores.add(new Jugador("Mbark Boussoufa", marruecos));
+        jugadores.add(new Jugador("Karim El Ahmadi", marruecos));
+        jugadores.add(new Jugador("Youssef Ait Bennasser", marruecos));
+        jugadores.add(new Jugador("Sofian Amrabat", marruecos));
+        jugadores.add(new Jugador("Younes Belhanda", marruecos));
+        jugadores.add(new Jugador("Fayçal Fajr", marruecos));
+        jugadores.add(new Jugador("Amine Harit", marruecos));
+
         //Irán
         jugadores.add(new Jugador("Alireza Beiranvand", iran));
         jugadores.add(new Jugador("Rashid Mazaheri ", iran));
@@ -472,6 +491,56 @@ public class ServicioCargaJugadores {
         jugadores.add(new Jugador("Keylor Navas", costaRica));
         jugadores.add(new Jugador("Patrick Pemberton", costaRica));
         jugadores.add(new Jugador("Leonel Moreira", costaRica));
+        jugadores.add(new Jugador("Giancarlo González", costaRica));
+        jugadores.add(new Jugador("Bryan Oviedo", costaRica));
+        jugadores.add(new Jugador("Rónald Matarrita", costaRica));
+        jugadores.add(new Jugador("Kendall Watson", costaRica));
+        jugadores.add(new Jugador("Ian Smith", costaRica));
+        jugadores.add(new Jugador("Cristian Gamboa", costaRica));
+        jugadores.add(new Jugador("Óscar Duarte", costaRica));
+        jugadores.add(new Jugador("Francisco Calvo", costaRica));
+        jugadores.add(new Jugador("Jonnhy Acosta", costaRica));
+        jugadores.add(new Jugador("Yeltsin Tejeda", costaRica));
+        jugadores.add(new Jugador("Celso Borges", costaRica));
+        jugadores.add(new Jugador("David Guzmán", costaRica));
+        jugadores.add(new Jugador("Cristian Bolaños", costaRica));
+        jugadores.add(new Jugador("Bryan Ruiz", costaRica));
+        jugadores.add(new Jugador("Daniel Colindres", costaRica));
+        jugadores.add(new Jugador("Rodney Wallace", costaRica));
+        jugadores.add(new Jugador("Randall Azofeifa", costaRica));
+        jugadores.add(new Jugador("Marco Ureña", costaRica));
+        jugadores.add(new Jugador("Joel Campbell", costaRica));
+        jugadores.add(new Jugador("Johan Vanegas", costaRica));
+
+        //Serbia
+        jugadores.add(new Jugador("Vladimir Stojkovic", serbia));
+        jugadores.add(new Jugador("Predrag Rajkovic", serbia));
+        jugadores.add(new Jugador("Marko Dmitrovic", serbia));
+        jugadores.add(new Jugador("Aleksandar Kolarov", serbia));
+        jugadores.add(new Jugador("Branislav Ivanovic", serbia));
+        jugadores.add(new Jugador("Dusko Tosic", serbia));
+        jugadores.add(new Jugador("Antonio Rukavina", serbia));
+        jugadores.add(new Jugador("Milos Veljkovic", serbia));
+        jugadores.add(new Jugador("Milan Rodic", serbia));
+        jugadores.add(new Jugador("Uros Spajic", serbia));
+        jugadores.add(new Jugador("Nikola Milenkovic", serbia));
+        jugadores.add(new Jugador("Nemanja Matic", serbia));
+        jugadores.add(new Jugador("Luka Milivojevic", serbia));
+        jugadores.add(new Jugador("Sergej Milinkovic-Savic", serbia));
+        jugadores.add(new Jugador("Marko Grujic", serbia));
+        jugadores.add(new Jugador("Adem Ljajic", serbia));
+        jugadores.add(new Jugador("Dusan Tadic", serbia));
+        jugadores.add(new Jugador("Filip Kostic", serbia));
+        jugadores.add(new Jugador("Andrija Zivkovic", serbia));
+        jugadores.add(new Jugador("Nemanja Radonjic", serbia));
+        jugadores.add(new Jugador("Aleksandar Mitrovic", serbia));
+        jugadores.add(new Jugador("Aleksandar Prijovic", serbia));
+        jugadores.add(new Jugador("Luka Jovic", serbia));
+
+        //Costa Rica
+        jugadores.add(new Jugador("Keylor Navas", costaRica));
+        jugadores.add(new Jugador("Patrick Pemberton", costaRica));
+        jugadores.add(new Jugador("Leonel Moreira", costaRica));
         jugadores.add(new Jugador("Cristian Gamboa", costaRica));
         jugadores.add(new Jugador("Ian Smith", costaRica));
         jugadores.add(new Jugador("Ronald Matarrita", costaRica));
@@ -566,7 +635,9 @@ public class ServicioCargaJugadores {
         jugadores.add(new Jugador("Jimmy Durmaz", suecia));
         jugadores.add(new Jugador("Marcus Berg", suecia));
         jugadores.add(new Jugador("John Guidetti", suecia));
-        jugadores.add(new Jugador("Ola Toivonen e Isaac Kiese Thelin", suecia));
+        jugadores.add(new Jugador("Ola Toivonen", suecia));
+        jugadores.add(new Jugador("Isaac Kiese Thelin", suecia));
+
 
         //Corea del Sur
         jugadores.add(new Jugador("Kim Seunggyu", coreaDelSur));
