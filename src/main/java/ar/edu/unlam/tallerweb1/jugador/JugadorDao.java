@@ -1,13 +1,46 @@
 package ar.edu.unlam.tallerweb1.jugador;
 
-import ar.edu.unlam.tallerweb1.dao.Crud;
-import ar.edu.unlam.tallerweb1.jugador.Jugador;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public interface JugadorDao extends Crud<Jugador, Long> {
+public class JugadorDao implements JugadorCrud {
+    @Inject
+    private SessionFactory sessionFactory;
+
+    @SuppressWarnings("unchecked")
+    public List<Jugador> list() {
+        final Session sesion = sessionFactory.getCurrentSession();
+        return sesion.createCriteria(Jugador.class)
+                .list();
+    }
+
+    public Jugador update(Jugador gol) {
+        final Session sesion = sessionFactory.getCurrentSession();
+        sesion.update(gol);
+        return gol;
+    }
+
+    public Jugador read(Long id) {
+        final Session sesion = sessionFactory.getCurrentSession();
+        return sesion.get(Jugador.class, id);
+    }
+
+    public Jugador read(String nombre) {
+        final Session sesion = sessionFactory.getCurrentSession();
+        return (Jugador)sesion.createCriteria(Jugador.class)
+                .add(Restrictions.eq("nombre", nombre))
+                .uniqueResult();
+    }
+
+    public Jugador create (Jugador jugador) {
+        final Session sesion = sessionFactory.getCurrentSession();
+        sesion.save(jugador);
+        return jugador;
+    }
 }

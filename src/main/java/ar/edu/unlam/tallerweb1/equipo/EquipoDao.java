@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.equipo;
 
-import ar.edu.unlam.tallerweb1.gol.Gol;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -17,14 +16,14 @@ public class EquipoDao implements EquipoCrud {
     @SuppressWarnings("unchecked")
     public List<Equipo> list() {
         final Session sesion = sessionFactory.getCurrentSession();
-        return sesion.createCriteria(Gol.class)
+        return sesion.createCriteria(Equipo.class)
                 .list();
     }
 
-    public Equipo update(Equipo gol) {
+    public Equipo update(Equipo equipo) {
         final Session sesion = sessionFactory.getCurrentSession();
-        sesion.update(gol);
-        return gol;
+        sesion.update(equipo);
+        return equipo;
     }
 
     public Equipo read(Long id) {
