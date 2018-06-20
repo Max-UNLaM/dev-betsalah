@@ -20,8 +20,6 @@ public class Partido {
     protected String estado;
     @ManyToOne
     private Fase fase;
-    protected List<Gol> golesLocales = new ArrayList<Gol>();
-    protected List<Gol> golesVisitantes = new ArrayList<Gol>();
 
     public Partido(Equipo equipo1, Equipo equipo2, Fase fase) {
         this.local = equipo1;
