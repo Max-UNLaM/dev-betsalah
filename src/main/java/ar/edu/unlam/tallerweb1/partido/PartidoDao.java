@@ -13,34 +13,31 @@ public class PartidoDao implements PartidoCrud {
     @Inject
     private SessionFactory sessionFactory;
 
-    @SuppressWarnings("unchecked")
-    public List<Partido> list() {
-        final Session sesion = sessionFactory.getCurrentSession();
-        return sesion.createCriteria(Partido.class)
+    public List<Partido> list(){
+        List<Partido> partidos = sessionFactory
+                .openSession()
+                .createCriteria(Partido.class)
                 .list();
+        return partidos;
     }
 
-    public Partido update(Partido equipo) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        sesion.update(equipo);
-        return equipo;
+    @Override
+    public List<Partido> consultarPartidosPorFase(String nombreFase) {
+        List<Partido> partidos = sessionFactory
+                .openSession()
+                .createCriteria(Partido.class)
+                .add(Restrictions.eq("fase", nombreFase))
+                .list();
+
+        return partidos;
     }
 
-    public Partido read(Long id) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        return sesion.get(Partido.class, id);
+        public void create(Partido partido){
+            sessionFactory
+            .openSession()
+            .save(partido);
+        }
+
+
     }
 
-    public Partido read(String nombre) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        return (Partido)sesion.createCriteria(Partido.class)
-                .add(Restrictions.eq("nombre", nombre))
-                .uniqueResult();
-    }
-
-    public Partido create (Partido equipo) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        sesion.save(equipo);
-        return equipo;
-    }
-}

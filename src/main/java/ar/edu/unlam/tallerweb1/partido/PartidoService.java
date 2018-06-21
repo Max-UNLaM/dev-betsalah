@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PartidoService implements CargaService {
+public class PartidoService{
 
     @Inject
     private PartidoDao partidoDao;
@@ -31,7 +31,7 @@ public class PartidoService implements CargaService {
     }
 
     private Boolean partidosExistenEnBaseDeDatos(){
-        return partidoDao.list() != null;
+        return !partidoDao.list().isEmpty();
     }
 
     private List<Partido> crearPartidos(){

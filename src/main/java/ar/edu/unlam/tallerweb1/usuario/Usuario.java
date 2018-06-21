@@ -13,11 +13,11 @@ public class Usuario {
 	private String email;
 	private String nombre;
 	private String password;
-	private int puntaje;
+	private Integer puntaje;
 
 	public Usuario(){}
 
-	public Usuario(String email, String nombre, String password, int puntaje) {
+	public Usuario(String email, String nombre, String password, Integer puntaje) {
 	    this.email = email;
 	    this.nombre = nombre;
 	    this.password = password;
@@ -48,10 +48,10 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getPuntaje() {
+	public Integer getPuntaje() {
 		return puntaje;
 	}
-	public void setPuntaje(int puntaje) {
+	public void setPuntaje(Integer puntaje) {
 		this.puntaje = puntaje;
 	}
 }

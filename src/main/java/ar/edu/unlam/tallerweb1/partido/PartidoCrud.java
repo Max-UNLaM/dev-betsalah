@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.partido;
-import ar.edu.unlam.tallerweb1.dao.Crud;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PartidoCrud extends Crud<Partido, Long> {
+import java.util.List;
+
+public interface PartidoCrud {
+    public List<Partido> consultarPartidosPorFase(String fase);
 }

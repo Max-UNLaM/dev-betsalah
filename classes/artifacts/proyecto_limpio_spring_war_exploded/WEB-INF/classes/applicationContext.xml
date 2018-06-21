@@ -25,7 +25,6 @@
 	<!--esto es clases anotadas como @Controller, @Service o @Repository-->
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.controladores" />
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.dao" />
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.servicios" />
 	
 
 </beans>

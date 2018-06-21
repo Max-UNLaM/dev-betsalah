@@ -1,9 +1,8 @@
 package ar.edu.unlam.tallerweb1.service;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public interface CargaService {
     public void cargar();
 }

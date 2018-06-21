@@ -15,31 +15,31 @@ public class UsuarioDao implements UsuarioCrud{
 
 	@SuppressWarnings("unchecked")
 	public List<Usuario> list() {
-		final Session sesion = sessionFactory.getCurrentSession();
+		final Session sesion = sessionFactory.openSession();
 		return sesion.createCriteria(Usuario.class)
 				.list();
 	}
 
 	public Usuario update(Usuario usuario) {
-		final Session sesion = sessionFactory.getCurrentSession();
+		final Session sesion = sessionFactory.openSession();
 		sesion.update(usuario);
 		return usuario;
 	}
 
 	public Usuario read(Long id) {
-		final Session sesion = sessionFactory.getCurrentSession();
+		final Session sesion = sessionFactory.openSession();
 		return sesion.get(Usuario.class, id);
 	}
 
 	public Usuario read(String nombre) {
-		final Session sesion = sessionFactory.getCurrentSession();
+		final Session sesion = sessionFactory.openSession();
 		return (Usuario)sesion.createCriteria(Usuario.class)
 				.add(Restrictions.eq("nombre", nombre))
 				.uniqueResult();
 	}
 
 	public Usuario create (Usuario usuario) {
-		final Session sesion = sessionFactory.getCurrentSession();
+		final Session sesion = sessionFactory.openSession();
 		sesion.save(usuario);
 		return usuario;
 	}
