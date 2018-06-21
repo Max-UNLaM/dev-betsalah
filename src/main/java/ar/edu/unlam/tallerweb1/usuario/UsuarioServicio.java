@@ -15,4 +15,8 @@ public class UsuarioServicio {
 	{
 		return this.usuarioDao.orderBy(columna);
 	}
+	
+	public List<Usuario>GenerarTabla(){
+		return this.usuarioDao.list();
+	}
 }

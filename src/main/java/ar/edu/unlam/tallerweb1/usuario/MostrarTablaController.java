@@ -23,12 +23,6 @@ public class MostrarTablaController {
 		ModelMap modelo = new ModelMap();
 		List<Usuario> usuarios = usuarioServicio.generarTabla("puntaje");
 				
-//				new ArrayList<Usuario>();
-//		Usuario usuario1 = new Usuario("prueba1@hotmail.com", "Carlos", "password1", 500);
-//		Usuario usuario2 = new Usuario("prueba2@hotmail.com", "Saul", "password2", 430);
-//		usuarios.add(usuario1);
-//		usuarios.add(usuario2);
-		
 		
 		modelo.put("usuarios", usuarios);
 		return new ModelAndView("tablaPosiciones", modelo);

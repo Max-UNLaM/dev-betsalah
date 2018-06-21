@@ -1,9 +1,11 @@
 package ar.edu.unlam.tallerweb1.usuario;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
 
 import javax.inject.Inject;
 import java.util.List;
@@ -13,7 +15,8 @@ import java.util.List;
 public class UsuarioDao implements UsuarioCrud, UsuarioOrder{
 	@Inject
 	private SessionFactory sessionFactory;
-
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<Usuario> list() {
 		final Session sesion = sessionFactory.getCurrentSession();
@@ -22,7 +25,7 @@ public class UsuarioDao implements UsuarioCrud, UsuarioOrder{
 	}
 	@SuppressWarnings("unchecked")
 	public List<Usuario> orderBy(String columna){
-		final Session sesion = sessionFactory.getCurrentSession();
+		final Session sesion = sessionFactory.openSession();
 		return sesion.createCriteria(Usuario.class)
 				.addOrder(Order.desc(columna))
 				.list();
