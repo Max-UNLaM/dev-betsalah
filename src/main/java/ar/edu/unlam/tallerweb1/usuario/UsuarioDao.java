@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 // Interface que define los metodos del DAO de Usuarios.
 @Repository
-public class UsuarioDao implements UsuarioCrud{
+public class UsuarioDao implements UsuarioCrud, UsuarioOrder{
 	@Inject
 	private SessionFactory sessionFactory;
 
@@ -19,7 +20,14 @@ public class UsuarioDao implements UsuarioCrud{
 		return sesion.createCriteria(Usuario.class)
 				.list();
 	}
-
+	@SuppressWarnings("unchecked")
+	public List<Usuario> orderBy(String columna){
+		final Session sesion = sessionFactory.getCurrentSession();
+		return sesion.createCriteria(Usuario.class)
+				.addOrder(Order.desc(columna))
+				.list();
+	}
+	
 	public Usuario update(Usuario usuario) {
 		final Session sesion = sessionFactory.getCurrentSession();
 		sesion.update(usuario);
