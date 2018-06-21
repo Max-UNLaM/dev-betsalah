@@ -5,6 +5,8 @@ import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.jugador.JugadorService;
 import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.service.CargaService;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -29,8 +31,8 @@ public class PreparacionService implements CargaService {
         this.cargar();
     }
 
-    @PostConstruct
     public void cargar(){
+
         faseService.cargar();
         equipoService.cargar();
         partidoService.cargar();
