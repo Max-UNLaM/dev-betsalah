@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.equipo;
 
+import ar.edu.unlam.tallerweb1.dao.Dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -9,38 +10,30 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class EquipoDao implements EquipoCrud {
-    @Inject
-    private SessionFactory sessionFactory;
-
+public class EquipoDao extends Dao implements EquipoCrud {
     @SuppressWarnings("unchecked")
     public List<Equipo> list() {
-        final Session sesion = sessionFactory.openSession();
-        return sesion.createCriteria(Equipo.class)
+        return session.createCriteria(Equipo.class)
                 .list();
     }
 
     public Equipo update(Equipo equipo) {
-        final Session sesion = sessionFactory.openSession();
-        sesion.update(equipo);
+        session.update(equipo);
         return equipo;
     }
 
     public Equipo read(Long id) {
-        final Session sesion = sessionFactory.openSession();
-        return sesion.get(Equipo.class, id);
+        return session.get(Equipo.class, id);
     }
 
     public Equipo read(String nombre) {
-        final Session sesion = sessionFactory.openSession();
-        return (Equipo)sesion.createCriteria(Equipo.class)
+        return (Equipo)session.createCriteria(Equipo.class)
                 .add(Restrictions.eq("nombre", nombre))
                 .uniqueResult();
     }
 
     public Equipo create (Equipo equipo) {
-        final Session sesion = sessionFactory.openSession();
-        sesion.save(equipo);
+        session.save(equipo);
         return equipo;
     }
 }

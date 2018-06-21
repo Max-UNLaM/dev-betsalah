@@ -23,8 +23,12 @@ public class ApuestaServiceImpl implements ApuestaService {
     @Override
     public ModelMap obtenerModeloPrimeraFase() {
         //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
-        Usuario usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
-        //Usuario usuario = usuarioDao.read("daniel.marconi");
+        Usuario usuario = usuarioDao.read("daniel.marconi");
+        if(usuario == null){
+            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
+            usuarioDao.create(usuario);
+        }
+
         Fase faseDeGrupos = new Fase("Fase de grupos", "Fase de grupos");
         List<Partido> partidos = partidoDao.consultarPartidosPorFase("Fase de grupos");
         List<Apuesta> apuestas = this.obtenerApuestasParaUsuario(usuario, faseDeGrupos, partidos);

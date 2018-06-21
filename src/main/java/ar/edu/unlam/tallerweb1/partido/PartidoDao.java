@@ -1,21 +1,15 @@
 package ar.edu.unlam.tallerweb1.partido;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import ar.edu.unlam.tallerweb1.dao.Dao;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class PartidoDao implements PartidoCrud {
-    @Inject
-    private SessionFactory sessionFactory;
-
+public class PartidoDao extends Dao implements PartidoCrud {
     public List<Partido> list(){
-        List<Partido> partidos = sessionFactory
-                .openSession()
+        List<Partido> partidos = session
                 .createCriteria(Partido.class)
                 .list();
         return partidos;
@@ -23,21 +17,18 @@ public class PartidoDao implements PartidoCrud {
 
     @Override
     public List<Partido> consultarPartidosPorFase(String nombreFase) {
-        List<Partido> partidos = sessionFactory
-                .openSession()
+        List<Partido> partidos = session
                 .createCriteria(Partido.class)
-                .add(Restrictions.eq("fase", nombreFase))
+                .createAlias("fase", "tablaFase")
+                .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
 
         return partidos;
     }
 
         public void create(Partido partido){
-            sessionFactory
-            .openSession()
+            session
             .save(partido);
         }
-
-
     }
 

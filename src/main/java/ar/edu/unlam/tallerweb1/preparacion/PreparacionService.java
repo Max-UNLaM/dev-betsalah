@@ -25,7 +25,7 @@ public class PreparacionService{
     private JugadorService jugadorService;
 
     public PreparacionService(){
-        //this.cargar();
+
     }
 
     @PostConstruct
@@ -33,6 +33,6 @@ public class PreparacionService{
         faseService.cargar();
         equipoService.cargar();
         partidoService.cargar();
-        jugadorService.cargar();
+        //jugadorService.cargar();
     }
 }
