@@ -33,6 +33,8 @@
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.jugador" />
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.usuario" />
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.preparacion" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.gol" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.apuesta" />
 
 </beans>
 

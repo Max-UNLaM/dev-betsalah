@@ -15,31 +15,31 @@ public class JugadorDao implements JugadorCrud {
 
     @SuppressWarnings("unchecked")
     public List<Jugador> list() {
-        final Session sesion = sessionFactory.getCurrentSession();
+        final Session sesion = sessionFactory.openSession();
         return sesion.createCriteria(Jugador.class)
                 .list();
     }
 
-    public Jugador update(Jugador gol) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        sesion.update(gol);
-        return gol;
+    public Jugador update(Jugador jugador) {
+        final Session sesion = sessionFactory.openSession();
+        sesion.update(jugador);
+        return jugador;
     }
 
     public Jugador read(Long id) {
-        final Session sesion = sessionFactory.getCurrentSession();
+        final Session sesion = sessionFactory.openSession();
         return sesion.get(Jugador.class, id);
     }
 
     public Jugador read(String nombre) {
-        final Session sesion = sessionFactory.getCurrentSession();
+        final Session sesion = sessionFactory.openSession();
         return (Jugador)sesion.createCriteria(Jugador.class)
                 .add(Restrictions.eq("nombre", nombre))
                 .uniqueResult();
     }
 
     public Jugador create (Jugador jugador) {
-        final Session sesion = sessionFactory.getCurrentSession();
+        final Session sesion = sessionFactory.openSession();
         sesion.save(jugador);
         return jugador;
     }

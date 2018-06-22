@@ -22,6 +22,8 @@
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.fase" />
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.jugador" />
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.gol" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.apuesta" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.usuario" />
 
 </beans>
 

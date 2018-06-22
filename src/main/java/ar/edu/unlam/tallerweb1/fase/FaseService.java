@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.fase;
 
-import ar.edu.unlam.tallerweb1.service.CargaService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FaseService implements CargaService {
+public class FaseService{
 
     @Inject
     private FaseDao faseDao;
@@ -21,7 +20,11 @@ public class FaseService implements CargaService {
     }
 
     private Boolean fasesExistenEnBaseDeDatos(){
-        return faseDao.list() != null;
+        return !faseDao.list().isEmpty();
+    }
+
+    public Fase readFase(String nombre) {
+        return faseDao.read(nombre);
     }
 
     private List<Fase> crearFases(){

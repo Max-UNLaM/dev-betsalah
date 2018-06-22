@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JugadorService implements CargaService {
+public class JugadorService {
     @Inject
     private JugadorDao jugadorDao;
     @Inject
@@ -24,7 +24,7 @@ public class JugadorService implements CargaService {
     }
 
     private Boolean jugadoresExistenEnBaseDeDatos(){
-        return jugadorDao.list() != null;
+        return !jugadorDao.list().isEmpty();
     }
 
     private List<Jugador> crearJugadores(){

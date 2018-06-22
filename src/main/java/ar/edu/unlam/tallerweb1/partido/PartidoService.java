@@ -4,7 +4,7 @@ import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseDao;
-import ar.edu.unlam.tallerweb1.service.CargaService;
+import ar.edu.unlam.tallerweb1.gol.GolDao;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -12,29 +12,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PartidoService implements CargaService {
+public class PartidoService {
 
     @Inject
     private PartidoDao partidoDao;
-    
+
     @Inject
     private EquipoDao equipoDao;
 
     @Inject
     private FaseDao faseDao;
-    
-    public void cargar(){
-        if(!partidosExistenEnBaseDeDatos()){
+
+    @Inject
+    private GolDao golDao;
+
+    public void cargar() {
+        if (!partidosExistenEnBaseDeDatos()) {
             List<Partido> partidos = crearPartidos();
             guardarPartidosEnBaseDeDatos(partidos);
         }
     }
 
-    private Boolean partidosExistenEnBaseDeDatos(){
-        return partidoDao.list() != null;
+    public List<Partido> partidosDeFase(Fase fase) {
+        return partidoDao.list(fase);
     }
 
-    private List<Partido> crearPartidos(){
+    private Boolean partidosExistenEnBaseDeDatos() {
+        return !partidoDao.list().isEmpty();
+    }
+
+    private List<Partido> crearPartidos() {
         Equipo rusia = equipoDao.read("Rusia");
         Equipo arabiaSaudita = equipoDao.read("Arabia Saudita");
         Equipo egipto = equipoDao.read("Egipto");

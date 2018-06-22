@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EquipoService implements CargaService {
+public class EquipoService{
 
     @Inject
     private EquipoCrud equipoDao;
@@ -19,7 +19,7 @@ public class EquipoService implements CargaService {
     }
 
     private Boolean equiposExistenEnBaseDeDatos(){
-        return equipoDao.list() != null;
+        return !equipoDao.list().isEmpty();
     }
 
     private List<Equipo> crearEquipos(){

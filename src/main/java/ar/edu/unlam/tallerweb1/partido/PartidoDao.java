@@ -1,9 +1,11 @@
 package ar.edu.unlam.tallerweb1.partido;
 
+import ar.edu.unlam.tallerweb1.fase.Fase;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -13,34 +15,69 @@ public class PartidoDao implements PartidoCrud {
     @Inject
     private SessionFactory sessionFactory;
 
+    public PartidoDao(){}
+
     @SuppressWarnings("unchecked")
-    public List<Partido> list() {
-        final Session sesion = sessionFactory.getCurrentSession();
-        return sesion.createCriteria(Partido.class)
+    public List<Partido> list(){
+        List<Partido> partidos = sessionFactory
+                .openSession()
+                .createCriteria(Partido.class)
                 .list();
+        return partidos;
     }
 
-    public Partido update(Partido equipo) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        sesion.update(equipo);
-        return equipo;
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Partido> consultarPartidosPorFase(String nombreFase) {
+        List<Partido> partidos = sessionFactory
+                .openSession()
+                .createCriteria(Partido.class)
+                .add(Restrictions.eq("fase", nombreFase))
+                .list();
+
+        return partidos;
+    }
+
+    public Partido create(Partido partido){
+        sessionFactory
+        .openSession()
+        .save(partido);
+        return partido;
+    }
+
+    public Partido update(Partido partido) {
+        sessionFactory
+                .openSession()
+                .update(partido);
+        return partido;
     }
 
     public Partido read(Long id) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        return sesion.get(Partido.class, id);
+        return sessionFactory
+                .openSession()
+                .get(Partido.class, id);
     }
 
     public Partido read(String nombre) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        return (Partido)sesion.createCriteria(Partido.class)
-                .add(Restrictions.eq("nombre", nombre))
-                .uniqueResult();
+        throw new NotImplementedException();
     }
 
-    public Partido create (Partido equipo) {
-        final Session sesion = sessionFactory.getCurrentSession();
-        sesion.save(equipo);
-        return equipo;
+    @SuppressWarnings("unchecked")
+    public List<Partido> list(Fase fase) {
+        return sessionFactory
+                .openSession()
+                .createCriteria(Partido.class)
+                .add(Restrictions.eq("fase_id", fase.getId()))
+                .list();
+    }
+
+    public Partido read(String fase, String local, String visitante) {
+        return (Partido)sessionFactory
+                .openSession()
+                .createCriteria(Partido.class)
+                .add(Restrictions.eq("local", local))
+                .add(Restrictions.eq("visitante", visitante))
+                .uniqueResult();
     }
 }
+

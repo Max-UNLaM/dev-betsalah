@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Equipo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
     private String nombre;
     private String nombre3caracteres;
     private String grupo;
