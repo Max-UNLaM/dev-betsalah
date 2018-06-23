@@ -14,9 +14,9 @@ public class Partido {
     protected Equipo local;
     @ManyToOne
     protected Equipo visitante;
-    protected String estado;
     @ManyToOne
     private Fase fase;
+    protected boolean jugado;
 
     public Partido(){
         
@@ -49,12 +49,12 @@ public class Partido {
         this.visitante = visitante;
     }
 
-    public String getEstado() {
-        return estado;
+    public boolean getJugado() {
+        return jugado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setJugado(boolean jugado) {
+        this.jugado = jugado;
     }
 
 

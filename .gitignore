@@ -130,3 +130,4 @@ fabric.properties
 /src/test/java/ar/edu/unlam/tallerweb1/persistencia/UsuarioABMTest.java
 /classes/
 /src/main/resources/hibernateContext.xml
+!/src/main/resources/hibernateContext.xml

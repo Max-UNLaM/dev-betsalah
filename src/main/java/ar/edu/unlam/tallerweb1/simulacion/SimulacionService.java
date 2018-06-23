@@ -39,5 +39,7 @@ public class SimulacionService {
             golDao.create(new Gol(partido, visitante));
         }
         puntajeService.actualizarPuntajes(partido);
+        partido.setJugado(true);
+        partidoDao.update(partido);
     }
 }

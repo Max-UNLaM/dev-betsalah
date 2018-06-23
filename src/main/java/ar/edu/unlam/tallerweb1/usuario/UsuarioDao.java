@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.usuario;
 import ar.edu.unlam.tallerweb1.dao.Dao;
+import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,14 @@ public class UsuarioDao extends Dao implements UsuarioCrud, UsuarioOrder{
 	public Usuario read(Long id) {
 		return session.get(Usuario.class, id);
 	}
+
+    public Usuario consultarUsuario(Usuario usuario) {
+
+        return (Usuario) session.createCriteria(Usuario.class)
+                .add(Restrictions.eq("email", usuario.getEmail()))
+                .add(Restrictions.eq("password", usuario.getPassword()))
+                .uniqueResult();
+    }
 
 	public Usuario read(String nombre) {
 		return (Usuario)session.createCriteria(Usuario.class)
