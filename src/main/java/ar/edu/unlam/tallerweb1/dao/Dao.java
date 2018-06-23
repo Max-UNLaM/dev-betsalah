@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,6 @@ public class Dao {
     @PostConstruct
     private void openSession(){
         this.session = this.sessionFactory.openSession();
+        session.setFlushMode(FlushMode.ALWAYS);
     }
 }

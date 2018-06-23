@@ -4,18 +4,21 @@ import ar.edu.unlam.tallerweb1.dao.Dao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class ApuestaDao extends Dao implements ApuestaRepository {
+    
+    private final String EQUIPO_LOCAL = "local";
+    private final String EQUIPO_VISITANTE = "visitante";
+    private final String RESTA = "resta";
+    private final String SUMA = "suma";
+    
 
     public Apuesta read(Usuario usuario, Partido partido) {
         return (Apuesta)
@@ -62,5 +65,38 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
         }
 
         return apuestas;
+    }
+
+    public void modificarGolesApostados(Long apuestaId, String equipo, String accion){
+        Apuesta apuesta = session.get(Apuesta.class, apuestaId);
+        if(apuesta == null) throw new IllegalArgumentException("ID de apuesta invalido");
+        if(!equipoValido(equipo)) throw new IllegalArgumentException("Equipo invalido");
+        if(!accionValida(accion)) throw new IllegalArgumentException("Accion invalida");
+
+        Transaction transaction = session.beginTransaction();
+
+        if(equipo.equals(EQUIPO_LOCAL) && accion.equals(RESTA)){
+            if(apuesta.getGolesLocal() == 0) throw new IllegalArgumentException("No se puede apostar por una cantidad de goles menor a 0");
+            apuesta.setGolesLocal(apuesta.getGolesLocal() - 1);
+        } else if(equipo.equals(EQUIPO_LOCAL) && accion.equals(SUMA)){
+            apuesta.setGolesLocal(apuesta.getGolesLocal() + 1);
+        } else if(equipo.equals(EQUIPO_VISITANTE) && accion.equals(RESTA)){
+            if(apuesta.getGolesVisitante() == 0) throw new IllegalArgumentException("No se puede apostar por una cantidad de goles menor a 0");
+            apuesta.setGolesVisitante(apuesta.getGolesVisitante() - 1);
+        } else if(equipo.equals(EQUIPO_VISITANTE) && accion.equals(SUMA)){
+            apuesta.setGolesVisitante(apuesta.getGolesVisitante() + 1);
+        }
+
+        session.update(apuesta);
+
+        transaction.commit();
+    }
+
+    private Boolean equipoValido(String equipo){
+        return equipo.equalsIgnoreCase(EQUIPO_LOCAL) || equipo.equalsIgnoreCase(EQUIPO_VISITANTE);
+    }
+
+    private Boolean accionValida(String accion){
+        return accion.equalsIgnoreCase(SUMA) || accion.equalsIgnoreCase(RESTA);
     }
 }

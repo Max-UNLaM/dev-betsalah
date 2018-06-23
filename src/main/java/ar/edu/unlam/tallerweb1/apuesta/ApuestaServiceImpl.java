@@ -53,4 +53,8 @@ public class ApuestaServiceImpl implements ApuestaService {
 
         return apuestas;
     }
+
+    public void modificarGolesApostados(Long apuestaId, String equipo, String accion){
+        apuestaDao.modificarGolesApostados(apuestaId, equipo, accion);
+    }
 }
