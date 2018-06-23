@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
+import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,9 @@ public class JugarPartidoTest extends SpringTest {
 
     @Inject
     SimulacionService simulacionService;
+
+    @Inject
+    UsuarioDao usuarioDao;
 
     @Test
     @Transactional
@@ -35,6 +39,8 @@ public class JugarPartidoTest extends SpringTest {
         getSession().save(partido);
         getSession().save(apuesta);
         this.simulacionService.jugarPartido(partido, 1, 2);
-        assertThat(usuario.getPuntaje()).isEqualTo(1);
+        assertThat(usuarioDao.read(usuario.getId()).getPuntaje()).isEqualTo(1);
     }
+
+
 }

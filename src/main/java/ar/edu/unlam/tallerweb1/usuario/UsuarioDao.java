@@ -22,7 +22,7 @@ public class UsuarioDao implements UsuarioCrud{
 
 	public Usuario update(Usuario usuario) {
 		final Session sesion = sessionFactory.openSession();
-		sesion.update(usuario);
+		sesion.save(usuario);
 		return usuario;
 	}
 
