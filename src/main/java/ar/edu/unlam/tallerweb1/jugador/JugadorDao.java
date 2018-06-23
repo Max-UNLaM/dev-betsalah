@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.jugador;
 
+import ar.edu.unlam.tallerweb1.dao.Dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -9,38 +10,30 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class JugadorDao implements JugadorCrud {
-    @Inject
-    private SessionFactory sessionFactory;
-
+public class JugadorDao extends Dao implements JugadorCrud {
     @SuppressWarnings("unchecked")
     public List<Jugador> list() {
-        final Session sesion = sessionFactory.openSession();
-        return sesion.createCriteria(Jugador.class)
+        return session.createCriteria(Jugador.class)
                 .list();
     }
 
-    public Jugador update(Jugador jugador) {
-        final Session sesion = sessionFactory.openSession();
-        sesion.update(jugador);
-        return jugador;
+    public Jugador update(Jugador gol) {
+        session.update(gol);
+        return gol;
     }
 
     public Jugador read(Long id) {
-        final Session sesion = sessionFactory.openSession();
-        return sesion.get(Jugador.class, id);
+        return session.get(Jugador.class, id);
     }
 
     public Jugador read(String nombre) {
-        final Session sesion = sessionFactory.openSession();
-        return (Jugador)sesion.createCriteria(Jugador.class)
+        return (Jugador)session.createCriteria(Jugador.class)
                 .add(Restrictions.eq("nombre", nombre))
                 .uniqueResult();
     }
 
     public Jugador create (Jugador jugador) {
-        final Session sesion = sessionFactory.openSession();
-        sesion.save(jugador);
+        session.save(jugador);
         return jugador;
     }
 }

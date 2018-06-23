@@ -41,7 +41,7 @@ public class PartidoService {
         return !partidoDao.list().isEmpty();
     }
 
-    private List<Partido> crearPartidos() {
+    private List<Partido> crearPartidos(){
         Equipo rusia = equipoDao.read("Rusia");
         Equipo arabiaSaudita = equipoDao.read("Arabia Saudita");
         Equipo egipto = equipoDao.read("Egipto");

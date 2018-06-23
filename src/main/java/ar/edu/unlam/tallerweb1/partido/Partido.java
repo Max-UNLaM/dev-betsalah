@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Partido {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    public Long id;
+    protected Long id;
     @ManyToOne
     protected Equipo local;
     @ManyToOne
@@ -18,11 +18,47 @@ public class Partido {
     @ManyToOne
     private Fase fase;
 
-    public Partido(){}
+    public Partido(){
+        
+    }
 
-    public Partido(Equipo local, Equipo visitante, Fase fase) {
+    public Partido(Equipo equipo1, Equipo equipo2, Fase fase) {
+        this.local = equipo1;
+        this.visitante = equipo2;
+        this.fase = fase;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Equipo getLocal() {
+        return local;
+    }
+
+    public void setLocal(Equipo local) {
         this.local = local;
+    }
+
+    public Equipo getVisitante() {
+        return visitante;
+    }
+
+    public void setVisitante(Equipo visitante) {
         this.visitante = visitante;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+
+    public void setFase(Fase fase) {
         this.fase = fase;
     }
 

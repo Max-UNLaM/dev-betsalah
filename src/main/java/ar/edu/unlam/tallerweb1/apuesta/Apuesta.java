@@ -44,6 +44,14 @@ public class Apuesta {
         this.apostador = apostador;
     }
 
+    public Partido getPartido() {
+        return partido;
+    }
+
+    public void setPartido(Partido partido) {
+        this.partido = partido;
+    }
+
     public Integer getGolesLocal() {
         return golesLocal;
     }
@@ -58,13 +66,5 @@ public class Apuesta {
 
     public void setGolesVisitante(Integer golesVisitante) {
         this.golesVisitante = golesVisitante;
-    }
-
-    public Partido getPartido() {
-        return partido;
-    }
-
-    public void setPartido(Partido partido) {
-        this.partido = partido;
     }
 }

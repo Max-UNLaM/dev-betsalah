@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.preparacion;
 
+import ar.edu.unlam.tallerweb1.apuesta.ApuestaService;
 import ar.edu.unlam.tallerweb1.equipo.EquipoService;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.jugador.JugadorService;
@@ -25,8 +26,9 @@ public class PreparacionService implements CargaService {
     @Inject
     private JugadorService jugadorService;
 
+
     public PreparacionService(){
-        //this.cargar();
+
     }
 
     @PostConstruct
@@ -34,6 +36,6 @@ public class PreparacionService implements CargaService {
         faseService.cargar();
         equipoService.cargar();
         partidoService.cargar();
-        jugadorService.cargar();
+        //jugadorService.cargar();
     }
 }

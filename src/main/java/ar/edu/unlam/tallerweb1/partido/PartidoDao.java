@@ -1,26 +1,19 @@
 package ar.edu.unlam.tallerweb1.partido;
 
+import ar.edu.unlam.tallerweb1.dao.Dao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Repository
-public class PartidoDao implements PartidoCrud {
-    @Inject
-    private SessionFactory sessionFactory;
-
-    public PartidoDao(){}
+public class PartidoDao extends Dao implements PartidoCrud {
 
     @SuppressWarnings("unchecked")
     public List<Partido> list(){
-        List<Partido> partidos = sessionFactory
-                .openSession()
+        List<Partido> partidos = session
                 .createCriteria(Partido.class)
                 .list();
         return partidos;
@@ -29,32 +22,29 @@ public class PartidoDao implements PartidoCrud {
     @Override
     @SuppressWarnings("unchecked")
     public List<Partido> consultarPartidosPorFase(String nombreFase) {
-        List<Partido> partidos = sessionFactory
-                .openSession()
+        List<Partido> partidos = session
                 .createCriteria(Partido.class)
-                .add(Restrictions.eq("fase", nombreFase))
+                .createAlias("fase", "tablaFase")
+                .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
 
         return partidos;
     }
 
     public Partido create(Partido partido){
-        sessionFactory
-        .openSession()
+        session
         .save(partido);
         return partido;
     }
 
     public Partido update(Partido partido) {
-        sessionFactory
-                .openSession()
+        session
                 .update(partido);
         return partido;
     }
 
     public Partido read(Long id) {
-        return sessionFactory
-                .openSession()
+        return session
                 .get(Partido.class, id);
     }
 
@@ -64,16 +54,15 @@ public class PartidoDao implements PartidoCrud {
 
     @SuppressWarnings("unchecked")
     public List<Partido> list(Fase fase) {
-        return sessionFactory
-                .openSession()
+        return session
                 .createCriteria(Partido.class)
                 .add(Restrictions.eq("fase_id", fase.getId()))
                 .list();
     }
 
     public Partido read(String fase, String local, String visitante) {
-        return (Partido)sessionFactory
-                .openSession()
+        return (Partido)
+                session
                 .createCriteria(Partido.class)
                 .add(Restrictions.eq("local", local))
                 .add(Restrictions.eq("visitante", visitante))
