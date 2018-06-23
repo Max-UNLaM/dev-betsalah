@@ -28,8 +28,8 @@
             <c:forEach items="${apuestas}" var="apuesta" varStatus="status">
                 <tr>
                     <td class="text-center">${apuesta.partido.local.nombre}</td>
-                    <td class="text-center"><button id="${usuario.id}-${apuesta.partido.id}-local-resta" data-user="${usuario.id}" data-apuesta="${apuesta.id}" data-equipo="local" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesLocal} <button id="${usuario.id}-${apuesta.partido.id}-local-suma" data-user="${usuario.id}" data-apuesta="${apuesta.id}" data-equipo="local" data-accion="suma" class="btn btn-primary">+</button></td>
-                    <td class="text-center"><button id="${usuario.id}-${apuesta.partido.id}-visitante-resta" data-user="${usuario.id}" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesVisitante} <button id="${usuario.id}-${apuesta.partido.id}-visitante-suma" data-user="${usuario.id}" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
+                    <td class="text-center"><button id="${apuesta.partido.id}-local-resta" data-apuesta="${apuesta.id}" data-equipo="local" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesLocal} <button id="${apuesta.partido.id}-local-suma" data-apuesta="${apuesta.id}" data-equipo="local" data-accion="suma" class="btn btn-primary">+</button></td>
+                    <td class="text-center"><button id="${apuesta.partido.id}-visitante-resta" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesVisitante} <button id="${apuesta.partido.id}-visitante-suma" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">${apuesta.partido.visitante.nombre}</td>
                     <td class="text-center"><input type="text" placeholder="Figura"></td>
                 </tr>
@@ -39,8 +39,8 @@
     </c:if>
 </div>
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+<script src="<c:url value="/js/jquery-1.11.3.min.js" />" ></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
 </body>
 </html>
