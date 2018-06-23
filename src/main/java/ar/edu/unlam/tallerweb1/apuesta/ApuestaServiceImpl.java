@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,9 +35,9 @@ public class ApuestaServiceImpl implements ApuestaService {
         List<Apuesta> apuestas = this.obtenerApuestasParaUsuario(usuario, faseDeGrupos, partidos);
 
         ModelMap modelo = new ModelMap();
+
         modelo.put("usuario", usuario);
-        modelo.put("partidos", partidos);
-        modelo.put("apuestas", apuestas);
+        modelo.addAttribute("apuestas", apuestas);
 
         return modelo;
     }
