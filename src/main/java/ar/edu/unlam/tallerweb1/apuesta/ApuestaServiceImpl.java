@@ -5,12 +5,14 @@ import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoCrud;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioCrud;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @Service
 public class ApuestaServiceImpl implements ApuestaService {
@@ -20,6 +22,22 @@ public class ApuestaServiceImpl implements ApuestaService {
     private PartidoCrud partidoDao;
     @Inject
     private ApuestaRepository apuestaDao;
+
+    @Inject
+    private SalahProperties salahProperties;
+
+    private String EQUIPO_LOCAL;
+    private String EQUIPO_VISITANTE;
+    private String RESTA;
+    private String SUMA;
+
+    @PostConstruct
+    public void setUp(){
+        EQUIPO_LOCAL = salahProperties.getProperty("equipo.local");
+        EQUIPO_VISITANTE = salahProperties.getProperty("equipo.visitante");
+        RESTA = salahProperties.getProperty("resta");
+        SUMA = salahProperties.getProperty("suma");
+    }
 
     @Override
     public ModelMap obtenerModeloPrimeraFase() {
@@ -54,7 +72,18 @@ public class ApuestaServiceImpl implements ApuestaService {
         return apuestas;
     }
 
-    public void modificarGolesApostados(Long apuestaId, String equipo, String accion){
-        apuestaDao.modificarGolesApostados(apuestaId, equipo, accion);
+    public Integer modificarGolesApostados(Long apuestaId, String equipo, String accion){
+        if(!equipoValido(equipo)) throw new IllegalArgumentException("Equipo invalido");
+        if(!accionValida(accion)) throw new IllegalArgumentException("Accion invalida");
+
+        return apuestaDao.modificarGolesApostados(apuestaId, equipo, accion);
+    }
+
+    private Boolean equipoValido(String equipo){
+        return equipo.equalsIgnoreCase(EQUIPO_LOCAL) || equipo.equalsIgnoreCase(EQUIPO_VISITANTE);
+    }
+
+    private Boolean accionValida(String accion){
+        return accion.equalsIgnoreCase(SUMA) || accion.equalsIgnoreCase(RESTA);
     }
 }

@@ -26,12 +26,12 @@ public class ApuestaController {
         return new ModelAndView("apuestas-primera-fase", modelo);
     }
 
-    @RequestMapping(value = "/apuesta/cambiar-goles-apostados", method = RequestMethod.PUT)
+    @RequestMapping(value = "/apuesta/cambiar-goles-apostados", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody
-    public void cambiarGolesApostados(@RequestParam Long apuestaId,
+    public Integer cambiarGolesApostados(@RequestParam Long apuestaId,
                                       @RequestParam String equipo,
                                       @RequestParam String accion){
 
-        apuestaService.modificarGolesApostados(apuestaId, equipo, accion);
+        return apuestaService.modificarGolesApostados(apuestaId, equipo, accion);
     }
 }

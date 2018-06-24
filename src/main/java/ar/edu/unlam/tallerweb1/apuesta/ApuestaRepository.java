@@ -13,5 +13,5 @@ public interface ApuestaRepository {
     Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, Fase fase);
     List<Apuesta> obtenerApuestasPorUsuario(Usuario usuario);
     List<Apuesta> crearApuestasParaUsuario(Usuario usuario, List<Partido> partidos);
-    void modificarGolesApostados(Long apuestaId, String equipo, String accion);
+    Integer modificarGolesApostados(Long apuestaId, String equipo, String accion);
 }
