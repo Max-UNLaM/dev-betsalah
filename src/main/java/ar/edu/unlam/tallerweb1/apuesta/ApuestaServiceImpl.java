@@ -1,6 +1,9 @@
 package ar.edu.unlam.tallerweb1.apuesta;
 
 import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
+import ar.edu.unlam.tallerweb1.jugador.JugadorCrud;
+import ar.edu.unlam.tallerweb1.jugador.JugadorDao;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoCrud;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
@@ -22,6 +25,8 @@ public class ApuestaServiceImpl implements ApuestaService {
     private PartidoCrud partidoDao;
     @Inject
     private ApuestaRepository apuestaDao;
+    @Inject
+    private JugadorCrud jugadorDao;
 
     @Inject
     private SalahProperties salahProperties;
@@ -51,11 +56,13 @@ public class ApuestaServiceImpl implements ApuestaService {
         Fase faseDeGrupos = new Fase("Fase de grupos", "Fase de grupos");
         List<Partido> partidos = partidoDao.consultarPartidosPorFase("Fase de grupos");
         List<Apuesta> apuestas = this.obtenerApuestasParaUsuario(usuario, faseDeGrupos, partidos);
+        List<Jugador> jugador = jugadorDao.list();
 
         ModelMap modelo = new ModelMap();
 
         modelo.put("usuario", usuario);
         modelo.addAttribute("apuestas", apuestas);
+        modelo.addAttribute("jugadores", jugador);
 
         return modelo;
     }

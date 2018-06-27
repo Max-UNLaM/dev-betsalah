@@ -31,7 +31,17 @@
                     <td class="text-center"><button id="${apuesta.partido.id}-local-resta" data-apuesta="${apuesta.id}" data-equipo="local" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesLocal} <button id="${apuesta.partido.id}-local-suma" data-apuesta="${apuesta.id}" data-equipo="local" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center"><button id="${apuesta.partido.id}-visitante-resta" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesVisitante} <button id="${apuesta.partido.id}-visitante-suma" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">${apuesta.partido.visitante.nombre}</td>
-                    <td class="text-center"><input type="text" placeholder="Figura"></td>
+                    <!--<td class="text-center"><input type="text" placeholder="Figura"></td>-->
+                    <td class="text-center"><select name="jugador">
+    					<c:forEach items="${jugadores}" var="jugadores">
+        				<c:choose>
+        				<c:when test="${jugadores.equipo.id == apuesta.partido.local.id}">
+        				<option value="${jugadores.nombreCompleto}"><c:out value="${apuesta.partido.local.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				<c:when test="${jugadores.equipo.id == apuesta.partido.visitante.id}">
+        				<option value="${jugadores.nombreCompleto}"><c:out value="${apuesta.partido.visitante.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				</c:choose>
+   				 		</c:forEach>
+					</select></td>
                 </tr>
             </c:forEach>
             </tbody>
