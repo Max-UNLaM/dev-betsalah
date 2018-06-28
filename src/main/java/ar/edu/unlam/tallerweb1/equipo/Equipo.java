@@ -12,18 +12,14 @@ public class Equipo {
     public Long id;
     private String nombre;
     private String nombre3caracteres;
-    private String grupo;
-    private Integer ordenEnGrupo;
 
     public Equipo(){
 
     }
 
-    public Equipo(String nombre, String nombre3caracteres, String grupo, Integer ordenEnGrupo) {
+    public Equipo(String nombre, String nombre3caracteres) {
         this.nombre = nombre;
         this.nombre3caracteres = nombre3caracteres;
-        this.grupo = grupo;
-        this.ordenEnGrupo = ordenEnGrupo;
     }
 
     public Long getId() {
@@ -48,21 +44,5 @@ public class Equipo {
 
     public void setNombre3caracteres(String nombre3caracteres) {
         this.nombre3caracteres = nombre3caracteres;
-    }
-
-    public String getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
-    public Integer getOrdenEnGrupo() {
-        return ordenEnGrupo;
-    }
-
-    public void setOrdenEnGrupo(Integer ordenEnGrupo) {
-        this.ordenEnGrupo = ordenEnGrupo;
     }
 }

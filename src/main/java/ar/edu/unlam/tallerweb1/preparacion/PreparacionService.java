@@ -1,8 +1,8 @@
 package ar.edu.unlam.tallerweb1.preparacion;
 
-import ar.edu.unlam.tallerweb1.apuesta.ApuestaService;
 import ar.edu.unlam.tallerweb1.equipo.EquipoService;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
+import ar.edu.unlam.tallerweb1.grupo.GrupoService;
 import ar.edu.unlam.tallerweb1.jugador.JugadorService;
 import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.service.CargaService;
@@ -16,6 +16,9 @@ public class PreparacionService implements CargaService {
 
     @Inject
     private FaseService faseService;
+
+    @Inject
+    private GrupoService grupoService;
 
     @Inject
     private EquipoService equipoService;
@@ -35,7 +38,8 @@ public class PreparacionService implements CargaService {
     public void cargar(){
         faseService.cargar();
         equipoService.cargar();
+        grupoService.cargar();
         partidoService.cargar();
-        //jugadorService.cargar();
+        jugadorService.cargar();
     }
 }
