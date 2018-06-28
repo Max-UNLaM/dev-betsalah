@@ -1,33 +1,23 @@
 package ar.edu.unlam.tallerweb1.equipo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.stereotype.Component;
 
-@Entity
-public class Equipo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Component
+public class EquipoDto {
     public Long id;
-    private String nombre;
-    private String nombre3caracteres;
-    private String grupo;
-    private Integer ordenEnGrupo;
+    public String nombre;
+    public String nombre3caracteres;
+    public String grupo;
+    public Integer ordenEnGrupo;
 
-    public Equipo(){
+    public EquipoDto(){}
 
-    }
-
-    public Equipo(String nombre, String nombre3caracteres, String grupo, Integer ordenEnGrupo) {
+    public EquipoDto(Long id, String nombre, String nombre3caracteres, String grupo, Integer ordenEnGrupo) {
+        this.id = id;
         this.nombre = nombre;
         this.nombre3caracteres = nombre3caracteres;
         this.grupo = grupo;
         this.ordenEnGrupo = ordenEnGrupo;
-    }
-
-    public EquipoDto obtenerEquipoDto() {
-        return new EquipoDto(this.id, this.nombre, this.nombre3caracteres, this.grupo, this.ordenEnGrupo);
     }
 
     public Long getId() {

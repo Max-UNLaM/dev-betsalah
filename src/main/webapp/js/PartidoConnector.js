@@ -14,16 +14,19 @@ class PartidoConnector {
     }
 
     putGoles() {
+        let xhr = this.conector;
         const envio = `${this.url}?apuestaId=${this.envio.apuestaId}&equipo=${this.envio.equipo}&accion=${this.envio.accion}`;
-        this.conector.open("put", envio, true);
-        this.conector.setRequestHeader('Content-type','application/json');
-        this.conector.onreadystatechange = (val) => {
-            if (val.target.status === 200) {
-                this.golesValor.innerText = val.target.responseText;
-            } else {
-                console.error(val.target.responseText);
+        xhr.open("put", envio, true);
+        xhr.setRequestHeader('Content-type','application/json');
+        xhr.onload = function() {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    this.golesValor.innerText = xhr.responseText;
+                } else {
+                    console.error(xhr.response);
+                }
             }
         };
-        this.conector.send();
+        xhr.send();
     }
 }
