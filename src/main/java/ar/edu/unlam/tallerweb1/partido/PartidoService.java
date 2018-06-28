@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseDao;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolService;
+import ar.edu.unlam.tallerweb1.simulacion.ResultadoService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -26,9 +27,10 @@ public class PartidoService {
     private EquipoDao equipoDao;
     @Inject
     private FaseDao faseDao;
-
     @Inject
     GolService golService;
+    @Inject
+    ResultadoService resultadoService;
 
     public void cargar() {
         if (!partidosExistenEnBaseDeDatos()) {
@@ -42,7 +44,8 @@ public class PartidoService {
         Integer golesLocal = listaGolesLocal.size();
         List<Gol> listaGolesVisitante = golService.obtenerGolesPartidoYEquipo(partido, partido.visitante);
         Integer golesVisitante = listaGolesVisitante.size();
-        return new PartidoDto(partido.id, golesLocal, golesVisitante, equipoService.obtenerEquipoDto(partido.local), equipoService.obtenerEquipoDto(partido.visitante), partido.jugado);
+        String resultado = partido.jugado ? resultadoService.textoGanador(partido) : "Sin jugar";
+        return new PartidoDto(partido.id, golesLocal, golesVisitante, equipoService.obtenerEquipoDto(partido.local), equipoService.obtenerEquipoDto(partido.visitante), partido.jugado, resultado);
     }
 
     public List<Partido> filterByFase(Fase fase) {

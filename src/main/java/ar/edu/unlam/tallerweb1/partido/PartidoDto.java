@@ -9,16 +9,18 @@ public class PartidoDto {
     public EquipoDto local;
     public EquipoDto visitante;
     public Boolean jugado;
+    public String resultado;
 
     public PartidoDto(){}
 
-    public PartidoDto(Long id, Integer golesLocal, Integer golesVisitante, EquipoDto local, EquipoDto visitante, Boolean jugado) {
+    public PartidoDto(Long id, Integer golesLocal, Integer golesVisitante, EquipoDto local, EquipoDto visitante, Boolean jugado, String resultado) {
         this.id = id;
         this.golesLocal = golesLocal;
         this.golesVisitante = golesVisitante;
         this.local = local;
         this.visitante = visitante;
         this.jugado = jugado;
+        this.resultado = resultado;
     }
 
     public Long getId() {
@@ -67,5 +69,13 @@ public class PartidoDto {
 
     public void setJugado(Boolean jugado) {
         this.jugado = jugado;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
 }

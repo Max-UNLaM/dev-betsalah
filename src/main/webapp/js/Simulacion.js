@@ -14,7 +14,14 @@ let conexion = {
             golesVisitante: Number(golesDelVisitante)
         };
         this.sdk = new SimulacionConnector(envio);
-        this.sdk.jugar();
+        const juego = this.sdk.jugar();
+        juego.then((val) => {
+            deshabilitarBotones(id, JSON.parse(val).textoResultado);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+
     },
     editarGoles(objeto) {
         const golesSpan = document.getElementById(`goles-${objeto.equipo}-${objeto.id}`);
@@ -28,3 +35,18 @@ let conexion = {
         }
     }
 };
+function deshabilitarBotones (id, resultado) {
+    const resultadoTxt = document.getElementById(`partido-resultado-${id}`);
+    const botones = [
+            document.getElementById(`${id}-local-resta`),
+            document.getElementById(`${id}-local-suma`),
+            document.getElementById(`${id}-visitante-resta`),
+            document.getElementById(`${id}-visitante-suma`),
+            document.getElementById(`jugar-partido-${id}`),
+        ];
+    botones.map((val) => {
+       val.disabled = true;
+    });
+    resultadoTxt.innerText = resultado;
+    resultadoTxt.classList.add("success");
+}

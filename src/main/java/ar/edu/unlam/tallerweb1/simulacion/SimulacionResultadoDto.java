@@ -4,13 +4,15 @@ public class SimulacionResultadoDto {
     protected String resultado;
     protected String local;
     protected String visitante;
+    protected String textoResultado;
 
     public SimulacionResultadoDto(){}
 
-    public SimulacionResultadoDto(String local, String visitante, String resultado) {
+    public SimulacionResultadoDto(String local, String visitante, String resultado, String textoResultado) {
         this.local = local;
         this.visitante = visitante;
         this.resultado = resultado;
+        this.textoResultado = textoResultado;
     }
 
     public String getResultado() {
@@ -35,5 +37,13 @@ public class SimulacionResultadoDto {
 
     public void setVisitante(String visitante) {
         this.visitante = visitante;
+    }
+
+    public String getTextoResultado() {
+        return textoResultado;
+    }
+
+    public void setTextoResultado(String textoResultado) {
+        this.textoResultado = textoResultado;
     }
 }

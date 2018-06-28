@@ -69,12 +69,13 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         }
         puntajeService.actualizarPuntajes(partido);
         partido.setJugado(true);
-        Partido doparti = partidoDao.update(partido);
+        partidoDao.update(partido);
     }
 
     public SimulacionResultadoDto imprimirSimulacionResultadoDto(PartidoJuegoDto partidoJuegoDto) {
         Partido partidoJugado = partidoDao.read(partidoJuegoDto.id);
         String resultado = resultadoService.ganador(partidoJugado);
-        return new SimulacionResultadoDto(partidoJugado.getLocal().getNombre(), partidoJugado.getVisitante().getNombre(), resultado);
+        String textoResultado = resultadoService.textoGanador(partidoJugado);
+        return new SimulacionResultadoDto(partidoJugado.getLocal().getNombre(), partidoJugado.getVisitante().getNombre(), resultado, textoResultado);
     }
 }

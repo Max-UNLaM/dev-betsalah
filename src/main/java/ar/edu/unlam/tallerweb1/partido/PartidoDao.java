@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.partido;
 
 import ar.edu.unlam.tallerweb1.dao.Dao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -31,20 +32,19 @@ public class PartidoDao extends Dao implements PartidoCrud, PartidoFilter {
     }
 
     public Partido create(Partido partido){
-        session
-        .save(partido);
+        session.save(partido);
         return partido;
     }
 
     public Partido update(Partido partido) {
-        session
-                .update(partido);
+        Transaction transaction = session.beginTransaction();
+        session.update(partido);
+        transaction.commit();
         return partido;
     }
 
     public Partido read(Long id) {
-        return session
-                .get(Partido.class, id);
+        return session.get(Partido.class, id);
     }
 
     public Partido read(String nombre) {

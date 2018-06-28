@@ -22,6 +22,15 @@ public class ResultadoService {
         if (resultado(partido).equals("empate")) {
             return "Empate";
         } else {
+            return resultado(partido).equals("local") ? partido.getLocal().getNombre() : partido.getVisitante().getNombre();
+
+        }
+    }
+
+    public String textoGanador(Partido partido) {
+        if (resultado(partido).equals("empate")) {
+            return "Empate";
+        } else {
             String nombreGanador = resultado(partido).equals("local") ? partido.getLocal().getNombre() : partido.getVisitante().getNombre();
             return "Ganó".concat(" ").concat(nombreGanador);
         }
