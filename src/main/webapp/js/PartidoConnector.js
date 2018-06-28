@@ -1,10 +1,9 @@
 'use strict';
 const apuestaCambiarGoles = '/apuesta/cambiar-goles-apostados';
 class PartidoConnector {
-    constructor(elemento, golesValor) {
+    constructor(elemento) {
         this.url = apuestaCambiarGoles;
         this.conector = new XMLHttpRequest();
-        this.golesValor = golesValor;
         const recepcion = Object.assign({},elemento);
         this.envio = {
             apuestaId: Number(recepcion.apuestaid),
@@ -13,7 +12,7 @@ class PartidoConnector {
         };
     }
 
-    putGoles() {
+    putGoles(golesValor) {
         let xhr = this.conector;
         const envio = `${this.url}?apuestaId=${this.envio.apuestaId}&equipo=${this.envio.equipo}&accion=${this.envio.accion}`;
         xhr.open("put", envio, true);
@@ -21,7 +20,7 @@ class PartidoConnector {
         xhr.onload = function() {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
-                    this.golesValor.innerText = xhr.responseText;
+                    golesValor.innerText = xhr.responseText;
                 } else {
                     console.error(xhr.response);
                 }
