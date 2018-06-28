@@ -9,7 +9,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.List;
 
 @Repository
-public class PartidoDao extends Dao implements PartidoCrud {
+public class PartidoDao extends Dao implements PartidoCrud, PartidoFilter {
 
     @SuppressWarnings("unchecked")
     public List<Partido> list(){
@@ -27,7 +27,6 @@ public class PartidoDao extends Dao implements PartidoCrud {
                 .createAlias("fase", "tablaFase")
                 .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
-
         return partidos;
     }
 
@@ -67,6 +66,14 @@ public class PartidoDao extends Dao implements PartidoCrud {
                 .add(Restrictions.eq("local", local))
                 .add(Restrictions.eq("visitante", visitante))
                 .uniqueResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Partido> filter(Fase fase) {
+        return session
+                .createCriteria(Partido.class)
+                .add(Restrictions.eq("fase", fase))
+                .list();
     }
 }
 

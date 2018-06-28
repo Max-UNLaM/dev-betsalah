@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public class UsuarioDao extends Dao implements UsuarioCrud, UsuarioOrder{
 
-
-
 	@SuppressWarnings("unchecked")
 	public List<Usuario> list() {
 		return session.createCriteria(Usuario.class)

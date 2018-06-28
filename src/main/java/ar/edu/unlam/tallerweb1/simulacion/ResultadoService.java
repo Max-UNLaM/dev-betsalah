@@ -18,6 +18,15 @@ public class ResultadoService {
         return this.resultado(golesLocal, golesVisitante);
     }
 
+    public String ganador(Partido partido) {
+        if (resultado(partido).equals("empate")) {
+            return "Empate";
+        } else {
+            String nombreGanador = resultado(partido).equals("local") ? partido.getLocal().getNombre() : partido.getVisitante().getNombre();
+            return "Ganó".concat(" ").concat(nombreGanador);
+        }
+    }
+
     public String resultado(int golesLocal, int golesVisitante) {
         if (golesLocal == golesVisitante) {
             return "empate";

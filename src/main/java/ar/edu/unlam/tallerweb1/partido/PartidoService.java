@@ -2,9 +2,11 @@ package ar.edu.unlam.tallerweb1.partido;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
+import ar.edu.unlam.tallerweb1.equipo.EquipoService;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseDao;
-import ar.edu.unlam.tallerweb1.gol.GolDao;
+import ar.edu.unlam.tallerweb1.gol.Gol;
+import ar.edu.unlam.tallerweb1.gol.GolService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -15,16 +17,18 @@ import java.util.List;
 public class PartidoService {
 
     @Inject
-    private PartidoDao partidoDao;
-
+    private PartidoFilter partidoFilter;
+    @Inject
+    private PartidoCrud partidoCrud;
+    @Inject
+    protected EquipoService equipoService;
     @Inject
     private EquipoDao equipoDao;
-
     @Inject
     private FaseDao faseDao;
 
     @Inject
-    private GolDao golDao;
+    GolService golService;
 
     public void cargar() {
         if (!partidosExistenEnBaseDeDatos()) {
@@ -33,12 +37,20 @@ public class PartidoService {
         }
     }
 
-    public List<Partido> partidosDeFase(Fase fase) {
-        return partidoDao.list(fase);
+    public PartidoDto getPartidoDto(Partido partido) {
+        List<Gol> listaGolesLocal = golService.obtenerGolesPartidoYEquipo(partido, partido.local);
+        Integer golesLocal = listaGolesLocal.size();
+        List<Gol> listaGolesVisitante = golService.obtenerGolesPartidoYEquipo(partido, partido.visitante);
+        Integer golesVisitante = listaGolesVisitante.size();
+        return new PartidoDto(partido.id, golesLocal, golesVisitante, equipoService.obtenerEquipoDto(partido.local), equipoService.obtenerEquipoDto(partido.visitante), partido.jugado);
+    }
+
+    public List<Partido> filterByFase(Fase fase) {
+        return partidoFilter.filter(fase);
     }
 
     private Boolean partidosExistenEnBaseDeDatos() {
-        return !partidoDao.list().isEmpty();
+        return !partidoCrud.list().isEmpty();
     }
 
     private List<Partido> crearPartidos(){
@@ -133,7 +145,7 @@ public class PartidoService {
 
     private void guardarPartidosEnBaseDeDatos(List<Partido> partidos) {
         for (Partido partido : partidos) {
-            partidoDao.create(partido);
+            partidoCrud.create(partido);
 
         }
     }

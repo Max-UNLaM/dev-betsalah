@@ -2,11 +2,16 @@ package ar.edu.unlam.tallerweb1.partido;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.gol.Gol;
+import ar.edu.unlam.tallerweb1.gol.GolService;
 
+import javax.inject.Inject;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Partido {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -18,16 +23,13 @@ public class Partido {
     private Fase fase;
     protected boolean jugado;
 
-    public Partido(){
-        
-    }
+    public Partido(){}
 
-    public Partido(Equipo equipo1, Equipo equipo2, Fase fase) {
-        this.local = equipo1;
-        this.visitante = equipo2;
+    public Partido(Equipo local, Equipo visitante, Fase fase) {
+        this.local = local;
+        this.visitante = visitante;
         this.fase = fase;
     }
-
 
     public void setId(Long id) {
         this.id = id;
