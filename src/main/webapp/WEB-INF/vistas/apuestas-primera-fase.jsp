@@ -36,9 +36,9 @@
     					<c:forEach items="${jugadores}" var="jugadores">
         				<c:choose>
         				<c:when test="${jugadores.equipo.id == apuesta.partido.local.id}">
-        				<option value="${jugadores.nombreCompleto}"><c:out value="${apuesta.partido.local.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				<option value="${jugadores.id}"><c:out value="${apuesta.partido.local.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
         				<c:when test="${jugadores.equipo.id == apuesta.partido.visitante.id}">
-        				<option value="${jugadores.nombreCompleto}"><c:out value="${apuesta.partido.visitante.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				<option value="${jugadores.id}"><c:out value="${apuesta.partido.visitante.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
         				</c:choose>
    				 		</c:forEach>
 					</select></td>

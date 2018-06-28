@@ -10,6 +10,7 @@ public class Apuesta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long figuraId;
     @ManyToOne
     private Usuario apostador;
     @ManyToOne
@@ -34,6 +35,14 @@ public class Apuesta {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public Long getFigura() {
+    	return figuraId;
+    }
+    
+    public void setFigura(Long figuraId) {
+    	this.figuraId = figuraId;
     }
 
     public Usuario getApostador() {

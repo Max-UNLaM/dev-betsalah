@@ -10,6 +10,7 @@ public class Partido {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     protected Long id;
+    private Long figuraId;
     @ManyToOne
     protected Equipo local;
     @ManyToOne
@@ -36,7 +37,15 @@ public class Partido {
     public Equipo getLocal() {
         return local;
     }
-
+    
+    public Long getFigura() {
+    	return figuraId;
+    }
+    
+    public void setFigura(Long figuraId) {
+    	this.figuraId = figuraId;
+    }
+    
     public void setLocal(Equipo local) {
         this.local = local;
     }
