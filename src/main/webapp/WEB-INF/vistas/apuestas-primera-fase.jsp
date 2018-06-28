@@ -32,7 +32,8 @@
                     <td class="text-center"><button id="${apuesta.partido.id}-visitante-resta" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="resta" class="btn btn-danger">-</button> ${apuesta.golesVisitante} <button id="${apuesta.partido.id}-visitante-suma" data-apuesta="${apuesta.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">${apuesta.partido.visitante.nombre}</td>
                     <!--<td class="text-center"><input type="text" placeholder="Figura"></td>-->
-                    <td class="text-center"><select name="jugador">
+                    <td class="form-group"><select class="form-control" name="jugador">
+                    	<option disabled selected hidden>Seleccione jugador figura</option>
     					<c:forEach items="${jugadores}" var="jugadores">
         				<c:choose>
         				<c:when test="${jugadores.equipo.id == apuesta.partido.local.id}">
