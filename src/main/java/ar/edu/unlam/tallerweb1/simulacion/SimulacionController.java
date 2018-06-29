@@ -3,33 +3,29 @@ package ar.edu.unlam.tallerweb1.simulacion;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.partido.*;
-import ar.edu.unlam.tallerweb1.usuario.Usuario;
-import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class SimulacionController {
 
     @Inject
-    FaseService faseService;
+    private FaseService faseService;
     @Inject
-    SimulacionServiceFront simulacionServiceFront;
+    private SimulacionServiceFront simulacionServiceFront;
     @Inject
-    SimulacionServiceBack simulacionServiceBack;
+    private SimulacionServiceBack simulacionServiceBack;
     @Inject
-    PartidoDao partidoDao;
+    private PartidoDao partidoDao;
 
 
     @RequestMapping(path = "/partido/{fase}")
     public ModelAndView pantallaSimulacion(@PathVariable(value = "fase") String nombreFase) {
-        Fase fase = (nombreFase.equals("grupos")) ? faseService.readFase("Fase de grupos") : faseService.readFase("Fase de grupos");
+        Fase fase = (nombreFase.equals("grupos")) ? faseService.readFase(SalahProperties.FASE_DE_GRUPOS) : faseService.readFase(SalahProperties.FASE_DE_GRUPOS);
         return simulacionServiceFront.modelarFase(fase);
     }
 

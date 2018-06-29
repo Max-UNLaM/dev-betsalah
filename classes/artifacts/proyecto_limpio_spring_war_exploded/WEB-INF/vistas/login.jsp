@@ -8,7 +8,12 @@
 	</head>
 	<body>
 		<div class = "container">
-			<a href="http://localhost:8080/apuesta/primera-fase" class="btn btn-info" role="button">Pronosticos primera fase</a>
+			<a href="http://localhost:8080/apuesta/grupos" class="btn btn-primary" role="button">Pronosticos fase de grupos</a>
+			<a href="http://localhost:8080/apuesta/octavos" class="btn btn-primary" role="button">Pronosticos octavos de final</a>
+			<a href="http://localhost:8080/apuesta/cuartos" class="btn btn-primary" role="button">Pronosticos cuartos de final</a>
+			<a href="http://localhost:8080/apuesta/semifinal" class="btn btn-primary" role="button">Pronosticos semifinales</a>
+			<a href="http://localhost:8080/apuesta/tercer-puesto" class="btn btn-primary" role="button">Pronostico partido por tercer puesto</a>
+			<a href="http://localhost:8080/apuesta/final" class="btn btn-primary" role="button">Pronostico partido final</a>
 		</div>
 		
 		<!-- Placed at the end of the document so the pages load faster -->

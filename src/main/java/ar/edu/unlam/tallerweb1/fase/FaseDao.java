@@ -39,6 +39,13 @@ public class FaseDao extends Dao {
                 .uniqueResult();
     }
 
+    public Fase read(String tipo, String nombre) {
+        return (Fase)session.createCriteria(Fase.class)
+                .add(Restrictions.eq("tipo", tipo))
+                .add(Restrictions.eq("nombre", nombre))
+                .uniqueResult();
+    }
+
     public Fase create (Fase fase) {
         session.save(fase);
         return fase;

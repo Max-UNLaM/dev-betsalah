@@ -43,25 +43,28 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
     }
 
     @Override
-    public Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, Fase fase) {
+    public Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, String nombreFase) {
         Boolean existenApuestas = !session
                 .createCriteria(Apuesta.class)
                 .createAlias("apostador", "tablaUsuarios")
                 .createAlias("partido", "tablaPartidos")
                 .createAlias("tablaPartidos.fase", "tablaFase")
                 .add(Restrictions.eq("tablaUsuarios.nombre", usuario.getNombre()))
-                .add(Restrictions.eq("tablaFase.nombre", fase.getNombre()))
+                .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list()
                 .isEmpty();
         return existenApuestas;
     }
 
     @Override
-    public List<Apuesta> obtenerApuestasPorUsuario(Usuario usuario) {
+    public List<Apuesta> obtenerApuestasPorUsuarioPorFase(Usuario usuario, String nombreFase) {
         List<Apuesta> apuestas = session
                 .createCriteria(Apuesta.class)
-                .createAlias("apostador","tablaUsuarios" )
+                .createAlias("apostador","tablaUsuarios")
+                .createAlias("partido", "tablaPartido")
+                .createAlias("tablaPartido.fase", "tablaFase")
                 .add(Restrictions.eq("tablaUsuarios.id", usuario.getId()))
+                .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
         return apuestas;
     }

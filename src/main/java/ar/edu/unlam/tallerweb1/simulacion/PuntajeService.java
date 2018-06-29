@@ -28,7 +28,7 @@ public class PuntajeService {
         String resultadoPartido = resultadoService.resultado(partido);
         List<Usuario> usuarios = usuarioDao.list();
         for (Usuario usuario : usuarios) {
-            if (apuestaDao.existenApuestasDeUsuarioEnFase(usuario, fase)) {
+            if (apuestaDao.existenApuestasDeUsuarioEnFase(usuario, fase.getNombre())) {
                 sumarPuntos(usuario, partido, resultadoPartido);
             }
         }

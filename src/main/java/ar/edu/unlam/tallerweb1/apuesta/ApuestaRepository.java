@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface ApuestaRepository {
-    Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, Fase fase);
-    List<Apuesta> obtenerApuestasPorUsuario(Usuario usuario);
+    Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, String nombreFase);
+    List<Apuesta> obtenerApuestasPorUsuarioPorFase(Usuario usuario, String fase);
     List<Apuesta> crearApuestasParaUsuario(Usuario usuario, List<Partido> partidos);
     Integer modificarGolesApostados(Long apuestaId, String equipo, String accion);
 }
