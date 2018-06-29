@@ -12,7 +12,7 @@
 <body>
 <div class = "container">
     <c:if test="${not empty apuestas}">
-        <h4>${fase} - pronostico de ${usuario.nombre}</h4>
+        <h3 class="text-center">${fase} - Pronostico de ${usuario.nombre}</h3>
 
         <table class="table">
             <thead>

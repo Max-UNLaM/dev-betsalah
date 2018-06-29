@@ -12,6 +12,7 @@ public class Fase {
     private Long id;
     private String tipo;
     private String nombre;
+    private Boolean finalizada;
 
     public Fase(){
 
@@ -20,6 +21,7 @@ public class Fase {
     public Fase(String tipo, String nombre) {
         this.tipo = tipo;
         this.nombre = nombre;
+        this.finalizada = false;
     }
 
     public Long getId() {
@@ -44,5 +46,13 @@ public class Fase {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean getFinalizada() {
+        return finalizada;
+    }
+
+    public void setFinalizada(Boolean finalizada) {
+        this.finalizada = finalizada;
     }
 }

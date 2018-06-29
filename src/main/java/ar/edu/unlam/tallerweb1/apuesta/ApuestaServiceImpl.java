@@ -39,8 +39,6 @@ public class ApuestaServiceImpl implements ApuestaService {
 
     @Override
     public ModelMap obtenerModeloPorFase(String fase) {
-        String nombreFase = validarFase(fase);
-
         //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
         Usuario usuario = usuarioDao.read("daniel.marconi");
         if(usuario == null){
@@ -48,6 +46,7 @@ public class ApuestaServiceImpl implements ApuestaService {
             usuarioDao.create(usuario);
         }
 
+        String nombreFase = validarFase(fase);
         List<Partido> partidos = partidoDao.consultarPartidosPorFase(nombreFase);
         List<Apuesta> apuestas = this.obtenerApuestasParaUsuario(usuario, nombreFase, partidos);
 
@@ -68,7 +67,6 @@ public class ApuestaServiceImpl implements ApuestaService {
         } else {
             apuestas = apuestaDao.crearApuestasParaUsuario(usuario, partidos);
         }
-
         return apuestas;
     }
 
