@@ -13,6 +13,9 @@ public class SalahProperties extends Properties {
     private Properties properties;
     private InputStream inputStream;
 
+    public static String CONDICION_LOCAL;
+    public static String CONDICION_VISITANTE;
+
     public static String FASE_DE_GRUPOS;
     public static String FASE_OCTAVOS_DE_FINAL;
     public static String FASE_CUARTOS_DE_FINAL;
@@ -51,6 +54,9 @@ public class SalahProperties extends Properties {
 
     @PostConstruct
     private void setUp(){
+        CONDICION_LOCAL = this.getProperty("condicion.local");
+        CONDICION_VISITANTE = this.getProperty("condicion.visitante");
+
         FASE_DE_GRUPOS = this.getProperty("fase.de.grupos.nombre");
         FASE_OCTAVOS_DE_FINAL = this.getProperty("fase.octavos.de.final.nombre");
         FASE_CUARTOS_DE_FINAL = this.getProperty("fase.cuartos.de.final.nombre");
