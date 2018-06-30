@@ -38,13 +38,13 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
 
     protected Partido partido;
 
-    public ModelAndView modelarFase(Fase fase) {
+    public ModelAndView modelarFases(List<Fase> fases) {
         Usuario usuario = usuarioDao.read("daniel.marconi");
         if(usuario == null){
             usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
             usuarioDao.create(usuario);
         }
-        List<Partido> partidosDeFase = partidoService.filterByFase(fase);
+        List<Partido> partidosDeFase = partidoService.filterByFase(fases);
         ArrayList<PartidoDto> partidosDto = new ArrayList<>();
         for (Partido partido : partidosDeFase) {
             partidosDto.add(partidoService.getPartidoDto(partido));

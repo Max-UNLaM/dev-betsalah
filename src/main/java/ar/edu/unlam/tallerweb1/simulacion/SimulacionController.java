@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SimulacionController {
@@ -25,8 +27,11 @@ public class SimulacionController {
 
     @RequestMapping(path = "/partido/{fase}")
     public ModelAndView pantallaSimulacion(@PathVariable(value = "fase") String nombreFase) {
-        Fase fase = (nombreFase.equals("grupos")) ? faseService.readFase(SalahProperties.FASE_DE_GRUPOS) : faseService.readFase(SalahProperties.FASE_DE_GRUPOS);
-        return simulacionServiceFront.modelarFase(fase);
+        List<Fase> fases = new ArrayList<>();
+
+        if(nombreFase.equals("grupos")) fases = faseService.readFases(SalahProperties.FASE_DE_GRUPOS);
+        if(nombreFase.equals("octavos")) fases =  faseService.readFases(SalahProperties.FASE_OCTAVOS_DE_FINAL);
+        return simulacionServiceFront.modelarFases(fases);
     }
 
     @ResponseBody

@@ -85,8 +85,17 @@ public class PartidoService {
         return new PartidoDto(partido.id, golesLocal, golesVisitante, equipoService.obtenerEquipoDto(partido.local), equipoService.obtenerEquipoDto(partido.visitante), partido.jugado, resultado);
     }
 
-    public List<Partido> filterByFase(Fase fase) {
-        return partidoFilter.filter(fase);
+    public List<Partido> filterByFase(List<Fase> fases) {
+        List<Partido> respuesta = new ArrayList<>();
+        List<Partido> respuestaParcial;
+
+        for(Fase fase : fases){
+            respuestaParcial = partidoFilter.filter(fase);
+            respuesta.addAll(respuestaParcial);
+        }
+
+        return respuesta;
+
     }
 
     private Boolean partidosExistenEnBaseDeDatos() {

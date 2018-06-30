@@ -59,8 +59,8 @@ public class FaseService{
         return !faseDao.list().isEmpty();
     }
 
-    public Fase readFase(String nombre) {
-        return faseDao.read(nombre);
+    public List<Fase> readFases(String nombre) {
+        return faseDao.list(nombre);
     }
 
     private List<Fase> crearFases(){
