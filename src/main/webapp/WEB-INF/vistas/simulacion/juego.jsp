@@ -38,7 +38,19 @@
                         <span id="goles-visitante-${partido.id}">${partido.golesVisitante}</span>
                         <button ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-visitante-suma" data-id="${partido.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">${partido.visitante.nombre}</td>
-                    <td class="text-center"><input type="text" placeholder="Figura"></td>
+                    <td class="form-group">
+                        <select class="form-control" name="jugador">
+                    	<option disabled selected hidden>Seleccione jugador figura</option>
+    					<c:forEach items="${jugadores}" var="jugadores">
+        				<c:choose>
+        				<c:when test="${jugadores.equipo.id == partido.local.id}">
+        				<option value="${jugadores.id}"><c:out value="${partido.local.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				<c:when test="${jugadores.equipo.id == partido.visitante.id}">
+        				<option value="${jugadores.id}"><c:out value="${partido.visitante.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				</c:choose>
+   				 		</c:forEach>
+					</select>
+					</td>
                     <td class="text-center ${partido.jugado ? 'success' : 'primary'}" id="partido-resultado-${partido.id}">${partido.resultado}</td>
                     <td class="text-center"><button class="btn btn-primary" ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.simularPartidos('${partido.id}')" id="jugar-partido-${partido.id}" data-partidoid="${partido.id}">JUGAR</button></td>
                 </tr>

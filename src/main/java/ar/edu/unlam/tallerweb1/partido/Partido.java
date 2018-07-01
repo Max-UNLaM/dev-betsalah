@@ -15,11 +15,14 @@ public class Partido {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     protected Long id;
+    protected Long figuraId;
     @ManyToOne
     protected Equipo local;
     @ManyToOne
     protected Equipo visitante;
-    @ManyToOne
+
+
+	@ManyToOne
     private Fase fase;
     protected boolean jugado;
     private Integer golesLocal;
@@ -39,6 +42,14 @@ public class Partido {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public Long getFiguraId() {
+		return figuraId;
+	}
+
+	public void setFiguraId(Long figuraId) {
+		this.figuraId = figuraId;
+	}
 
     public Equipo getLocal() {
         return local;

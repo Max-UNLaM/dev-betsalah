@@ -7,6 +7,8 @@ import ar.edu.unlam.tallerweb1.fase.FaseDao;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolDao;
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
+import ar.edu.unlam.tallerweb1.jugador.JugadorCrud;
 import ar.edu.unlam.tallerweb1.partido.*;
 import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
@@ -40,6 +42,8 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
     protected FaseService faseService;
     @Inject
     protected ResultadoService resultadoService;
+    @Inject
+    protected JugadorCrud jugadorDao;
 
     protected Partido partido;
 
@@ -54,9 +58,11 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         for (Partido partido : partidosDeFase) {
             partidosDto.add(partidoService.getPartidoDto(partido));
         }
+        List<Jugador> jugador = jugadorDao.list();
         ModelMap modelo = new ModelMap();
         modelo.addAttribute("partidos", partidosDto);
         modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("jugadores", jugador);
         return new ModelAndView("simulacion/juego", modelo);
     }
 

@@ -69,8 +69,20 @@
                         </c:if>
                     </td>
 
-                    <td class="text-center col-xs-1">
-                        <input type="text" ${apuesta.partido.jugado || empty apuesta.partido.local || empty apuesta.partido.visitante ? 'disabled="disabled"' : ''} placeholder="Figura">
+                    <td class="form-group">
+                        <select class="form-control" name="jugador">
+                        <c:if test="${empty apuesta.figuraId}">
+                    	<option disabled selected hidden>Seleccione jugador figura</option>
+                    	</c:if>
+    					<c:forEach items="${jugadores}" var="jugadores">
+        				<c:choose>
+        				<c:when test="${jugadores.equipo.id == apuesta.partido.local.id}">
+        				<option value="${jugadores.id}"><c:out value="${apuesta.partido.local.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				<c:when test="${jugadores.equipo.id == apuesta.partido.visitante.id}">
+        				<option value="${jugadores.id}"><c:out value="${apuesta.partido.visitante.nombre3caracteres} - ${jugadores.nombreCompleto}" /></option></c:when>
+        				</c:choose>
+   				 		</c:forEach>
+					</select>
                     </td>
 
                     <td class="text-center col-xs-1">

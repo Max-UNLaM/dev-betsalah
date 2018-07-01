@@ -41,6 +41,10 @@ public class PuntajeService {
             usuario.setPuntaje(usuario.getPuntaje() + 1);
             usuarioDao.update(usuario);
         }
+        if (apuesta.getFiguraId().equals(partido.getFiguraId())) {
+        	usuario.setPuntaje(usuario.getPuntaje()+1);
+        	usuarioDao.update(usuario);
+        }
     }
 
 }
