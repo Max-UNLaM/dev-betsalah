@@ -31,6 +31,10 @@ public class SimulacionController {
 
         if(nombreFase.equals("grupos")) fases = faseService.readFases(SalahProperties.FASE_DE_GRUPOS);
         if(nombreFase.equals("octavos")) fases =  faseService.readFases(SalahProperties.FASE_OCTAVOS_DE_FINAL);
+        if(nombreFase.equals("cuartos")) fases =  faseService.readFases(SalahProperties.FASE_CUARTOS_DE_FINAL);
+        if(nombreFase.equals("semifinal")) fases =  faseService.readFases(SalahProperties.FASE_SEMIFINAL);
+        if(nombreFase.equals("tercer-puesto")) fases =  faseService.readFases(SalahProperties.FASE_TERCER_PUESTO);
+        if(nombreFase.equals("final")) fases =  faseService.readFases(SalahProperties.FASE_FINAL);
         return simulacionServiceFront.modelarFases(fases);
     }
 

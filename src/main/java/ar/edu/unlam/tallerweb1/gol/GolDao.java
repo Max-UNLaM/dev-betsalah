@@ -50,6 +50,15 @@ public class GolDao extends Dao implements GolCrud {
         session.save(gol);
         return gol;
     }
+
+    public List<Gol> obtenerGolesPorPartidoYEquipo(Equipo equipo, Partido partido){
+        return session.createCriteria(Gol.class)
+                .createAlias("partido", "tablaPartido")
+                .createAlias("equipo", "tablaEquipo")
+                .add(Restrictions.eq("tablaPartido.id", partido.getId()))
+                .add(Restrictions.eq("tablaEquipo.id", equipo.getId()))
+                .list();
+    }
     
     
 }

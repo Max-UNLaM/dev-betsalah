@@ -3,9 +3,12 @@ package ar.edu.unlam.tallerweb1.simulacion;
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.fase.FaseDao;
+import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolDao;
 import ar.edu.unlam.tallerweb1.partido.*;
+import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import org.springframework.stereotype.Service;
@@ -32,9 +35,11 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
     @Inject
     protected PuntajeService puntajeService;
     @Inject
-    UsuarioDao usuarioDao;
+    protected UsuarioDao usuarioDao;
     @Inject
-    ResultadoService resultadoService;
+    protected FaseService faseService;
+    @Inject
+    protected ResultadoService resultadoService;
 
     protected Partido partido;
 
@@ -61,14 +66,27 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         }
         Equipo local = equipoDao.read(partido.idLocal());
         Equipo visitante = equipoDao.read(partido.idVisitante());
+
+        partido.setGolesLocal(golesLocal);
         for (int i = 0; i < golesLocal; i++) {
             golDao.create(new Gol(partido, local));
         }
+
+        partido.setGolesVisitante(golesVisitante);
         for (int i = 0; i < golesVisitante; i++) {
             golDao.create(new Gol(partido, visitante));
         }
+
         puntajeService.actualizarPuntajes(partido);
         partido.setJugado(true);
+        if(faseService.verificarSiLaFaseEstaCompleta(partido.getFase())){
+            partido.getFase().setFinalizada(true);
+
+            List<Equipo> equipos = equipoDao.obtenerEquiposPorFase(partido.getFase());
+            List<Partido> partidos = partidoDao.consultarPartidosPorFase(partido.getFase());
+
+            partidoService.calcularPartidosSiguienteFase(equipos, partidos, partido.getFase());
+        }
         partidoDao.update(partido);
     }
 

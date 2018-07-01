@@ -32,8 +32,8 @@ public class JugarPartidoTest extends SpringTest {
     @Test
     public void preCarga() {
         usuario = new Usuario("test@test.com", "test", "123", 0);
-        Equipo local = new Equipo("Local", "TST", "A", 1);
-        Equipo visitante = new Equipo("Visitante", "TST", "A", 1);
+        Equipo local = new Equipo("Local", "TST");
+        Equipo visitante = new Equipo("Visitante", "TST");
         Fase fase = new Fase("grupo", "A");
         partido = new Partido(local, visitante, fase);
         apuesta = new Apuesta(usuario, partido, 1, 2);
@@ -43,7 +43,6 @@ public class JugarPartidoTest extends SpringTest {
         getSession().save(fase);
         getSession().save(partido);
         getSession().save(apuesta);
-
     }
 
 

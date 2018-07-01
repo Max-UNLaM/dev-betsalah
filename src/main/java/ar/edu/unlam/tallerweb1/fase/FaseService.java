@@ -1,7 +1,8 @@
 package ar.edu.unlam.tallerweb1.fase;
 
+import ar.edu.unlam.tallerweb1.partido.Partido;
+import ar.edu.unlam.tallerweb1.partido.PartidoDao;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -12,6 +13,8 @@ import java.util.List;
 public class FaseService{
     @Inject
     private FaseDao faseDao;
+    @Inject
+    private PartidoDao partidoDao;
 
     private String CONDICION_LOCAL = SalahProperties.CONDICION_LOCAL;
     private String CONDICION_VISITANTE = SalahProperties.CONDICION_VISITANTE;
@@ -235,5 +238,17 @@ public class FaseService{
         for(Fase fase : fases){
             faseDao.update(fase);
         }
+    }
+
+    public Boolean verificarSiLaFaseEstaCompleta(Fase fase){
+        List<Partido> partidosDeLaFase = partidoDao.consultarPartidosPorFase(fase);
+
+        Boolean respuesta = true;
+
+        for(Partido partido : partidosDeLaFase){
+            respuesta &= partido.getJugado();
+        }
+
+        return respuesta;
     }
 }

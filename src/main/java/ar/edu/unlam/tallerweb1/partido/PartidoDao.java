@@ -31,6 +31,17 @@ public class PartidoDao extends Dao implements PartidoCrud, PartidoFilter {
         return partidos;
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Partido> consultarPartidosPorFase(Fase fase) {
+        List<Partido> partidos = session
+                .createCriteria(Partido.class)
+                .createAlias("fase", "tablaFase")
+                .add(Restrictions.eq("tablaFase.id", fase.getId()))
+                .list();
+
+        return partidos;
+    }
+
     public Partido create(Partido partido){
         session.save(partido);
         return partido;
@@ -74,6 +85,13 @@ public class PartidoDao extends Dao implements PartidoCrud, PartidoFilter {
                 .createCriteria(Partido.class)
                 .add(Restrictions.eq("fase", fase))
                 .list();
+    }
+
+    public Partido obtenerPartidoPorFase(Fase fase){
+        return (Partido) session.createCriteria(Partido.class)
+                .createAlias("fase", "tablaFase")
+                .add(Restrictions.eq("tablaFase.id", fase.getId()))
+                .uniqueResult();
     }
 }
 

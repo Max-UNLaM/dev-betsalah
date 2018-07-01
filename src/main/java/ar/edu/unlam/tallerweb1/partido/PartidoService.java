@@ -8,10 +8,10 @@ import ar.edu.unlam.tallerweb1.fase.FaseDao;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolService;
 import ar.edu.unlam.tallerweb1.simulacion.ResultadoService;
+import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class PartidoService {
     @Inject
     private PartidoFilter partidoFilter;
     @Inject
-    private PartidoCrud partidoCrud;
+    private PartidoDao partidoDao;
     @Inject
     protected EquipoService equipoService;
     @Inject
@@ -99,7 +99,7 @@ public class PartidoService {
     }
 
     private Boolean partidosExistenEnBaseDeDatos() {
-        return !partidoCrud.list().isEmpty();
+        return !partidoDao.list().isEmpty();
     }
 
     private List<Partido> crearPartidos(){
@@ -241,7 +241,35 @@ public class PartidoService {
 
     private void guardarPartidosEnBaseDeDatos(List<Partido> partidos) {
         for (Partido partido : partidos) {
-            partidoCrud.create(partido);
+            partidoDao.create(partido);
+        }
+    }
+
+    public void calcularPartidosSiguienteFase(List<Equipo> equipos, List<Partido> partidos, Fase fase){
+        TablaDePosiciones tablaDePosiciones = new TablaDePosiciones(equipos, partidos);
+
+        Equipo primero = tablaDePosiciones.obtenerPrimero();
+
+        Partido siguientePartidoDelPrimero = partidoDao.obtenerPartidoPorFase(fase.getSiguienteFasePrimeroDeLaFase());
+        if(fase.getCondicionSiguienteFasePrimeroDeLaFase().equals(SalahProperties.CONDICION_LOCAL)){
+            siguientePartidoDelPrimero.setLocal(primero);
+        } else {
+            siguientePartidoDelPrimero.setVisitante(primero);
+        }
+
+        partidoDao.update(siguientePartidoDelPrimero);
+
+        if(fase.getNombre().equals(SalahProperties.FASE_DE_GRUPOS)
+            || fase.getNombre().equals(SalahProperties.FASE_SEMIFINAL)){
+            Equipo segundo = tablaDePosiciones.obtenerSegundo();
+
+            Partido siguientePartidoDelSegundo = partidoDao.obtenerPartidoPorFase(fase.getSiguienteFaseSegundoDeLaFase());
+            if(fase.getCondicionSiguienteFaseSegundoDeLaFase().equals(SalahProperties.CONDICION_LOCAL)){
+                siguientePartidoDelSegundo.setLocal(segundo);
+            } else {
+                siguientePartidoDelSegundo.setVisitante(segundo);
+            }
+            partidoDao.update(siguientePartidoDelSegundo);
         }
     }
 }

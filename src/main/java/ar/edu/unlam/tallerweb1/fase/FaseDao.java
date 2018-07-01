@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.fase;
 import ar.edu.unlam.tallerweb1.dao.Dao;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -30,6 +31,10 @@ public class FaseDao extends Dao {
         session.update(fase);
         transaction.commit();
         return fase;
+    }
+
+    public Fase read(Fase fase) {
+        return session.get(Fase.class, fase.getId());
     }
 
     public Fase read(Long id) {

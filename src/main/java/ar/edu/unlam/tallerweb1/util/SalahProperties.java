@@ -13,6 +13,19 @@ public class SalahProperties extends Properties {
     private Properties properties;
     private InputStream inputStream;
 
+    public static String EQUIPO_LOCAL;
+    public static String EQUIPO_VISITANTE;
+    public static String RESTA;
+    public static String SUMA;
+
+    public static Integer CANTIDAD_PUNTOS_GANADOR;
+    public static Integer CANTIDAD_PUNTOS_EMPATE;
+    public static Integer CANTIDAD_PUNTOS_PERDEDOR;
+
+    public static String RESULTADO_GANA_LOCAL;
+    public static String RESULTADO_EMPATE;
+    public static String RESULTADO_GANA_VISITANTE;
+
     public static String CONDICION_LOCAL;
     public static String CONDICION_VISITANTE;
 
@@ -54,6 +67,19 @@ public class SalahProperties extends Properties {
 
     @PostConstruct
     private void setUp(){
+        EQUIPO_LOCAL = this.getProperty("equipo.local");
+        EQUIPO_VISITANTE = this.getProperty("equipo.visitante");
+        RESTA = this.getProperty("resta");
+        SUMA = this.getProperty("suma");
+
+        CANTIDAD_PUNTOS_GANADOR = Integer.parseInt(this.getProperty("cantidad.puntos.ganador"));
+        CANTIDAD_PUNTOS_EMPATE = Integer.parseInt(this.getProperty("cantidad.puntos.empate"));
+        CANTIDAD_PUNTOS_PERDEDOR = Integer.parseInt(this.getProperty("cantidad.puntos.perdedor"));
+
+        RESULTADO_GANA_LOCAL = this.getProperty("resultado.gana.local");
+        RESULTADO_EMPATE = this.getProperty("resultado.empate");
+        RESULTADO_GANA_VISITANTE = this.getProperty("resultado.gana.visitante");
+
         CONDICION_LOCAL = this.getProperty("condicion.local");
         CONDICION_VISITANTE = this.getProperty("condicion.visitante");
 

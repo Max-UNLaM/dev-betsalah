@@ -17,21 +17,11 @@ import java.util.Properties;
 
 @Repository
 public class ApuestaDao extends Dao implements ApuestaRepository {
-    @Inject
-    private SalahProperties salahProperties;
 
-    private String EQUIPO_LOCAL;
-    private String EQUIPO_VISITANTE;
-    private String RESTA;
-    private String SUMA;
-
-    @PostConstruct
-    public void setUp(){
-        EQUIPO_LOCAL = salahProperties.getProperty("equipo.local");
-        EQUIPO_VISITANTE = salahProperties.getProperty("equipo.visitante");
-        RESTA = salahProperties.getProperty("resta");
-        SUMA = salahProperties.getProperty("suma");
-    }
+    private String EQUIPO_LOCAL = SalahProperties.EQUIPO_LOCAL;
+    private String EQUIPO_VISITANTE = SalahProperties.EQUIPO_VISITANTE;
+    private String RESTA = SalahProperties.RESTA;
+    private String SUMA = SalahProperties.SUMA;
 
     public Apuesta read(Usuario usuario, Partido partido) {
         return (Apuesta)
