@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.apuesta;
 
-import ar.edu.unlam.tallerweb1.dao.Crud;
-import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import org.springframework.stereotype.Repository;

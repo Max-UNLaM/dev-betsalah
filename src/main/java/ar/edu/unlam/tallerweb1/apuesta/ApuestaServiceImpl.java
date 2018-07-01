@@ -19,7 +19,7 @@ public class ApuestaServiceImpl implements ApuestaService {
     @Inject
     private PartidoCrud partidoDao;
     @Inject
-    private ApuestaRepository apuestaDao;
+    private ApuestaDao apuestaDao;
 
     @Inject
     private SalahProperties salahProperties;
@@ -71,10 +71,16 @@ public class ApuestaServiceImpl implements ApuestaService {
     }
 
     public Integer modificarGolesApostados(Long apuestaId, String equipo, String accion){
+        if(partidoJugado(apuestaId)) throw new IllegalArgumentException("No se puede apostar por un partido que ya termino");
         if(!equipoValido(equipo)) throw new IllegalArgumentException("Equipo invalido");
         if(!accionValida(accion)) throw new IllegalArgumentException("Accion invalida");
 
         return apuestaDao.modificarGolesApostados(apuestaId, equipo, accion);
+    }
+
+    private Boolean partidoJugado(Long apuestaId){
+        Apuesta apuesta = apuestaDao.read(apuestaId);
+        return apuesta.getPartido().getJugado();
     }
 
     private Boolean equipoValido(String equipo){

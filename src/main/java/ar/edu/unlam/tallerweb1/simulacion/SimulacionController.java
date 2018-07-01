@@ -44,5 +44,4 @@ public class SimulacionController {
         this.simulacionServiceBack.jugarPartido(partidoDao.read(partidoDto.id), partidoDto.golesLocal, partidoDto.golesVisitante);
         return this.simulacionServiceFront.imprimirSimulacionResultadoDto(partidoDto);
     }
-
 }

@@ -23,6 +23,10 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
     private String RESTA = SalahProperties.RESTA;
     private String SUMA = SalahProperties.SUMA;
 
+    public Apuesta read(Long apuestaId) {
+        return (Apuesta) session.get(Apuesta.class, apuestaId);
+    }
+
     public Apuesta read(Usuario usuario, Partido partido) {
         return (Apuesta)
                 session
