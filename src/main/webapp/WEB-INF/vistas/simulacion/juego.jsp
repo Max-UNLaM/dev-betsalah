@@ -30,17 +30,17 @@
                 <tr>
                     <td class="text-center">${partido.local.nombre}</td>
                     <td class="text-center">
-                        <button ${partido.jugado ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-local-resta" data-id="${partido.id}" data-equipo="local" data-accion="resta" class="btn btn-danger">-</button>
+                        <button ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-local-resta" data-id="${partido.id}" data-equipo="local" data-accion="resta" class="btn btn-danger">-</button>
                         <span id="goles-local-${partido.id}">${partido.golesLocal}</span>
-                        <button ${partido.jugado ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-local-suma" data-id="${partido.id}" data-equipo="local" data-accion="suma" class="btn btn-primary">+</button></td>
+                        <button ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-local-suma" data-id="${partido.id}" data-equipo="local" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">
-                        <button ${partido.jugado ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-visitante-resta" data-id="${partido.id}" data-equipo="visitante" data-accion="resta" class="btn btn-danger">-</button>
+                        <button ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-visitante-resta" data-id="${partido.id}" data-equipo="visitante" data-accion="resta" class="btn btn-danger">-</button>
                         <span id="goles-visitante-${partido.id}">${partido.golesVisitante}</span>
-                        <button ${partido.jugado ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-visitante-suma" data-id="${partido.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
+                        <button ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-visitante-suma" data-id="${partido.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">${partido.visitante.nombre}</td>
                     <td class="text-center"><input type="text" placeholder="Figura"></td>
                     <td class="text-center ${partido.jugado ? 'success' : 'primary'}" id="partido-resultado-${partido.id}">${partido.resultado}</td>
-                    <td class="text-center"><button ${partido.jugado ? 'disabled="disabled"' : ''} onclick="conexion.simularPartidos('${partido.id}')" id="jugar-partido-${partido.id}" data-partidoid="${partido.id}">JUGAR</button></td>
+                    <td class="text-center"><button class="btn btn-primary" ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.simularPartidos('${partido.id}')" id="jugar-partido-${partido.id}" data-partidoid="${partido.id}">JUGAR</button></td>
                 </tr>
             </c:forEach>
             </tbody>
