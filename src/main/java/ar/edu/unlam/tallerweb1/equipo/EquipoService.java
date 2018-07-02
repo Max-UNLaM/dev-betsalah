@@ -6,16 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EquipoService{
+public class EquipoService {
 
     @Inject
     private EquipoCrud equipoDao;
 
-    public void cargar(){
-        if(!equiposExistenEnBaseDeDatos()){
+    public void cargar() {
+        if (!equiposExistenEnBaseDeDatos()) {
             List<Equipo> equipos = crearEquipos();
             cargarEquiposEnBaseDeDatos(equipos);
         }
+    }
+
+    public EquipoDto obtenerEquipoDto(Equipo equipo) {
+        return new EquipoDto(equipo.id, equipo.getNombre(), equipo.getNombre3caracteres(), equipo.getGrupo(), equipo.getOrdenEnGrupo());
     }
 
     private Boolean equiposExistenEnBaseDeDatos(){

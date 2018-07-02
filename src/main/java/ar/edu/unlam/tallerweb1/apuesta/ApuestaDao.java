@@ -99,8 +99,9 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
             respuesta = apuesta.getGolesVisitante() + 1;
         }
 
-        apuesta.setGolesLocal(respuesta);
-
+        if(equipo.equals(EQUIPO_LOCAL)) apuesta.setGolesLocal(respuesta);
+        if(equipo.equals(EQUIPO_VISITANTE)) apuesta.setGolesVisitante(respuesta);
+        
         session.update(apuesta);
 
         transaction.commit();
