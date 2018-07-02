@@ -125,3 +125,9 @@ fabric.properties
 
 
 # End of https://www.gitignore.io/api/intellij
+/src/test/java/ar/edu/unlam/tallerweb1/testsClase/
+/src/main/java/ar/edu/unlam/tallerweb1/nota/
+/src/test/java/ar/edu/unlam/tallerweb1/persistencia/UsuarioABMTest.java
+/classes/
+/src/main/resources/hibernateContext.xml
+!/src/main/resources/hibernateContext.xml
