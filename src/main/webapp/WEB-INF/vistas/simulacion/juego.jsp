@@ -39,7 +39,7 @@
                         <button ${(partido.jugado || !partido.local.definido || !partido.visitante.definido) ? 'disabled="disabled"' : ''} onclick="conexion.editarGoles(this.dataset)" id="${partido.id}-visitante-suma" data-id="${partido.id}" data-equipo="visitante" data-accion="suma" class="btn btn-primary">+</button></td>
                     <td class="text-center">${partido.visitante.nombre}</td>
                     <td class="form-group">
-                        <select class="form-control" name="jugador">
+                        <select class="form-control" name="jugador" id="figura-${partido.id}">
                     	<option disabled selected hidden>Seleccione jugador figura</option>
     					<c:forEach items="${jugadores}" var="jugadores">
         				<c:choose>

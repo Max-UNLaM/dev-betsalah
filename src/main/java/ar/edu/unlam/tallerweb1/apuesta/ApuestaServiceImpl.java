@@ -84,6 +84,10 @@ public class ApuestaServiceImpl implements ApuestaService {
         return apuestaDao.modificarGolesApostados(apuestaId, equipo, accion);
     }
 
+    public void modificarFiguraApostada(Long apuestaId, Long figuraId){
+        apuestaDao.modificarFigura(apuestaId, figuraId);
+    }
+
     private Boolean partidoJugado(Long apuestaId){
         Apuesta apuesta = apuestaDao.read(apuestaId);
         return apuesta.getPartido().getJugado();

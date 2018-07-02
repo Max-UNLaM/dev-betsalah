@@ -66,7 +66,7 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         return new ModelAndView("simulacion/juego", modelo);
     }
 
-    public void jugarPartido(Partido partido, Integer golesLocal, Integer golesVisitante) {
+    public void jugarPartido(Partido partido, Integer golesLocal, Integer golesVisitante, Long figuraId) {
         if (partido.getJugado()) {
             return;
         }
@@ -82,6 +82,8 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         for (int i = 0; i < golesVisitante; i++) {
             golDao.create(new Gol(partido, visitante));
         }
+
+        partido.setFiguraId(figuraId);
 
         puntajeService.actualizarPuntajes(partido);
         partido.setJugado(true);

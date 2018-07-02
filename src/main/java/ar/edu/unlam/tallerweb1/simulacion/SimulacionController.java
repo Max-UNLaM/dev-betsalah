@@ -41,7 +41,7 @@ public class SimulacionController {
     @ResponseBody
     @RequestMapping(path = "/simulacion/jugar", method = RequestMethod.PUT, produces = "application/json")
     public SimulacionResultadoDto simulacionPartido(@RequestBody PartidoJuegoDto partidoDto){
-        this.simulacionServiceBack.jugarPartido(partidoDao.read(partidoDto.id), partidoDto.golesLocal, partidoDto.golesVisitante);
+        this.simulacionServiceBack.jugarPartido(partidoDao.read(partidoDto.id), partidoDto.golesLocal, partidoDto.golesVisitante, partidoDto.getFiguraId());
         return this.simulacionServiceFront.imprimirSimulacionResultadoDto(partidoDto);
     }
 }

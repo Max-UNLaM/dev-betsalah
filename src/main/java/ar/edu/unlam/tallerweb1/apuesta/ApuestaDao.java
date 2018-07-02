@@ -105,4 +105,16 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
 
         return respuesta;
     }
+
+    public void modificarFigura(Long apuestaId, Long figuraId){
+        Transaction transaction = session.beginTransaction();
+
+        Apuesta apuesta = (Apuesta) session.get(Apuesta.class, apuestaId);
+
+        apuesta.setFiguraId(figuraId);
+
+        session.update(apuesta);
+
+        transaction.commit();
+    }
 }

@@ -7,4 +7,5 @@ import org.springframework.ui.ModelMap;
 public interface ApuestaService {
     ModelMap obtenerModeloPorFase(String nombreFase);
     Integer modificarGolesApostados(Long apuestaId, String equipo, String accion);
+    void modificarFiguraApostada(Long apuestaId, Long figuraId);
 }

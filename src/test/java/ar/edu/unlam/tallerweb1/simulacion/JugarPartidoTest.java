@@ -50,7 +50,7 @@ public class JugarPartidoTest extends SpringTest {
     @Transactional
     @Rollback
     public void acertarUnResultadoSumaPuntos() {
-        this.simulacionService.jugarPartido(partido, 1, 2);
+        this.simulacionService.jugarPartido(partido, 1, 2, 7L);
         assertThat(usuarioDao.read(usuario.getId()).getPuntaje()).isEqualTo(1);
     }
 

@@ -70,7 +70,7 @@
                     </td>
 
                     <td class="form-group">
-                        <select class="form-control" name="jugador">
+                        <select class="form-control" name="jugador" onchange="conexion.cambiarFigura(this.dataset)" id="apuesta-figura-${apuesta.id}" data-apuestaId="${apuesta.id}">
                         <c:if test="${empty apuesta.figuraId}">
                     	<option disabled selected hidden>Seleccione jugador figura</option>
                     	</c:if>
