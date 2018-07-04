@@ -28,7 +28,7 @@ public class PuntajeService {
         String resultadoPartido = resultadoService.resultado(partido);
         List<Usuario> usuarios = usuarioDao.list();
         for (Usuario usuario : usuarios) {
-            if (apuestaDao.existenApuestasDeUsuarioEnFase(usuario, fase)) {
+            if (apuestaDao.existenApuestasDeUsuarioEnFase(usuario, fase.getNombre())) {
                 sumarPuntos(usuario, partido, resultadoPartido);
             }
         }
@@ -40,6 +40,10 @@ public class PuntajeService {
         if (resultadoApuesta.equals(resultadoPartido)) {
             usuario.setPuntaje(usuario.getPuntaje() + 1);
             usuarioDao.update(usuario);
+        }
+        if (apuesta.getFiguraId() != null && apuesta.getFiguraId().equals(partido.getFiguraId())) {
+        	usuario.setPuntaje(usuario.getPuntaje()+1);
+        	usuarioDao.update(usuario);
         }
     }
 

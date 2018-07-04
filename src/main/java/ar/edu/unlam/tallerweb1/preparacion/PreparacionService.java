@@ -35,6 +35,6 @@ public class PreparacionService implements CargaService {
         faseService.cargar();
         equipoService.cargar();
         partidoService.cargar();
-        //jugadorService.cargar();
+        jugadorService.cargar();
     }
 }

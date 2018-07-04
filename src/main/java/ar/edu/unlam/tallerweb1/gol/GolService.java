@@ -10,10 +10,17 @@ import java.util.List;
 @Service
 public class GolService {
 
-    @Inject GolCrud golCrud;
+    @Inject
+    private GolDao golDao;
 
     @SuppressWarnings("unchecked")
     public List<Gol> obtenerGolesPartidoYEquipo(Partido partido, Equipo equipo) {
-        return this.golCrud.list(partido, equipo);
+        return this.golDao.list(partido, equipo);
+    }
+
+    public Integer getCantidadDeGolesDeEquipoEnPartido(Equipo equipo, Partido partido){
+        List<Gol> goles = golDao.obtenerGolesPorPartidoYEquipo(equipo, partido);
+
+        return goles.size();
     }
 }

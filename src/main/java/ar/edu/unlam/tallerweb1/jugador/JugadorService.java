@@ -486,31 +486,31 @@ public class JugadorService {
         jugadores.add(new Jugador("Douglas Costa ", brasil));
         jugadores.add(new Jugador("Taison", brasil));
 
-        //Costa Rica
-        jugadores.add(new Jugador("Keylor Navas", costaRica));
-        jugadores.add(new Jugador("Patrick Pemberton", costaRica));
-        jugadores.add(new Jugador("Leonel Moreira", costaRica));
-        jugadores.add(new Jugador("Giancarlo González", costaRica));
-        jugadores.add(new Jugador("Bryan Oviedo", costaRica));
-        jugadores.add(new Jugador("Rónald Matarrita", costaRica));
-        jugadores.add(new Jugador("Kendall Watson", costaRica));
-        jugadores.add(new Jugador("Ian Smith", costaRica));
-        jugadores.add(new Jugador("Cristian Gamboa", costaRica));
-        jugadores.add(new Jugador("Óscar Duarte", costaRica));
-        jugadores.add(new Jugador("Francisco Calvo", costaRica));
-        jugadores.add(new Jugador("Jonnhy Acosta", costaRica));
-        jugadores.add(new Jugador("Yeltsin Tejeda", costaRica));
-        jugadores.add(new Jugador("Celso Borges", costaRica));
-        jugadores.add(new Jugador("David Guzmán", costaRica));
-        jugadores.add(new Jugador("Cristian Bolaños", costaRica));
-        jugadores.add(new Jugador("Bryan Ruiz", costaRica));
-        jugadores.add(new Jugador("Daniel Colindres", costaRica));
-        jugadores.add(new Jugador("Rodney Wallace", costaRica));
-        jugadores.add(new Jugador("Randall Azofeifa", costaRica));
-        jugadores.add(new Jugador("Marco Ureña", costaRica));
-        jugadores.add(new Jugador("Joel Campbell", costaRica));
-        jugadores.add(new Jugador("Johan Vanegas", costaRica));
-
+        //suiza
+        jugadores.add(new Jugador("Yann Sommer", suiza));
+        jugadores.add(new Jugador("Stephan Lichtsteiner", suiza));
+        jugadores.add(new Jugador("François Moubandje", suiza));
+        jugadores.add(new Jugador("Nico Elvedi", suiza));
+        jugadores.add(new Jugador("Manuel Akanji", suiza));
+        jugadores.add(new Jugador("Michael Lang", suiza));
+        jugadores.add(new Jugador("Breel Embolo", suiza));
+        jugadores.add(new Jugador("Remo Freuler", suiza));
+        jugadores.add(new Jugador("Haris Seferović", suiza));
+        jugadores.add(new Jugador("Granit Xhaka", suiza));
+        jugadores.add(new Jugador("Valon Behrami", suiza));
+        jugadores.add(new Jugador("Yvon Mvogo", suiza));
+        jugadores.add(new Jugador("Ricardo Rodríguez", suiza));
+        jugadores.add(new Jugador("Steven Zuber", suiza));
+        jugadores.add(new Jugador("Blerim Džemaili", suiza));
+        jugadores.add(new Jugador("Gelson Fernandes", suiza));
+        jugadores.add(new Jugador("Denis Zakaria", suiza));
+        jugadores.add(new Jugador("Mario Gavranović", suiza));
+        jugadores.add(new Jugador("Josip Drmić", suiza));
+        jugadores.add(new Jugador("Johan Djourou", suiza));
+        jugadores.add(new Jugador("Roman Bürki", suiza));
+        jugadores.add(new Jugador("Fabian Schär", suiza));
+        jugadores.add(new Jugador("Xherdan Shaqiri", suiza));
+ 
         //Serbia
         jugadores.add(new Jugador("Vladimir Stojkovic", serbia));
         jugadores.add(new Jugador("Predrag Rajkovic", serbia));

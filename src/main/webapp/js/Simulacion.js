@@ -8,10 +8,12 @@ let conexion = {
     simularPartidos(id) {
         const golesDelLocal = document.getElementById(`goles-local-${id}`).innerText;
         const golesDelVisitante = document.getElementById(`goles-visitante-${id}`).innerText;
+        const figuraId = document.getElementById(`figura-${id}`).value;
         const envio = {
             id: Number(id),
             golesLocal: Number(golesDelLocal),
-            golesVisitante: Number(golesDelVisitante)
+            golesVisitante: Number(golesDelVisitante),
+            figuraId: Number(figuraId)
         };
         this.sdk = new SimulacionConnector(envio);
         const juego = this.sdk.jugar();
