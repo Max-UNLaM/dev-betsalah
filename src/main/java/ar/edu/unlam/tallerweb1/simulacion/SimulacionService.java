@@ -67,9 +67,8 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
     }
 
     public void jugarPartido(Partido partido, Integer golesLocal, Integer golesVisitante, Long figuraId) {
-        if (partido.getJugado()) {
-            return;
-        }
+        if (partido.getJugado()) throw new IllegalArgumentException("Este partido ya fue jugado");
+        
         Equipo local = equipoDao.read(partido.idLocal());
         Equipo visitante = equipoDao.read(partido.idVisitante());
 
