@@ -31,7 +31,7 @@ public class ApuestaController {
 
     @RequestMapping(value = "/apuesta/cambiar-figura", method = RequestMethod.PUT, produces = "application/json")
     @ResponseBody
-    public void cambiarGolesApostados(@RequestParam Long apuestaId,
+    public void cambiarFiguraApostada(@RequestParam Long apuestaId,
                                       @RequestParam Long figuraId){
 
          apuestaService.modificarFiguraApostada(apuestaId, figuraId);
