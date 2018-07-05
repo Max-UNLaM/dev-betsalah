@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.tabladeposiciones;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
-import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 

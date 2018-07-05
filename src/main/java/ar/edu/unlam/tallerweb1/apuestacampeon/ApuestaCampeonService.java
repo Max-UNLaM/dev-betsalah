@@ -2,10 +2,14 @@ package ar.edu.unlam.tallerweb1.apuestacampeon;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
+import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.fase.FaseDao;
+import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoDao;
 import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -20,6 +24,10 @@ public class ApuestaCampeonService {
     private EquipoDao equipoDao;
     @Inject
     private UsuarioDao usuarioDao;
+    @Inject
+    private FaseDao faseDao;
+    @Inject
+    private PartidoDao partidoDao;
     @Inject
     private PartidoService partidoService;
 
@@ -38,8 +46,13 @@ public class ApuestaCampeonService {
 
         List<Equipo> equipos = equipoDao.list();
 
+        Fase faseFinal = faseDao.read(SalahProperties.FASE_FINAL, SalahProperties.FINAL);
+
+        Partido partidoFinal = partidoDao.obtenerPartidoPorFase(faseFinal);
+
         modelo.put("usuario", usuario);
         modelo.put("equipos", equipos);
+        modelo.put("partidoFinal", partidoFinal);
         modelo.put("apuestaCampeon", apuestaCampeon);
 
         return modelo;

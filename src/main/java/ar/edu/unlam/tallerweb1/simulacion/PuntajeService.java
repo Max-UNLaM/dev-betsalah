@@ -45,7 +45,7 @@ public class PuntajeService {
         	    puntajeGanado = puntajeGanado + 15; //puntaje asignado si acierta al campeon
             }
         }
-        if (apuesta.getFiguraId() != null && apuesta.getFiguraId().equals(partido.getFiguraId())) {
+        if (apuesta.getFigura() != null && apuesta.getFigura().getId().equals(partido.getFigura().getId())) {
         	puntajeGanado = puntajeGanado + 1; 
         }
         if (apuesta.getGolesLocal().equals(partido.getGolesLocal()) && apuesta.getGolesVisitante().equals(partido.getGolesVisitante())) {

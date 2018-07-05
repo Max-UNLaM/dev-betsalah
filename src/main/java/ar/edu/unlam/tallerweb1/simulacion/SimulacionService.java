@@ -68,6 +68,9 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
 
     public void jugarPartido(Partido partido, Integer golesLocal, Integer golesVisitante, Long figuraId) {
         if (partido.getJugado()) throw new IllegalArgumentException("Este partido ya fue jugado");
+        if (figuraId == null) throw new IllegalArgumentException("Debe enviar una figura");
+        Jugador figura = jugadorDao.read(figuraId);
+        if (figura == null) throw new IllegalArgumentException("Figura inválida");
         
         Equipo local = equipoDao.read(partido.idLocal());
         Equipo visitante = equipoDao.read(partido.idVisitante());
@@ -82,7 +85,9 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
             golDao.create(new Gol(partido, visitante));
         }
 
-        partido.setFiguraId(figuraId);
+        partido.setResultado();
+
+        partido.setFigura(figura);
 
         puntajeService.actualizarPuntajes(partido);
         partido.setJugado(true);

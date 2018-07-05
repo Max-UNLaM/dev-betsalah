@@ -89,7 +89,8 @@ public class ApuestaServiceImpl implements ApuestaService {
         Partido partido = apuesta.getPartido();
 
         if(!partido.getJugado()){
-            apuestaDao.modificarFigura(apuestaId, figuraId);
+            Jugador figura = jugadorDao.read(figuraId);
+            apuestaDao.modificarFigura(apuestaId, figura);
         } else {
             throw new IllegalArgumentException("No se puede cambiar la figura de un partido que ya fue jugado");
         }

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.apuesta;
 
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 
@@ -10,7 +11,8 @@ public class Apuesta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long figuraId;
+    @ManyToOne
+    private Jugador figura;
     @ManyToOne
     private Usuario apostador;
     @ManyToOne
@@ -36,14 +38,14 @@ public class Apuesta {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Long getFiguraId() {
-		return figuraId;
-	}
 
-	public void setFiguraId(Long figuraId) {
-		this.figuraId = figuraId;
-	}
+    public Jugador getFigura() {
+        return figura;
+    }
+
+    public void setFigura(Jugador figura) {
+        this.figura = figura;
+    }
 
     public Usuario getApostador() {
         return apostador;

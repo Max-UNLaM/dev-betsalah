@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.apuesta;
 
 import ar.edu.unlam.tallerweb1.dao.Dao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
@@ -106,12 +107,12 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
         return respuesta;
     }
 
-    public void modificarFigura(Long apuestaId, Long figuraId){
+    public void modificarFigura(Long apuestaId, Jugador figura){
         Transaction transaction = session.beginTransaction();
 
         Apuesta apuesta = (Apuesta) session.get(Apuesta.class, apuestaId);
 
-        apuesta.setFiguraId(figuraId);
+        apuesta.setFigura(figura);
 
         session.update(apuesta);
 

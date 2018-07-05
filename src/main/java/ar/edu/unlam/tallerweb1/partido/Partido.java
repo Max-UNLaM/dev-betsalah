@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolService;
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 
 import javax.inject.Inject;
@@ -15,18 +16,18 @@ public class Partido {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     protected Long id;
-    protected Long figuraId;
+    @ManyToOne
+    protected Jugador figura;
     @ManyToOne
     protected Equipo local;
     @ManyToOne
     protected Equipo visitante;
-
-
 	@ManyToOne
     private Fase fase;
     protected boolean jugado;
     private Integer golesLocal;
     private Integer golesVisitante;
+    private String resultado;
 
     public Partido(){}
 
@@ -42,14 +43,14 @@ public class Partido {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Long getFiguraId() {
-		return figuraId;
-	}
 
-	public void setFiguraId(Long figuraId) {
-		this.figuraId = figuraId;
-	}
+    public Jugador getFigura() {
+        return figura;
+    }
+
+    public void setFigura(Jugador figura) {
+        this.figura = figura;
+    }
 
     public Equipo getLocal() {
         return local;
@@ -119,17 +120,21 @@ public class Partido {
         this.golesVisitante = golesVisitante;
     }
 
-    public String getResultado(){
+    public boolean isJugado() {
+        return jugado;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(){
         String RESULTADO_GANA_LOCAL = SalahProperties.RESULTADO_GANA_LOCAL;
         String RESULTADO_EMPATE = SalahProperties.RESULTADO_EMPATE;
         String RESULTADO_GANA_VISITANTE = SalahProperties.RESULTADO_GANA_VISITANTE;
 
-        String respuesta = null;
-
-        if(this.getGolesLocal()>this.getGolesVisitante()) respuesta = RESULTADO_GANA_LOCAL;
-        if(this.getGolesLocal().equals(this.getGolesVisitante())) respuesta = RESULTADO_EMPATE;
-        if(this.getGolesLocal()<this.getGolesVisitante()) respuesta = RESULTADO_GANA_VISITANTE;
-
-        return respuesta;
+        if(this.getGolesLocal()>this.getGolesVisitante()) this.resultado = RESULTADO_GANA_LOCAL;
+        if(this.getGolesLocal().equals(this.getGolesVisitante())) this.resultado = RESULTADO_EMPATE;
+        if(this.getGolesLocal()<this.getGolesVisitante()) this.resultado = RESULTADO_GANA_VISITANTE;
     }
 }
