@@ -42,7 +42,7 @@ public class PuntajeService {
         if (resultadoApuesta.equals(resultadoPartido)) {
             puntajeGanado = puntajeGanado + 1;
         	if(partido.getFase().getNombre().equals(SalahProperties.FASE_FINAL)){
-        	    puntajeGanado = puntajeGanado + 5; //puntaje asignado si acierta al campeon
+        	    puntajeGanado = puntajeGanado + 15; //puntaje asignado si acierta al campeon
             }
         }
         if (apuesta.getFiguraId() != null && apuesta.getFiguraId().equals(partido.getFiguraId())) {

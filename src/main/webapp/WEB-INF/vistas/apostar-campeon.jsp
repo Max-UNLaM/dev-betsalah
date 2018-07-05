@@ -28,7 +28,7 @@
 
         <c:if test="${not empty apuestaCampeon.equipoApostado}">
             <h4 class="text-left">Ya apostaste por: ${apuestaCampeon.equipoApostado.nombre}</h4>
-            <h4 class="text-left">Si acertás al campeón del torneo vas a sumar x puntos extra</h4>
+            <h4 class="text-left">Si acertás al campeón del torneo vas a sumar 15 puntos extra</h4>
             <h4 class="text-left">Recordá que una vez hecha la apuesta de campeón del torneo no puede ser modificada</h4>
         </c:if>
     </div>

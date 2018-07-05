@@ -10,6 +10,7 @@ import ar.edu.unlam.tallerweb1.gol.GolService;
 import ar.edu.unlam.tallerweb1.simulacion.ResultadoService;
 import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -271,5 +272,16 @@ public class PartidoService {
             }
             partidoDao.update(siguientePartidoDelSegundo);
         }
+    }
+
+    public Boolean alMenosUnPartidoFueJugado(){
+        Boolean respuesta = false;
+        List<Partido> partidos = partidoDao.list();
+
+        for(Partido partido : partidos){
+            respuesta |= partido.getJugado();
+        }
+
+        return respuesta;
     }
 }

@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.apuestacampeon;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
+import ar.edu.unlam.tallerweb1.partido.PartidoDao;
+import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class ApuestaCampeonService {
     private EquipoDao equipoDao;
     @Inject
     private UsuarioDao usuarioDao;
+    @Inject
+    private PartidoService partidoService;
 
     public ModelMap obtenerModelo(){
         ModelMap modelo = new ModelMap();
@@ -51,6 +55,8 @@ public class ApuestaCampeonService {
 
         Equipo equipoApostado = equipoDao.read(equipoId);
         if(equipoApostado == null) throw new IllegalArgumentException("Equipo inválido");
+
+        if(partidoService.alMenosUnPartidoFueJugado()) throw new IllegalArgumentException("No se puede apostar por el equipo campeón una vez que el torneo fue comenzado");
 
         ApuestaCampeon apuestaCampeon = apuestaCampeonDao.obtenerApuestaCampeon(apostadorId);
         if(apuestaCampeon == null) apuestaCampeon = new ApuestaCampeon(usuario);
