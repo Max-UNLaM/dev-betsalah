@@ -37,13 +37,19 @@ public class PuntajeService {
     protected void sumarPuntos(Usuario usuario, Partido partido, String resultadoPartido) {
         Apuesta apuesta = apuestaDao.read(usuario, partido);
         String resultadoApuesta = resultadoService.resultado(apuesta.getGolesLocal(), apuesta.getGolesVisitante());
+        Integer puntajeGanado = 0;
         if (resultadoApuesta.equals(resultadoPartido)) {
-            usuario.setPuntaje(usuario.getPuntaje() + 1);
-            usuarioDao.update(usuario);
+        	puntajeGanado = puntajeGanado + 1; 
         }
         if (apuesta.getFiguraId() != null && apuesta.getFiguraId().equals(partido.getFiguraId())) {
-        	usuario.setPuntaje(usuario.getPuntaje()+1);
-        	usuarioDao.update(usuario);
+        	puntajeGanado = puntajeGanado + 1; 
+        }
+        if (apuesta.getGolesLocal().equals(partido.getGolesLocal()) && apuesta.getGolesVisitante().equals(partido.getGolesVisitante())) {
+        	puntajeGanado = puntajeGanado +2;
+        }
+        if (puntajeGanado > 0) {
+        	usuario.setPuntaje(usuario.getPuntaje() + puntajeGanado);
+            usuarioDao.update(usuario);
         }
     }
 
