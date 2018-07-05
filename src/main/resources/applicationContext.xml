@@ -38,5 +38,6 @@
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.preparacion" />
     <context:component-scan base-package="ar.edu.unlam.tallerweb1.apuesta" />
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.tabladeposiciones" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.apuestacampeon" />
 </beans>
 

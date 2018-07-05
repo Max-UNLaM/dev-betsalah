@@ -49,6 +49,7 @@
                 <value>ar.edu.unlam.tallerweb1.gol</value>
                 <value>ar.edu.unlam.tallerweb1.fase</value>
                 <value>ar.edu.unlam.tallerweb1.apuesta</value>
+				<value>ar.edu.unlam.tallerweb1.apuestacampeon</value>
 			</list>
 		</property>
 	</bean>

@@ -16,6 +16,8 @@
 			<h3><a href="http://localhost:8080/partido/tercer-puesto" class="btn btn-primary" role="button">Simular tercer puesto</a></h3>
 			<h3><a href="http://localhost:8080/partido/final" class="btn btn-primary" role="button">Simualar final</a></h3>
 
+			<h2>Apostar campeon</h2>
+			<h3><a href="http://localhost:8080/apuesta-campeon/apostar-campeon" class="btn btn-primary" role="button">Apostar campeon</a></h3>
 
 			<h2>Apuestas</h2>
 			<h3><a href="http://localhost:8080/apuesta/grupos" class="btn btn-primary" role="button">Pronosticos fase de grupos</a></h3>
