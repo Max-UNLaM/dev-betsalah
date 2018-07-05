@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -39,7 +40,8 @@ public class PuntajeService {
         String resultadoApuesta = resultadoService.resultado(apuesta.getGolesLocal(), apuesta.getGolesVisitante());
         Integer puntajeGanado = 0;
         if (resultadoApuesta.equals(resultadoPartido)) {
-        	puntajeGanado = puntajeGanado + 1; 
+            puntajeGanado = puntajeGanado + 1;
+        	if(partido.getFase().getNombre().equals(SalahProperties.FASE_FINAL)) puntajeGanado = puntajeGanado + 5; //puntaje asignado si acierta al campeon
         }
         if (apuesta.getFiguraId() != null && apuesta.getFiguraId().equals(partido.getFiguraId())) {
         	puntajeGanado = puntajeGanado + 1; 
