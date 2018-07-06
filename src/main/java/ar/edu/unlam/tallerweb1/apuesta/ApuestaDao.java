@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.apuesta;
 
 import ar.edu.unlam.tallerweb1.dao.Dao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
@@ -17,20 +18,14 @@ import java.util.Properties;
 
 @Repository
 public class ApuestaDao extends Dao implements ApuestaRepository {
-    @Inject
-    private SalahProperties salahProperties;
 
-    private String EQUIPO_LOCAL;
-    private String EQUIPO_VISITANTE;
-    private String RESTA;
-    private String SUMA;
+    private String EQUIPO_LOCAL = SalahProperties.EQUIPO_LOCAL;
+    private String EQUIPO_VISITANTE = SalahProperties.EQUIPO_VISITANTE;
+    private String RESTA = SalahProperties.RESTA;
+    private String SUMA = SalahProperties.SUMA;
 
-    @PostConstruct
-    public void setUp(){
-        EQUIPO_LOCAL = salahProperties.getProperty("equipo.local");
-        EQUIPO_VISITANTE = salahProperties.getProperty("equipo.visitante");
-        RESTA = salahProperties.getProperty("resta");
-        SUMA = salahProperties.getProperty("suma");
+    public Apuesta read(Long apuestaId) {
+        return (Apuesta) session.get(Apuesta.class, apuestaId);
     }
 
     public Apuesta read(Usuario usuario, Partido partido) {
@@ -43,25 +38,28 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
     }
 
     @Override
-    public Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, Fase fase) {
+    public Boolean existenApuestasDeUsuarioEnFase(Usuario usuario, String nombreFase) {
         Boolean existenApuestas = !session
                 .createCriteria(Apuesta.class)
                 .createAlias("apostador", "tablaUsuarios")
                 .createAlias("partido", "tablaPartidos")
                 .createAlias("tablaPartidos.fase", "tablaFase")
                 .add(Restrictions.eq("tablaUsuarios.nombre", usuario.getNombre()))
-                .add(Restrictions.eq("tablaFase.nombre", fase.getNombre()))
+                .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list()
                 .isEmpty();
         return existenApuestas;
     }
 
     @Override
-    public List<Apuesta> obtenerApuestasPorUsuario(Usuario usuario) {
+    public List<Apuesta> obtenerApuestasPorUsuarioPorFase(Usuario usuario, String nombreFase) {
         List<Apuesta> apuestas = session
                 .createCriteria(Apuesta.class)
-                .createAlias("apostador","tablaUsuarios" )
+                .createAlias("apostador","tablaUsuarios")
+                .createAlias("partido", "tablaPartido")
+                .createAlias("tablaPartido.fase", "tablaFase")
                 .add(Restrictions.eq("tablaUsuarios.id", usuario.getId()))
+                .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
         return apuestas;
     }
@@ -107,5 +105,17 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
         transaction.commit();
 
         return respuesta;
+    }
+
+    public void modificarFigura(Long apuestaId, Jugador figura){
+        Transaction transaction = session.beginTransaction();
+
+        Apuesta apuesta = (Apuesta) session.get(Apuesta.class, apuestaId);
+
+        apuesta.setFigura(figura);
+
+        session.update(apuesta);
+
+        transaction.commit();
     }
 }

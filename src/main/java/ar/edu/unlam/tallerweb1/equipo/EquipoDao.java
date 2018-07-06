@@ -1,13 +1,14 @@
 package ar.edu.unlam.tallerweb1.equipo;
 
 import ar.edu.unlam.tallerweb1.dao.Dao;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import ar.edu.unlam.tallerweb1.fase.Fase;
+import ar.edu.unlam.tallerweb1.partido.Partido;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class EquipoDao extends Dao implements EquipoCrud {
@@ -35,5 +36,23 @@ public class EquipoDao extends Dao implements EquipoCrud {
     public Equipo create (Equipo equipo) {
         session.save(equipo);
         return equipo;
+    }
+
+    public List<Equipo> obtenerEquiposPorFase(Fase fase){
+        List<Partido> partidos = session.createCriteria(Partido.class)
+                .createAlias("fase", "tablaFase")
+                .add(Restrictions.eq("tablaFase.id", fase.getId()))
+                .list();
+
+        List<Equipo> equipos = new ArrayList<>();
+
+        for(Partido partido : partidos){
+            equipos.add(partido.getLocal());
+            equipos.add(partido.getVisitante());
+        }
+
+        equipos = equipos.stream().distinct().collect(Collectors.toList());
+
+        return equipos;
     }
 }

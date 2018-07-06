@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ public class PuntajeService {
         String resultadoPartido = resultadoService.resultado(partido);
         List<Usuario> usuarios = usuarioDao.list();
         for (Usuario usuario : usuarios) {
-            if (apuestaDao.existenApuestasDeUsuarioEnFase(usuario, fase)) {
+            if (apuestaDao.existenApuestasDeUsuarioEnFase(usuario, fase.getNombre())) {
                 sumarPuntos(usuario, partido, resultadoPartido);
             }
         }
@@ -37,8 +38,21 @@ public class PuntajeService {
     protected void sumarPuntos(Usuario usuario, Partido partido, String resultadoPartido) {
         Apuesta apuesta = apuestaDao.read(usuario, partido);
         String resultadoApuesta = resultadoService.resultado(apuesta.getGolesLocal(), apuesta.getGolesVisitante());
+        Integer puntajeGanado = 0;
         if (resultadoApuesta.equals(resultadoPartido)) {
-            usuario.setPuntaje(usuario.getPuntaje() + 1);
+            puntajeGanado = puntajeGanado + 1;
+        	if(partido.getFase().getNombre().equals(SalahProperties.FASE_FINAL)){
+        	    puntajeGanado = puntajeGanado + 15; //puntaje asignado si acierta al campeon
+            }
+        }
+        if (apuesta.getFigura() != null && apuesta.getFigura().getId().equals(partido.getFigura().getId())) {
+        	puntajeGanado = puntajeGanado + 1; 
+        }
+        if (apuesta.getGolesLocal().equals(partido.getGolesLocal()) && apuesta.getGolesVisitante().equals(partido.getGolesVisitante())) {
+        	puntajeGanado = puntajeGanado +2;
+        }
+        if (puntajeGanado > 0) {
+        	usuario.setPuntaje(usuario.getPuntaje() + puntajeGanado);
             usuarioDao.update(usuario);
         }
     }

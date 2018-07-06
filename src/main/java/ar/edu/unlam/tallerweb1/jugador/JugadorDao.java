@@ -23,7 +23,8 @@ public class JugadorDao extends Dao implements JugadorCrud {
     }
 
     public Jugador read(Long id) {
-        return session.get(Jugador.class, id);
+        Jugador respuesta = session.get(Jugador.class, id);
+        return respuesta;
     }
 
     public Jugador read(String nombre) {

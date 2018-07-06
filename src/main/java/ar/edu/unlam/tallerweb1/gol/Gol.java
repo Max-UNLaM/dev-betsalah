@@ -20,7 +20,7 @@ public class Gol {
     private Jugador arquero;
     @ManyToOne
     private Partido partido;
-    @OneToOne
+    @ManyToOne
     private Equipo equipo;
 
     public Gol(){}

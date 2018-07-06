@@ -4,6 +4,7 @@ public class PartidoJuegoDto {
     public Long id;
     public Integer golesLocal;
     public Integer golesVisitante;
+    public Long figuraId;
 
     public Long getId() {
         return id;
@@ -27,5 +28,13 @@ public class PartidoJuegoDto {
 
     public void setGolesVisitante(Integer golesVisitante) {
         this.golesVisitante = golesVisitante;
+    }
+
+    public Long getFiguraId() {
+        return figuraId;
+    }
+
+    public void setFiguraId(Long figuraId) {
+        this.figuraId = figuraId;
     }
 }

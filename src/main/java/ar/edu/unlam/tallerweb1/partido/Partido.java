@@ -4,6 +4,8 @@ import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolService;
+import ar.edu.unlam.tallerweb1.jugador.Jugador;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 
 import javax.inject.Inject;
 import javax.persistence.*;
@@ -11,17 +13,21 @@ import java.util.List;
 
 @Entity
 public class Partido {
-
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     protected Long id;
     @ManyToOne
+    protected Jugador figura;
+    @ManyToOne
     protected Equipo local;
     @ManyToOne
     protected Equipo visitante;
-    @ManyToOne
+	@ManyToOne
     private Fase fase;
     protected boolean jugado;
+    private Integer golesLocal;
+    private Integer golesVisitante;
+    private String resultado;
 
     public Partido(){}
 
@@ -29,10 +35,21 @@ public class Partido {
         this.local = local;
         this.visitante = visitante;
         this.fase = fase;
+        this.jugado =  false;
+        this.golesLocal = 0;
+        this.golesVisitante = 0;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Jugador getFigura() {
+        return figura;
+    }
+
+    public void setFigura(Jugador figura) {
+        this.figura = figura;
     }
 
     public Equipo getLocal() {
@@ -58,7 +75,6 @@ public class Partido {
     public void setJugado(boolean jugado) {
         this.jugado = jugado;
     }
-
 
     public void setFase(Fase fase) {
         this.fase = fase;
@@ -88,4 +104,37 @@ public class Partido {
         }
     }
 
+    public Integer getGolesLocal() {
+        return golesLocal;
+    }
+
+    public void setGolesLocal(Integer golesLocal) {
+        this.golesLocal = golesLocal;
+    }
+
+    public Integer getGolesVisitante() {
+        return golesVisitante;
+    }
+
+    public void setGolesVisitante(Integer golesVisitante) {
+        this.golesVisitante = golesVisitante;
+    }
+
+    public boolean isJugado() {
+        return jugado;
+    }
+
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(){
+        String RESULTADO_GANA_LOCAL = SalahProperties.RESULTADO_GANA_LOCAL;
+        String RESULTADO_EMPATE = SalahProperties.RESULTADO_EMPATE;
+        String RESULTADO_GANA_VISITANTE = SalahProperties.RESULTADO_GANA_VISITANTE;
+
+        if(this.getGolesLocal()>this.getGolesVisitante()) this.resultado = RESULTADO_GANA_LOCAL;
+        if(this.getGolesLocal().equals(this.getGolesVisitante())) this.resultado = RESULTADO_EMPATE;
+        if(this.getGolesLocal()<this.getGolesVisitante()) this.resultado = RESULTADO_GANA_VISITANTE;
+    }
 }

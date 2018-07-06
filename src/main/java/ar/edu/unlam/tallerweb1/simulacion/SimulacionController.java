@@ -3,10 +3,8 @@ package ar.edu.unlam.tallerweb1.simulacion;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.partido.*;
-import ar.edu.unlam.tallerweb1.usuario.Usuario;
-import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,26 +16,33 @@ import java.util.List;
 public class SimulacionController {
 
     @Inject
-    FaseService faseService;
+    private FaseService faseService;
     @Inject
-    SimulacionServiceFront simulacionServiceFront;
+    private SimulacionServiceFront simulacionServiceFront;
     @Inject
-    SimulacionServiceBack simulacionServiceBack;
+    private SimulacionServiceBack simulacionServiceBack;
     @Inject
-    PartidoDao partidoDao;
+    private PartidoDao partidoDao;
 
 
     @RequestMapping(path = "/partido/{fase}")
     public ModelAndView pantallaSimulacion(@PathVariable(value = "fase") String nombreFase) {
-        Fase fase = (nombreFase.equals("grupos")) ? faseService.readFase("Fase de grupos") : faseService.readFase("Fase de grupos");
-        return simulacionServiceFront.modelarFase(fase);
+        List<Fase> fases = new ArrayList<>();
+
+        // TODO llevar esto a un patron command
+        if(nombreFase.equals("grupos")) fases = faseService.readFases(SalahProperties.FASE_DE_GRUPOS);
+        if(nombreFase.equals("octavos")) fases =  faseService.readFases(SalahProperties.FASE_OCTAVOS_DE_FINAL);
+        if(nombreFase.equals("cuartos")) fases =  faseService.readFases(SalahProperties.FASE_CUARTOS_DE_FINAL);
+        if(nombreFase.equals("semifinal")) fases =  faseService.readFases(SalahProperties.FASE_SEMIFINAL);
+        if(nombreFase.equals("tercer-puesto")) fases =  faseService.readFases(SalahProperties.FASE_TERCER_PUESTO);
+        if(nombreFase.equals("final")) fases =  faseService.readFases(SalahProperties.FASE_FINAL);
+        return simulacionServiceFront.modelarFases(fases);
     }
 
     @ResponseBody
     @RequestMapping(path = "/simulacion/jugar", method = RequestMethod.PUT, produces = "application/json")
     public SimulacionResultadoDto simulacionPartido(@RequestBody PartidoJuegoDto partidoDto){
-        this.simulacionServiceBack.jugarPartido(partidoDao.read(partidoDto.id), partidoDto.golesLocal, partidoDto.golesVisitante);
+        this.simulacionServiceBack.jugarPartido(partidoDao.read(partidoDto.id), partidoDto.golesLocal, partidoDto.golesVisitante, partidoDto.getFiguraId());
         return this.simulacionServiceFront.imprimirSimulacionResultadoDto(partidoDto);
     }
-
 }

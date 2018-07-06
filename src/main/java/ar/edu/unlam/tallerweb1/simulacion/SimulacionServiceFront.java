@@ -5,8 +5,10 @@ import ar.edu.unlam.tallerweb1.partido.PartidoJuegoDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Component
 public interface SimulacionServiceFront {
-    ModelAndView modelarFase(Fase fase);
+    ModelAndView modelarFases(List<Fase> fases);
     SimulacionResultadoDto imprimirSimulacionResultadoDto(PartidoJuegoDto partidoDto);
 }

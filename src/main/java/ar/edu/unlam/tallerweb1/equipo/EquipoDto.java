@@ -6,18 +6,16 @@ import org.springframework.stereotype.Component;
 public class EquipoDto {
     public Long id;
     public String nombre;
-    public String nombre3caracteres;
-    public String grupo;
-    public Integer ordenEnGrupo;
+    private String nombre3caracteres;
+    private Boolean definido;
 
     public EquipoDto(){}
 
-    public EquipoDto(Long id, String nombre, String nombre3caracteres, String grupo, Integer ordenEnGrupo) {
+    public EquipoDto(Long id, String nombre, String nombre3caracteres, Boolean definido) {
         this.id = id;
         this.nombre = nombre;
         this.nombre3caracteres = nombre3caracteres;
-        this.grupo = grupo;
-        this.ordenEnGrupo = ordenEnGrupo;
+        this.definido = definido;
     }
 
     public Long getId() {
@@ -44,19 +42,11 @@ public class EquipoDto {
         this.nombre3caracteres = nombre3caracteres;
     }
 
-    public String getGrupo() {
-        return grupo;
+    public Boolean getDefinido() {
+        return definido;
     }
 
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
-    public Integer getOrdenEnGrupo() {
-        return ordenEnGrupo;
-    }
-
-    public void setOrdenEnGrupo(Integer ordenEnGrupo) {
-        this.ordenEnGrupo = ordenEnGrupo;
+    public void setDefinido(Boolean definido) {
+        this.definido = definido;
     }
 }
