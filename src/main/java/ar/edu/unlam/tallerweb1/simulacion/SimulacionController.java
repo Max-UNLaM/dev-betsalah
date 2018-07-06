@@ -29,6 +29,7 @@ public class SimulacionController {
     public ModelAndView pantallaSimulacion(@PathVariable(value = "fase") String nombreFase) {
         List<Fase> fases = new ArrayList<>();
 
+        // TODO llevar esto a un patron command
         if(nombreFase.equals("grupos")) fases = faseService.readFases(SalahProperties.FASE_DE_GRUPOS);
         if(nombreFase.equals("octavos")) fases =  faseService.readFases(SalahProperties.FASE_OCTAVOS_DE_FINAL);
         if(nombreFase.equals("cuartos")) fases =  faseService.readFases(SalahProperties.FASE_CUARTOS_DE_FINAL);

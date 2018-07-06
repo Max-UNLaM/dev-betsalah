@@ -58,6 +58,7 @@ public class ApuestaCampeonService {
         return modelo;
     }
 
+    // TODO testear por completo
     public void apostarCampeon(Long apostadorId, Long equipoId){
         //El usuario que estoy creando aca en realidad seria el usuario del cual estamos recibiendo el ID
         Usuario usuario = usuarioDao.read("daniel.marconi"); //aca deberia leer por id
