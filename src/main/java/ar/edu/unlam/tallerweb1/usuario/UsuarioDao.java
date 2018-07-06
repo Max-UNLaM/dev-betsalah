@@ -34,12 +34,17 @@ public class UsuarioDao extends Dao implements UsuarioCrud, UsuarioOrder{
 	}
 
     public Usuario consultarUsuario(Usuario usuario) {
-
         return (Usuario) session.createCriteria(Usuario.class)
-                .add(Restrictions.eq("email", usuario.getEmail()))
+                .add(Restrictions.eq("nombre", usuario.getNombre()))
                 .add(Restrictions.eq("password", usuario.getPassword()))
                 .uniqueResult();
     }
+
+	public Usuario consultarUsuario(String nombreUsuario) {
+		return (Usuario) session.createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombre", nombreUsuario))
+				.uniqueResult();
+	}
 
 	public Usuario read(String nombre) {
 		return (Usuario)session.createCriteria(Usuario.class)

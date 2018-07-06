@@ -1,16 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap-theme.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/styles.css" />">
-</head>
-<body>
-    <div class="container">
+<%@include file="util/header.jsp" %>
+
         <h2 class="text-center">Apostar campeon</h2>
 
         <c:if test="${empty apuestaCampeon.equipoApostado}">
@@ -31,11 +20,5 @@
             <h4 class="text-left">Si acertás al campeón del torneo vas a sumar 15 puntos extra</h4>
             <h4 class="text-left">Recordá que una vez hecha la apuesta de campeón del torneo no puede ser modificada</h4>
         </c:if>
-    </div>
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="<c:url value="/js/jquery-1.11.3.min.js" />" ></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
-<script src="<c:url value="/js/ApuestaCampeon.js" />" type="text/javascript"></script>
-</body>
-</html>
+
+<%@include file="util/header.jsp" %>

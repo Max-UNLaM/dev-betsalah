@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.partido.*;
 import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -50,7 +51,7 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
     public ModelAndView modelarFases(List<Fase> fases) {
         Usuario usuario = usuarioDao.read("daniel.marconi");
         if(usuario == null){
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
+            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
             usuarioDao.create(usuario);
         }
         List<Partido> partidosDeFase = partidoService.filterByFase(fases);

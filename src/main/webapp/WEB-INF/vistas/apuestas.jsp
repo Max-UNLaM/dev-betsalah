@@ -1,18 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap-theme.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/styles.css" />">
-</head>
-<body>
-<div class = "container-fluid">
+<%@include file="util/header.jsp" %>
+
+
     <c:if test="${not empty apuestas}">
-        <h3 class="text-center">${fase} - Pronostico de ${usuario.nombre}</h3>
+        <h3 class="text-center">${fase} - Tu pronostico</h3>
 
         <table class="table">
             <thead>
@@ -112,13 +102,5 @@
             </tbody>
         </table>
     </c:if>
-</div>
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="<c:url value="/js/jquery-1.11.3.min.js" />" ></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
-<script src="<c:url value="/js/PartidoConnector.js" />" type="text/javascript"></script>
-<script src="<c:url value="/js/Apuesta.js" />" type="text/javascript"></script>
-<script src="<c:url value="/js/ApuestaFigura.js" />" type="text/javascript"></script>
-</body>
-</html>
+
+<%@include file="util/footer.jsp" %>

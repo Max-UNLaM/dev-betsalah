@@ -46,7 +46,7 @@ public class ApuestaServiceImpl implements ApuestaService {
         //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
         Usuario usuario = usuarioDao.read("daniel.marconi");
         if(usuario == null){
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
+            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
             usuarioDao.create(usuario);
         }
 

@@ -37,7 +37,7 @@ public class ApuestaCampeonService {
         //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
         Usuario usuario = usuarioDao.read("daniel.marconi");
         if(usuario == null){
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
+            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
             usuarioDao.create(usuario);
         }
 
@@ -63,7 +63,7 @@ public class ApuestaCampeonService {
         //El usuario que estoy creando aca en realidad seria el usuario del cual estamos recibiendo el ID
         Usuario usuario = usuarioDao.read("daniel.marconi"); //aca deberia leer por id
         if(usuario == null){//si el usuario no existe debo tirar una excepcion
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
+            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
             usuarioDao.create(usuario);
         }
 

@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
@@ -31,7 +32,7 @@ public class JugarPartidoTest extends SpringTest {
     @Transactional
     @Test
     public void preCarga() {
-        usuario = new Usuario("test@test.com", "test", "123", 0);
+        usuario = new Usuario("test", "123", 0, SalahProperties.ROL_USUARIO);
         Equipo local = new Equipo("Local", "TST");
         Equipo visitante = new Equipo("Visitante", "TST");
         Fase fase = new Fase("grupo", "A");

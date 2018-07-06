@@ -65,6 +65,9 @@ public class SalahProperties extends Properties {
     public static String TERCER_PUESTO;
     public static String FINAL;
 
+    public static String ROL_USUARIO;
+    public static String ROL_ADMIN;
+
     @PostConstruct
     private void setUp(){
         EQUIPO_LOCAL = this.getProperty("equipo.local");
@@ -118,6 +121,9 @@ public class SalahProperties extends Properties {
 
         TERCER_PUESTO = this.getProperty("tercer.puesto");
         FINAL = this.getProperty("final");
+
+        ROL_USUARIO = this.getProperty("rol.usuario");
+        ROL_ADMIN = this.getProperty("rol.admin");
     }
 
     public SalahProperties(){

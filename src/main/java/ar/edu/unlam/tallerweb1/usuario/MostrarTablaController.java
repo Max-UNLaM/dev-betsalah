@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.usuario;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
