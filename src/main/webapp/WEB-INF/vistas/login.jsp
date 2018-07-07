@@ -1,4 +1,4 @@
-<%@include file="util/header.jsp" %>
+<%@include file="header.jsp" %>
 
     <title>BetSalah</title>
 	<!-- Bootstrap core CSS -->
@@ -32,4 +32,4 @@
 		</c:if>
 	</div>
 
-<%@include file="util/footer.jsp" %>
+<%@include file="footer.jsp" %>

@@ -1,4 +1,4 @@
-<%@include file="util/header.jsp" %>
+<%@include file="header.jsp" %>
 
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
@@ -15,7 +15,7 @@
             <button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registro</button>
         </form:form>
 
-        <a href="/"><h4>Registrate</h4></a>
+        <a href="/login"><h4>Ir a login</h4></a>
 
         <%--Bloque que es visible si el elemento error no estÃ¡ vacÃ­o	--%>
         <c:if test="${not empty error}">
@@ -24,4 +24,4 @@
         </c:if>
     </div>
 
-<%@include file="util/footer.jsp" %>
+<%@include file="footer.jsp" %>

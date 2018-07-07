@@ -1,0 +1,18 @@
+.menu-usuario{
+    background-color: rgba(0,0,0,0.8);
+}
+
+.menu-usuario-item{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.menu-usuario-link{
+    color: white !important;
+    font-size: 20px;
+}
+
+.menu-usuario-title{
+    color: white;
+    font-size: 18px;
+}

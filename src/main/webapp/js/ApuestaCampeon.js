@@ -1,10 +1,10 @@
 const setearCampeonUrl = 'http://localhost:8080/apuesta-campeon/setear-campeon';
-const params = '?apostadorId={apostadorId}&equipoId={equipoId}';
+const apuestaCampeonParams = '?apostadorId={apostadorId}&equipoId={equipoId}';
 
 function setearApuestaCampeon(apostadorId){
     var equipoId = $('#campeon').val();
 
-    var parametros = params
+    var parametros = apuestaCampeonParams
                     .replace("{apostadorId}", apostadorId)
                     .replace("{equipoId}", equipoId);
 

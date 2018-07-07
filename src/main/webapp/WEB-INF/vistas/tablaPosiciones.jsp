@@ -1,4 +1,4 @@
-<%@include file="util/header.jsp" %>
+<%@include file="header.jsp" %>
 
   <table class="table table-striped">
     <thead>
@@ -17,4 +17,4 @@
     </tbody>
   </table>
 
-<%@include file="util/footer.jsp" %>
+<%@include file="footer.jsp" %>

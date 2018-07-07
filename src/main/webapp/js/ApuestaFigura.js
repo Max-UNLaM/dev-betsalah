@@ -1,5 +1,5 @@
 const cambiarFiguraUrl = 'http://localhost:8080/apuesta/cambiar-figura';
-const params = '?apuestaId={apuestaId}&figuraId={figuraId}';
+const cambiarFiguraParams = '?apuestaId={apuestaId}&figuraId={figuraId}';
 const idSelect = '#apuesta-figura-{apuestaId} option:selected';
 
 function apostarFigura(apuestaId){
@@ -8,7 +8,7 @@ function apostarFigura(apuestaId){
     var figuraId = $(idSelectActual).val();
     var figuraNombre = $(idSelectActual).text();
 
-    var parametros = params
+    var parametros = cambiarFiguraParams
         .replace("{apuestaId}", apuestaId)
         .replace("{figuraId}", figuraId);
 

@@ -1,8 +1,8 @@
-<%@include file="util/header.jsp" %>
+<%@include file="header.jsp" %>
 
 
     <c:if test="${not empty apuestas}">
-        <h3 class="text-center">${fase} - Tu pronostico</h3>
+        <h3 class="text-center">Tu pronostico - ${fase}</h3>
 
         <table class="table">
             <thead>
@@ -103,4 +103,4 @@
         </table>
     </c:if>
 
-<%@include file="util/footer.jsp" %>
+<%@include file="footer.jsp" %>

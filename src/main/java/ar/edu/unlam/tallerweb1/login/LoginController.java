@@ -70,13 +70,13 @@ public class LoginController {
 	@RequestMapping(path = "/validar-registro", method = RequestMethod.POST)
 	public ModelAndView validarRegistro(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
+		usuario.setPuntaje(0);
+		usuario.setRol(SalahProperties.ROL_USUARIO);
 
 		Usuario usuarioBuscado = loginService.consultarUsuario(usuario.getNombre());
 		if (usuarioBuscado != null) {
 			model.put("error", "El nombre " + usuario.getNombre() + " ya esta registrado.");
 		} else {
-			usuario.setPuntaje(0);
-			usuario.setRol(SalahProperties.ROL_USUARIO);
 			request.getSession().setAttribute("ROL", usuario.getRol());
 			loginService.crearUsuario(usuario);
 			request.getSession().setAttribute("USER-ID", usuario.getId());
