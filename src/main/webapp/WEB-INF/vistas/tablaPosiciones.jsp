@@ -8,10 +8,10 @@
       </tr>
     </thead>
     <tbody>
-    <c:forEach items="${usuarios}" var="usuario">
-      <tr>
-        <td>${usuario.nombre}</td>
-        <td>${usuario.puntaje}</td>
+    <c:forEach items="${usuarios}" var="usuarioActual">
+      <tr ${(usuario.id == usuarioActual.id) ? 'class="bg-blue font-weight-bold"' : ''}>
+        <td>${usuarioActual.nombre}</td>
+        <td>${usuarioActual.puntaje}</td>
       </tr>
     </c:forEach>
     </tbody>

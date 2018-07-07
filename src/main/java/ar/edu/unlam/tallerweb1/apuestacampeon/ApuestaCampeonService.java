@@ -31,15 +31,11 @@ public class ApuestaCampeonService {
     @Inject
     private PartidoService partidoService;
 
-    public ModelMap obtenerModelo(){
+    public ModelMap obtenerModelo(Long usuarioId){
         ModelMap modelo = new ModelMap();
 
-        //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
-        Usuario usuario = usuarioDao.read("daniel.marconi");
-        if(usuario == null){
-            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
-            usuarioDao.create(usuario);
-        }
+        Usuario usuario = usuarioDao.read(usuarioId);
+        if(usuario == null) throw new IllegalArgumentException("Usuario invalido");
 
         ApuestaCampeon apuestaCampeon = apuestaCampeonDao.obtenerApuestaCampeon(usuario.getId());
         if(apuestaCampeon == null) apuestaCampeon = new ApuestaCampeon(usuario);
@@ -50,6 +46,7 @@ public class ApuestaCampeonService {
 
         Partido partidoFinal = partidoDao.obtenerPartidoPorFase(faseFinal);
 
+        modelo.put("sesion", true);
         modelo.put("usuario", usuario);
         modelo.put("equipos", equipos);
         modelo.put("partidoFinal", partidoFinal);
@@ -60,12 +57,8 @@ public class ApuestaCampeonService {
 
     // TODO testear por completo
     public void apostarCampeon(Long apostadorId, Long equipoId){
-        //El usuario que estoy creando aca en realidad seria el usuario del cual estamos recibiendo el ID
-        Usuario usuario = usuarioDao.read("daniel.marconi"); //aca deberia leer por id
-        if(usuario == null){//si el usuario no existe debo tirar una excepcion
-            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
-            usuarioDao.create(usuario);
-        }
+        Usuario usuario = usuarioDao.read(apostadorId);
+        if(usuario == null) throw new IllegalArgumentException("Usuario invalido");
 
         Equipo equipoApostado = equipoDao.read(equipoId);
         if(equipoApostado == null) throw new IllegalArgumentException("Equipo inválido");

@@ -48,7 +48,8 @@ public class LoginController {
 		Usuario usuarioBuscado = loginService.consultarUsuario(usuario);
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-			return new ModelAndView("redirect:/home");
+			request.getSession().setAttribute("USER-ID", usuarioBuscado.getId());
+			return new ModelAndView("redirect:/apuesta/grupos");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
@@ -80,9 +81,16 @@ public class LoginController {
 			request.getSession().setAttribute("ROL", usuario.getRol());
 			loginService.crearUsuario(usuario);
 			request.getSession().setAttribute("USER-ID", usuario.getId());
-			return new ModelAndView("redirect:/home");
+			return new ModelAndView("redirect:/apuesta/grupo");
 		}
 		return new ModelAndView("registro", model);
+	}
+
+	@RequestMapping(path = "/cerrar-sesion", method = RequestMethod.GET)
+	public ModelAndView cerrarSesion(HttpServletRequest request) {
+		request.getSession().removeAttribute("ROL");
+		request.getSession().removeAttribute("USER-ID");
+		return new ModelAndView("redirect:/login");
 	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.

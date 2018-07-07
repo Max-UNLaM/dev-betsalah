@@ -14,3 +14,11 @@ a:hover{
 li{
     display: inline-block;
 }
+
+.bg-blue{
+    background-color: #3892df36 !important;
+}
+
+.font-weight-bold{
+    font-weight: bold !important;
+}

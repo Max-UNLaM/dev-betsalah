@@ -22,10 +22,13 @@
 </head>
 <body>
     <div class = "container-fluid">
-
-            <div class="text-right">(no se muestra si no hay sesion) ${usuario.nombre} <a href="/login">Cerrar sesion</a></div>
+        <c:if test="${not empty sesion}">
+            <div class="text-right">${usuario.nombre} <a href="/cerrar-sesion">Cerrar sesion</a></div>
+            <c:if test="${usuario.rol eq 'Admin'}">
             <!-- Navegacion admin -->
-            <%@include file="navegacion-admin.jsp" %>
+                <%@include file="navegacion-admin.jsp" %>
+            </c:if>
             <!-- Navegacion usuario -->
-            <%@include file="navegacion-usuario.jsp" %>
+                <%@include file="navegacion-usuario.jsp" %>
+        </c:if>
 

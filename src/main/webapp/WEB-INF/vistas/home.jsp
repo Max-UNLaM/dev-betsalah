@@ -2,4 +2,4 @@
 
 			<h1>Bienvenido a BetSalah</h1>
 
-<%@include file="header.jsp" %>
+<%@include file="footer.jsp" %>

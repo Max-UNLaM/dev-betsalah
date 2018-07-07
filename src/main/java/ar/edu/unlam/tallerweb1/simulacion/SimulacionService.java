@@ -48,12 +48,10 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
 
     protected Partido partido;
 
-    public ModelAndView modelarFases(List<Fase> fases) {
-        Usuario usuario = usuarioDao.read("daniel.marconi");
-        if(usuario == null){
-            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
-            usuarioDao.create(usuario);
-        }
+    public ModelAndView modelarFases(List<Fase> fases, Long usuarioId) {
+        Usuario usuario = usuarioDao.read(usuarioId);
+        if(usuario == null) throw new IllegalArgumentException("El usuario no existe");
+
         List<Partido> partidosDeFase = partidoService.filterByFase(fases);
         ArrayList<PartidoDto> partidosDto = new ArrayList<>();
         for (Partido partido : partidosDeFase) {
@@ -61,6 +59,8 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         }
         List<Jugador> jugador = jugadorDao.list();
         ModelMap modelo = new ModelMap();
+
+        modelo.put("sesion", true);
         modelo.addAttribute("partidos", partidosDto);
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("jugadores", jugador);

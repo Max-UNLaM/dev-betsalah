@@ -9,6 +9,6 @@ import java.util.List;
 
 @Component
 public interface SimulacionServiceFront {
-    ModelAndView modelarFases(List<Fase> fases);
+    ModelAndView modelarFases(List<Fase> fases, Long usuarioId);
     SimulacionResultadoDto imprimirSimulacionResultadoDto(PartidoJuegoDto partidoDto);
 }

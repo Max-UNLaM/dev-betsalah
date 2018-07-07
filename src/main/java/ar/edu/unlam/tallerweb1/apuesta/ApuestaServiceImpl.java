@@ -42,13 +42,9 @@ public class ApuestaServiceImpl implements ApuestaService {
     }
 
     @Override
-    public ModelMap obtenerModeloPorFase(String fase) {
-        //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
-        Usuario usuario = usuarioDao.read("daniel.marconi");
-        if(usuario == null){
-            usuario = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_USUARIO);
-            usuarioDao.create(usuario);
-        }
+    public ModelMap obtenerModeloPorFase(String fase, Long usuarioId) {
+        Usuario usuario = usuarioDao.read(usuarioId);
+        if(usuario == null) throw new IllegalArgumentException("El usuario no existe");
 
         String nombreFase = validarFase(fase);
         List<Partido> partidos = partidoDao.consultarPartidosPorFase(nombreFase);
@@ -57,6 +53,7 @@ public class ApuestaServiceImpl implements ApuestaService {
 
         ModelMap modelo = new ModelMap();
 
+        modelo.put("sesion", true);
         modelo.put("usuario", usuario);
         modelo.put("fase", nombreFase);
         modelo.addAttribute("apuestas", apuestas);
@@ -117,6 +114,6 @@ public class ApuestaServiceImpl implements ApuestaService {
         if(fase.equals("semifinal")) return SalahProperties.FASE_SEMIFINAL;
         if(fase.equals("tercer-puesto")) return SalahProperties.FASE_TERCER_PUESTO;
         if(fase.equals("final")) return SalahProperties.FASE_FINAL;
-        throw new IllegalArgumentException("Fase invalida");
+        return SalahProperties.FASE_DE_GRUPOS;
     }
 }
