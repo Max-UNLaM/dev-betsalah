@@ -17,7 +17,7 @@ public class MostrarTablaController {
 	@Inject
 	private UsuarioServicio usuarioServicio;
 	
-	@RequestMapping("/TablaPosiciones")
+	@RequestMapping("/tabla-posiciones")
 	public ModelAndView MostrarTabla() {
 		ModelMap modelo = new ModelMap();
 		List<Usuario> usuarios = usuarioServicio.generarTabla("puntaje");

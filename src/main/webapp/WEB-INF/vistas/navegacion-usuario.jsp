@@ -4,7 +4,7 @@
     </div>
     <div class="text-center">
         <ul>
-            <li class="menu-usuario-item"><a class="menu-usuario-link" href="/TablaPosiciones">Tabla de posiciones</a></li>
+            <li class="menu-usuario-item"><a class="menu-usuario-link" href="/tabla-posiciones">Tabla de posiciones</a></li>
             <li class="menu-usuario-item"><a class="menu-usuario-link" href="/apuesta-campeon/apostar-campeon">Campeon</a></li>
             <li class="menu-usuario-item"><a class="menu-usuario-link" href="/apuesta/grupos">Grupos</a></li>
             <li class="menu-usuario-item"><a class="menu-usuario-link" href="/apuesta/octavos">Octavos</a></li>
