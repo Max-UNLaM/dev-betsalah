@@ -13,12 +13,17 @@
 
     <script src="<c:url value="/js/jquery-1.11.3.min.js" />" ></script>
     <script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
-    <script src="<c:url value="/js/PartidoConnector.js" />" type="text/javascript"></script>
+
     <script src="<c:url value="/js/Apuesta.js" />" type="text/javascript"></script>
     <script src="<c:url value="/js/ApuestaFigura.js" />" type="text/javascript"></script>
     <script src="<c:url value="/js/ApuestaCampeon.js" />" type="text/javascript"></script>
-    <script src="<c:url value="/js/SimulacionConnector.js" />" type="text/javascript"></script>
     <script src="<c:url value="/js/Simulacion.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/js/SimulacionConnector.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/js/AdministrarUsuarios.js" />" type="text/javascript"></script>
+
+
+    <script src="<c:url value="/js/PartidoConnector.js" />" type="text/javascript"></script>
+
 </head>
 <body>
     <div class = "container-fluid">

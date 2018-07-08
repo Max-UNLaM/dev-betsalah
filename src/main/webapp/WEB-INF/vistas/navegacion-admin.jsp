@@ -4,8 +4,7 @@
     </div>
     <div class="text-center">
         <ul>
-            <li class="menu-admin-item"><a class="menu-admin-link" href="#">Usuarios</a></li>
-            <li class="menu-admin-item"><a class="menu-admin-link" href="#">Reiniciar torneo</a></li>
+            <li class="menu-admin-item"><a class="menu-admin-link" href="/usuario/administrar-usuarios">Usuarios</a></li>
             <li class="menu-admin-item"><a class="menu-admin-link" href="/partido/grupos">Grupos</a></li>
             <li class="menu-admin-item"><a class="menu-admin-link" href="/partido/octavos">Octavos</a></li>
             <li class="menu-admin-item"><a class="menu-admin-link" href="/partido/cuartos">Cuartos</a></li>

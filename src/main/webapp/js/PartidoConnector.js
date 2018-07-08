@@ -1,5 +1,4 @@
 'use strict';
-const apuestaCambiarGoles = '/apuesta/cambiar-goles-apostados';
 const apuestaCambiaFigura = '/apuesta/cambiar-figura';
 class PartidoConnector {
     constructor(elemento) {
