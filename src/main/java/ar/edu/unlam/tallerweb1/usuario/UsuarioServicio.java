@@ -24,6 +24,17 @@ public class UsuarioServicio {
 
 	public Usuario read(Long usuarioId) { return usuarioDao.read(usuarioId); }
 
+	public void cargar(){
+		Usuario dePietro = new Usuario("maximiliano.depietro", "123456", 0, SalahProperties.ROL_ADMIN);
+		usuarioDao.create(dePietro);
+
+		Usuario marconi = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_ADMIN);
+		usuarioDao.create(marconi);
+
+		Usuario murano = new Usuario("juan.murano", "123456", 0, SalahProperties.ROL_ADMIN);
+		usuarioDao.create(murano);
+	}
+
 	public ModelMap obtenerModeloParaAdministrarUsuario(Usuario usuario){
 		ModelMap modelo = new ModelMap();
 

@@ -53,6 +53,8 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
 
     @Override
     public List<Apuesta> obtenerApuestasPorUsuarioPorFase(Usuario usuario, String nombreFase) {
+        Transaction transaction = session.beginTransaction();
+
         List<Apuesta> apuestas = session
                 .createCriteria(Apuesta.class)
                 .createAlias("apostador","tablaUsuarios")
@@ -61,6 +63,9 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
                 .add(Restrictions.eq("tablaUsuarios.id", usuario.getId()))
                 .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
+
+        transaction.commit();
+
         return apuestas;
     }
 
@@ -113,6 +118,14 @@ public class ApuestaDao extends Dao implements ApuestaRepository {
         Apuesta apuesta = (Apuesta) session.get(Apuesta.class, apuestaId);
 
         apuesta.setFigura(figura);
+
+        session.update(apuesta);
+
+        transaction.commit();
+    }
+
+    public void update(Apuesta apuesta){
+        Transaction transaction = session.beginTransaction();
 
         session.update(apuesta);
 

@@ -50,14 +50,16 @@
                         </c:if>
                     </td>
 
-                    <td class="text-center col-xs-1">
-                        <c:if test="${apuesta.partido.jugado eq true}">
-                            ${apuesta.partido.golesLocal} - ${apuesta.partido.golesVisitante}
-                        </c:if>
-                        <c:if test="${apuesta.partido.jugado ne true}">
+                    <c:if test="${apuesta.partido.jugado eq true}">
+                        <td ${(apuesta.golesLocal eq apuesta.partido.golesLocal) && (apuesta.golesVisitante eq apuesta.partido.golesVisitante) ? 'class="text-center col-xs-2 bg-green"' : 'class="text-center col-xs-2 bg-red"'}>
+                                ${apuesta.partido.golesLocal} - ${apuesta.partido.golesVisitante}
+                        </td>
+                    </c:if>
+                    <c:if test="${apuesta.partido.jugado ne true}">
+                        <td class="text-center col-xs-1">
                             No jugado
-                        </c:if>
-                    </td>
+                        </td>
+                    </c:if>
 
                     <td class="form-group text-center col-xs-2">
                         <select class="form-control" name="jugador" onchange="apostarFigura(${apuesta.id})" id="apuesta-figura-${apuesta.id}" data-apuestaId="${apuesta.id}" ${apuesta.partido.jugado || empty apuesta.partido.local || empty apuesta.partido.visitante ? 'disabled="disabled"' : ''}>
@@ -80,18 +82,27 @@
                         </select>
                     </td>
 
-                    <td class="text-center col-xs-2">
-                        <c:if test="${apuesta.partido.jugado eq true}">
-                            ${apuesta.partido.figura.equipo.nombre3caracteres} - ${apuesta.partido.figura.nombreCompleto}
-                        </c:if>
-                        <c:if test="${apuesta.partido.jugado ne true}">
-                            No jugado
-                        </c:if>
-                    </td>
+
+                    <c:if test="${apuesta.partido.jugado eq true}">
+                        <td ${apuesta.figura.id eq apuesta.partido.figura.id ? 'class="text-center col-xs-2 bg-green"' : 'class="text-center col-xs-2 bg-red"'}>
+                        ${apuesta.partido.figura.equipo.nombre3caracteres} - ${apuesta.partido.figura.nombreCompleto}
+                        </td>
+                    </c:if>
+                    <c:if test="${apuesta.partido.jugado ne true}">
+                        <td class="text-center col-xs-2">
+                        No jugado
+                        </td>
+                    </c:if>
+
 
                     <td class="text-center col-xs-1">
                         <c:if test="${apuesta.partido.jugado eq true}">
-                            Puntos
+                            <c:if test="${not empty apuesta.puntaje}">
+                                ${apuesta.puntaje}
+                            </c:if>
+                            <c:if test="${empty apuesta.puntaje}">
+                                0
+                            </c:if>
                         </c:if>
                         <c:if test="${apuesta.partido.jugado ne true}">
                             0

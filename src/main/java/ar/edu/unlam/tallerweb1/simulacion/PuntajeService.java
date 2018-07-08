@@ -52,6 +52,8 @@ public class PuntajeService {
         	puntajeGanado = puntajeGanado +2;
         }
         if (puntajeGanado > 0) {
+            apuesta.setPuntaje(puntajeGanado);
+            apuestaDao.update(apuesta);
         	usuario.setPuntaje(usuario.getPuntaje() + puntajeGanado);
             usuarioDao.update(usuario);
         }

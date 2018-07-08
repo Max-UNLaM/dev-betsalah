@@ -19,6 +19,7 @@ public class Apuesta {
     private Partido partido;
     private Integer golesLocal;
     private Integer golesVisitante;
+    private Integer puntaje;
 
     public Apuesta(){
 
@@ -77,5 +78,13 @@ public class Apuesta {
 
     public void setGolesVisitante(Integer golesVisitante) {
         this.golesVisitante = golesVisitante;
+    }
+
+    public Integer getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(Integer puntaje) {
+        this.puntaje = puntaje;
     }
 }

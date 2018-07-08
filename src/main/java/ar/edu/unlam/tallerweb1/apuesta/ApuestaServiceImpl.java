@@ -67,9 +67,14 @@ public class ApuestaServiceImpl implements ApuestaService {
 
         if(apuestaDao.existenApuestasDeUsuarioEnFase(usuario, nombreFase)){
             apuestas = apuestaDao.obtenerApuestasPorUsuarioPorFase(usuario, nombreFase);
+            for(int i = 0; i < apuestas.size(); i++){
+                apuestas.get(i).setPartido(partidos.get(i));
+            }
         } else {
             apuestas = apuestaDao.crearApuestasParaUsuario(usuario, partidos);
         }
+
+
         return apuestas;
     }
 

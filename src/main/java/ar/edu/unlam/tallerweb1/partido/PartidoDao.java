@@ -23,11 +23,16 @@ public class PartidoDao extends Dao implements PartidoCrud, PartidoFilter {
     @Override
     @SuppressWarnings("unchecked")
     public List<Partido> consultarPartidosPorFase(String nombreFase) {
+        Transaction transaction = session.beginTransaction();
+
         List<Partido> partidos = session
                 .createCriteria(Partido.class)
                 .createAlias("fase", "tablaFase")
                 .add(Restrictions.eq("tablaFase.nombre", nombreFase))
                 .list();
+
+        transaction.commit();
+
         return partidos;
     }
 
