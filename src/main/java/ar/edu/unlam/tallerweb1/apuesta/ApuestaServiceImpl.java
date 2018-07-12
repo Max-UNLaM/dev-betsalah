@@ -41,12 +41,29 @@ public class ApuestaServiceImpl implements ApuestaService {
         SUMA = salahProperties.getProperty("suma");
     }
 
+    public void setUsuarioDao(UsuarioCrud usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+
+    public void setPartidoDao(PartidoCrud partidoDao) {
+        this.partidoDao = partidoDao;
+    }
+
+    public void setApuestaDao(ApuestaDao apuestaDao) {
+        this.apuestaDao = apuestaDao;
+    }
+
+    public void setJugadorDao(JugadorCrud jugadorDao) {
+        this.jugadorDao = jugadorDao;
+    }
+
     @Override
     public ModelMap obtenerModeloPorFase(String fase, Long usuarioId) {
         Usuario usuario = usuarioDao.read(usuarioId);
         if(usuario == null) throw new IllegalArgumentException("El usuario no existe");
 
-        String nombreFase = validarFase(fase);
+        ApuestaValidador apuestaValidador = new ApuestaValidador();
+        String nombreFase = apuestaValidador.validarFase(fase);
         List<Partido> partidos = partidoDao.consultarPartidosPorFase(nombreFase);
         List<Apuesta> apuestas = this.obtenerApuestasParaUsuario(usuario, nombreFase, partidos);
         List<Jugador> jugador = jugadorDao.list();
@@ -110,15 +127,5 @@ public class ApuestaServiceImpl implements ApuestaService {
 
     private Boolean accionValida(String accion){
         return accion.equalsIgnoreCase(SUMA) || accion.equalsIgnoreCase(RESTA);
-    }
-
-    private String validarFase(String fase){
-        if(fase.equals("grupos")) return SalahProperties.FASE_DE_GRUPOS;
-        if(fase.equals("octavos")) return SalahProperties.FASE_OCTAVOS_DE_FINAL;
-        if(fase.equals("cuartos")) return SalahProperties.FASE_CUARTOS_DE_FINAL;
-        if(fase.equals("semifinal")) return SalahProperties.FASE_SEMIFINAL;
-        if(fase.equals("tercer-puesto")) return SalahProperties.FASE_TERCER_PUESTO;
-        if(fase.equals("final")) return SalahProperties.FASE_FINAL;
-        return SalahProperties.FASE_DE_GRUPOS;
     }
 }
