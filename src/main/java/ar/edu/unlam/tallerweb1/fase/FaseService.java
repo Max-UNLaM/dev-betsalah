@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.fase;
 
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoDao;
+import ar.edu.unlam.tallerweb1.util.Fases;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,12 @@ public class FaseService{
     private String CONDICION_LOCAL = SalahProperties.CONDICION_LOCAL;
     private String CONDICION_VISITANTE = SalahProperties.CONDICION_VISITANTE;
 
-    private String FASE_DE_GRUPOS = SalahProperties.FASE_DE_GRUPOS;
-    private String FASE_OCTAVOS_DE_FINAL = SalahProperties.FASE_OCTAVOS_DE_FINAL;
-    private String FASE_CUARTOS_DE_FINAL = SalahProperties.FASE_CUARTOS_DE_FINAL;
-    private String FASE_SEMIFINAL = SalahProperties.FASE_SEMIFINAL;
-    private String FASE_TERCER_PUESTO = SalahProperties.FASE_TERCER_PUESTO;
-    private String FASE_FINAL = SalahProperties.FASE_FINAL;
+    private String FASE_DE_GRUPOS = Fases.FASE_DE_GRUPOS.toString();
+    private String FASE_OCTAVOS_DE_FINAL = Fases.FASE_OCTAVOS_DE_FINAL.toString();
+    private String FASE_CUARTOS_DE_FINAL = Fases.FASE_CUARTOS_DE_FINAL.toString();
+    private String FASE_SEMIFINAL = Fases.FASE_SEMIFINAL.toString();
+    private String FASE_TERCER_PUESTO = Fases.FASE_TERCER_PUESTO.toString();
+    private String FASE_FINAL = Fases.FASE_FINAL.toString();
 
     private String GRUPO_A = SalahProperties.GRUPO_A;
     private String GRUPO_B = SalahProperties.GRUPO_B;

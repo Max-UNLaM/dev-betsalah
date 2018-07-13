@@ -6,9 +6,9 @@ import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoDao;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.Fases;
 import org.junit.Before;
 import org.junit.Test;
-import org.omg.CORBA.Any;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -54,7 +54,7 @@ public class ApuestaServiceImplTest {
         partidosFaseDeGrupos.add(partido3);
         partidosFaseDeGrupos.add(partido4);
 
-        when(partidoDaoMock.consultarPartidosPorFase("Fase de grupos")).thenReturn(partidosFaseDeGrupos);
+        when(partidoDaoMock.consultarPartidosPorFase(Fases.FASE_DE_GRUPOS.toString())).thenReturn(partidosFaseDeGrupos);
         apuestaService.setPartidoDao(partidoDaoMock);
 
         //ApuestaDao
@@ -86,7 +86,6 @@ public class ApuestaServiceImplTest {
     @Rollback
     public void alEnviarFaseNullSeEsperaQueDevuelvaFaseGruposComoFaseDefault(){
         ModelMap modelo = apuestaService.obtenerModeloPorFase(null, 1L);
-        System.out.println("a");
-
+        assert(modelo.get("fase").equals(Fases.FASE_DE_GRUPOS.toString()));
     }
 }

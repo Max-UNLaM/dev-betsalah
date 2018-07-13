@@ -9,6 +9,7 @@ import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolService;
 import ar.edu.unlam.tallerweb1.simulacion.ResultadoService;
 import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
+import ar.edu.unlam.tallerweb1.util.Fases;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
@@ -34,12 +35,12 @@ public class PartidoService {
     @Inject
     private ResultadoService resultadoService;
 
-    private String FASE_DE_GRUPOS = SalahProperties.FASE_DE_GRUPOS;
-    private String FASE_OCTAVOS_DE_FINAL = SalahProperties.FASE_OCTAVOS_DE_FINAL;
-    private String FASE_CUARTOS_DE_FINAL = SalahProperties.FASE_CUARTOS_DE_FINAL;
-    private String FASE_SEMIFINAL = SalahProperties.FASE_SEMIFINAL;
-    private String FASE_TERCER_PUESTO = SalahProperties.FASE_TERCER_PUESTO;
-    private String FASE_FINAL = SalahProperties.FASE_FINAL;
+    private String FASE_DE_GRUPOS = Fases.FASE_DE_GRUPOS.toString();
+    private String FASE_OCTAVOS_DE_FINAL = Fases.FASE_OCTAVOS_DE_FINAL.toString();
+    private String FASE_CUARTOS_DE_FINAL = Fases.FASE_CUARTOS_DE_FINAL.toString();
+    private String FASE_SEMIFINAL = Fases.FASE_SEMIFINAL.toString();
+    private String FASE_TERCER_PUESTO = Fases.FASE_TERCER_PUESTO.toString();
+    private String FASE_FINAL = Fases.FASE_FINAL.toString();
 
     private String GRUPO_A = SalahProperties.GRUPO_A;
     private String GRUPO_B = SalahProperties.GRUPO_B;
@@ -260,8 +261,8 @@ public class PartidoService {
 
         partidoDao.update(siguientePartidoDelPrimero);
 
-        if(fase.getNombre().equals(SalahProperties.FASE_DE_GRUPOS)
-            || fase.getNombre().equals(SalahProperties.FASE_SEMIFINAL)){
+        if(fase.getNombre().equals(Fases.FASE_DE_GRUPOS.toString())
+            || fase.getNombre().equals(Fases.FASE_SEMIFINAL.toString())){
             Equipo segundo = tablaDePosiciones.obtenerSegundo();
 
             Partido siguientePartidoDelSegundo = partidoDao.obtenerPartidoPorFase(fase.getSiguienteFaseSegundoDeLaFase());

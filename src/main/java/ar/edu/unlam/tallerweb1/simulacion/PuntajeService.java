@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.Fases;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class PuntajeService {
         Integer puntajeGanado = 0;
         if (resultadoApuesta.equals(resultadoPartido)) {
             puntajeGanado = puntajeGanado + 1;
-        	if(partido.getFase().getNombre().equals(SalahProperties.FASE_FINAL)){
+        	if(partido.getFase().getNombre().equals(Fases.FASE_FINAL.toString())){
         	    puntajeGanado = puntajeGanado + 15; //puntaje asignado si acierta al campeon
             }
         }

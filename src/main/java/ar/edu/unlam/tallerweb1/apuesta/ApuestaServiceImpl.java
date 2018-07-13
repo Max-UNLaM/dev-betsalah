@@ -91,7 +91,7 @@ public class ApuestaServiceImpl implements ApuestaService {
             apuestas = apuestaDao.crearApuestasParaUsuario(usuario, partidos);
         }
 
-
+        
         return apuestas;
     }
 

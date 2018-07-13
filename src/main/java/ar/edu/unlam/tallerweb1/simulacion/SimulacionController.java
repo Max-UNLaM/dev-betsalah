@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.simulacion;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.partido.*;
+import ar.edu.unlam.tallerweb1.util.Fases;
 import ar.edu.unlam.tallerweb1.util.SalahProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -52,14 +53,14 @@ public class SimulacionController {
     }
 
     private String validarFase(String fase){
-        String respuesta = SalahProperties.FASE_DE_GRUPOS;
+        String respuesta = Fases.FASE_DE_GRUPOS.toString();
 
-        if(fase.equals("grupos")) respuesta = SalahProperties.FASE_DE_GRUPOS;
-        if(fase.equals("octavos")) respuesta = SalahProperties.FASE_OCTAVOS_DE_FINAL;
-        if(fase.equals("cuartos")) respuesta = SalahProperties.FASE_CUARTOS_DE_FINAL;
-        if(fase.equals("semifinal")) respuesta = SalahProperties.FASE_SEMIFINAL;
-        if(fase.equals("tercer-puesto")) respuesta = SalahProperties.FASE_TERCER_PUESTO;
-        if(fase.equals("final")) respuesta = SalahProperties.FASE_FINAL;
+        if(fase.equals("grupos")) respuesta = Fases.FASE_DE_GRUPOS.toString();
+        if(fase.equals("octavos")) respuesta = Fases.FASE_OCTAVOS_DE_FINAL.toString();
+        if(fase.equals("cuartos")) respuesta = Fases.FASE_CUARTOS_DE_FINAL.toString();
+        if(fase.equals("semifinal")) respuesta = Fases.FASE_SEMIFINAL.toString();
+        if(fase.equals("tercer-puesto")) respuesta = Fases.FASE_TERCER_PUESTO.toString();
+        if(fase.equals("final")) respuesta = Fases.FASE_FINAL.toString();
 
         return respuesta;
     }

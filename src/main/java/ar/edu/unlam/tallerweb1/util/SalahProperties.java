@@ -29,13 +29,6 @@ public class SalahProperties extends Properties {
     public static String CONDICION_LOCAL;
     public static String CONDICION_VISITANTE;
 
-    public static String FASE_DE_GRUPOS;
-    public static String FASE_OCTAVOS_DE_FINAL;
-    public static String FASE_CUARTOS_DE_FINAL;
-    public static String FASE_SEMIFINAL;
-    public static String FASE_TERCER_PUESTO;
-    public static String FASE_FINAL;
-
     public static String GRUPO_A;
     public static String GRUPO_B;
     public static String GRUPO_C;
@@ -85,13 +78,6 @@ public class SalahProperties extends Properties {
 
         CONDICION_LOCAL = this.getProperty("condicion.local");
         CONDICION_VISITANTE = this.getProperty("condicion.visitante");
-
-        FASE_DE_GRUPOS = this.getProperty("fase.de.grupos.nombre");
-        FASE_OCTAVOS_DE_FINAL = this.getProperty("fase.octavos.de.final.nombre");
-        FASE_CUARTOS_DE_FINAL = this.getProperty("fase.cuartos.de.final.nombre");
-        FASE_SEMIFINAL = this.getProperty("fase.semifinal.nombre");
-        FASE_TERCER_PUESTO = this.getProperty("fase.tercer.puesto.nombre");
-        FASE_FINAL = this.getProperty("fase.final.nombre");
 
         GRUPO_A = this.getProperty("grupo.a.nombre");
         GRUPO_B = this.getProperty("grupo.b.nombre");
