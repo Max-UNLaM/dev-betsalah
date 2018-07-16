@@ -6,7 +6,8 @@ import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoCrud;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioCrud;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Equipos;
+import ar.edu.unlam.tallerweb1.util.Operaciones;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -24,22 +25,6 @@ public class ApuestaServiceImpl implements ApuestaService {
     private ApuestaDao apuestaDao;
     @Inject
     private JugadorCrud jugadorDao;
-    
-    @Inject
-    private SalahProperties salahProperties;
-
-    private String EQUIPO_LOCAL;
-    private String EQUIPO_VISITANTE;
-    private String RESTA;
-    private String SUMA;
-
-    @PostConstruct
-    public void setUp(){
-        EQUIPO_LOCAL = salahProperties.getProperty("equipo.local");
-        EQUIPO_VISITANTE = salahProperties.getProperty("equipo.visitante");
-        RESTA = salahProperties.getProperty("resta");
-        SUMA = salahProperties.getProperty("suma");
-    }
 
     public void setUsuarioDao(UsuarioCrud usuarioDao) {
         this.usuarioDao = usuarioDao;
@@ -122,10 +107,10 @@ public class ApuestaServiceImpl implements ApuestaService {
     }
 
     private Boolean equipoValido(String equipo){
-        return equipo.equalsIgnoreCase(EQUIPO_LOCAL) || equipo.equalsIgnoreCase(EQUIPO_VISITANTE);
+        return equipo.equalsIgnoreCase(Equipos.EQUIPO_LOCAL.toString()) || equipo.equalsIgnoreCase(Equipos.EQUIPO_VISITANTE.toString());
     }
 
     private Boolean accionValida(String accion){
-        return accion.equalsIgnoreCase(SUMA) || accion.equalsIgnoreCase(RESTA);
+        return accion.equalsIgnoreCase(Operaciones.SUMA.toString()) || accion.equalsIgnoreCase(Operaciones.RESTA.toString());
     }
 }

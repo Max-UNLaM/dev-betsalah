@@ -4,14 +4,13 @@ import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.partido.*;
 import ar.edu.unlam.tallerweb1.util.Fases;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Roles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,7 +31,7 @@ public class SimulacionController {
         String rol = (String) request.getSession().getAttribute("ROL");
         Long usuarioId = (Long) request.getSession().getAttribute("USER-ID");
 
-        if(usuarioId == null || rol == null || !rol.equals(SalahProperties.ROL_ADMIN)){
+        if(usuarioId == null || rol == null || !rol.equals(Roles.ROL_ADMIN.toString())){
             return new ModelAndView("redirect:/cerrar-sesion");
         } else {
             List<Fase> fases;

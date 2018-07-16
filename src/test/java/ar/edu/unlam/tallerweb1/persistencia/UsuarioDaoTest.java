@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.persistencia;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Roles;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
@@ -20,7 +20,7 @@ public class UsuarioDaoTest extends SpringTest {
 
     @Before
     public void cargarDatos() {
-        this.usuarioOrigen = new Usuario("testnombre", "testpass", 0, SalahProperties.ROL_USUARIO);
+        this.usuarioOrigen = new Usuario("testnombre", "testpass", 0, Roles.ROL_USUARIO.toString());
         usuarioDao.create(usuarioOrigen);
     }
 

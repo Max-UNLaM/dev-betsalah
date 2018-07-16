@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Roles;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -28,13 +28,13 @@ public class UsuarioServicio {
 		List<Usuario> usuarios = usuarioDao.list();
 
 		if(usuarios.size() == 0){
-			Usuario dePietro = new Usuario("maximiliano.depietro", "123456", 0, SalahProperties.ROL_ADMIN);
+			Usuario dePietro = new Usuario("maximiliano.depietro", "123456", 0, Roles.ROL_ADMIN.toString());
 			usuarioDao.create(dePietro);
 
-			Usuario marconi = new Usuario("daniel.marconi", "123456", 0, SalahProperties.ROL_ADMIN);
+			Usuario marconi = new Usuario("daniel.marconi", "123456", 0, Roles.ROL_ADMIN.toString());
 			usuarioDao.create(marconi);
 
-			Usuario murano = new Usuario("juan.murano", "123456", 0, SalahProperties.ROL_ADMIN);
+			Usuario murano = new Usuario("juan.murano", "123456", 0, Roles.ROL_ADMIN.toString());
 			usuarioDao.create(murano);
 		}
 	}
@@ -54,7 +54,7 @@ public class UsuarioServicio {
 	public void hacerAdmin(Long usuarioId){
 		Usuario usuario = usuarioDao.read(usuarioId);
 
-		usuario.setRol(SalahProperties.ROL_ADMIN);
+		usuario.setRol(Roles.ROL_ADMIN.toString());
 
 		usuarioDao.update(usuario);
 	}

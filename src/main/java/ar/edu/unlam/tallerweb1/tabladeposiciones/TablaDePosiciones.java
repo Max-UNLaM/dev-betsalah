@@ -2,19 +2,15 @@ package ar.edu.unlam.tallerweb1.tabladeposiciones;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.partido.Partido;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Resultados;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class TablaDePosiciones {
-    private String RESULTADO_GANA_LOCAL = SalahProperties.RESULTADO_GANA_LOCAL;
-    private String RESULTADO_EMPATE = SalahProperties.RESULTADO_EMPATE;
-    private String RESULTADO_GANA_VISITANTE = SalahProperties.RESULTADO_GANA_VISITANTE;
-
-    private Integer CANTIDAD_PUNTOS_GANADOR = SalahProperties.CANTIDAD_PUNTOS_GANADOR;
-    private Integer CANTIDAD_PUNTOS_EMPATE = SalahProperties.CANTIDAD_PUNTOS_EMPATE;
-    private Integer CANTIDAD_PUNTOS_PERDEDOR = SalahProperties.CANTIDAD_PUNTOS_PERDEDOR;
+    private String RESULTADO_GANA_LOCAL = Resultados.RESULTADO_GANA_LOCAL.toString();
+    private String RESULTADO_EMPATE = Resultados.RESULTADO_EMPATE.toString();
+    private String RESULTADO_GANA_VISITANTE = Resultados.RESULTADO_GANA_VISITANTE.toString();
 
     private List<TablaDePosicionesFila> filaTablaDePosiciones;
 
@@ -36,10 +32,13 @@ public class TablaDePosiciones {
 
         for(Partido partido : partidosDeLaFase){
 
+            Integer CANTIDAD_PUNTOS_GANADOR = 3;
+            Integer CANTIDAD_PUNTOS_PERDEDOR = 0;
             if(partido.getResultado().equals(RESULTADO_GANA_LOCAL)){
                 puntosLocal = CANTIDAD_PUNTOS_GANADOR;
                 puntosVisitante = CANTIDAD_PUNTOS_PERDEDOR;
             } else if(partido.getResultado().equals(RESULTADO_EMPATE)){
+                Integer CANTIDAD_PUNTOS_EMPATE = 1;
                 puntosLocal = CANTIDAD_PUNTOS_EMPATE;
                 puntosVisitante = CANTIDAD_PUNTOS_EMPATE;
             } else if (partido.getResultado().equals(RESULTADO_GANA_VISITANTE)){

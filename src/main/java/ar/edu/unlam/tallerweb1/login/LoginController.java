@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.login;
 
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Roles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,7 +61,7 @@ public class LoginController {
 	public ModelAndView registro() {
 		ModelMap modelo = new ModelMap();
 
-		Usuario usuario = new Usuario(SalahProperties.ROL_USUARIO);
+		Usuario usuario = new Usuario(Roles.ROL_USUARIO.toString());
 
 		modelo.put("usuario", usuario);
 
@@ -72,7 +72,7 @@ public class LoginController {
 	public ModelAndView validarRegistro(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap model = new ModelMap();
 		usuario.setPuntaje(0);
-		usuario.setRol(SalahProperties.ROL_USUARIO);
+		usuario.setRol(Roles.ROL_USUARIO.toString());
 
 		Usuario usuarioBuscado = loginService.consultarUsuario(usuario.getNombre());
 		if (usuarioBuscado != null) {

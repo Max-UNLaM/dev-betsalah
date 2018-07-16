@@ -1,28 +1,25 @@
 package ar.edu.unlam.tallerweb1.apuesta;
 
 import ar.edu.unlam.tallerweb1.dao.Dao;
-import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.jugador.Jugador;
 import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Equipos;
+import ar.edu.unlam.tallerweb1.util.Operaciones;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @Repository
 public class ApuestaDao extends Dao implements ApuestaRepository {
 
-    private String EQUIPO_LOCAL = SalahProperties.EQUIPO_LOCAL;
-    private String EQUIPO_VISITANTE = SalahProperties.EQUIPO_VISITANTE;
-    private String RESTA = SalahProperties.RESTA;
-    private String SUMA = SalahProperties.SUMA;
+    private String EQUIPO_LOCAL = Equipos.EQUIPO_LOCAL.toString();
+    private String EQUIPO_VISITANTE = Equipos.EQUIPO_VISITANTE.toString();
+    private String RESTA = Operaciones.RESTA.toString();
+    private String SUMA = Operaciones.SUMA.toString();
 
     public Apuesta read(Long apuestaId) {
         return (Apuesta) session.get(Apuesta.class, apuestaId);

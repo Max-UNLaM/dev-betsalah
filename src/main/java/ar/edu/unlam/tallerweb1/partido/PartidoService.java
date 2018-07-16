@@ -9,9 +9,9 @@ import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolService;
 import ar.edu.unlam.tallerweb1.simulacion.ResultadoService;
 import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
+import ar.edu.unlam.tallerweb1.util.Condiciones;
 import ar.edu.unlam.tallerweb1.util.Fases;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
-import org.springframework.data.repository.query.parser.Part;
+import ar.edu.unlam.tallerweb1.util.Instancias;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -42,34 +42,34 @@ public class PartidoService {
     private String FASE_TERCER_PUESTO = Fases.FASE_TERCER_PUESTO.toString();
     private String FASE_FINAL = Fases.FASE_FINAL.toString();
 
-    private String GRUPO_A = SalahProperties.GRUPO_A;
-    private String GRUPO_B = SalahProperties.GRUPO_B;
-    private String GRUPO_C = SalahProperties.GRUPO_C;
-    private String GRUPO_D = SalahProperties.GRUPO_D;
-    private String GRUPO_E = SalahProperties.GRUPO_E;
-    private String GRUPO_F = SalahProperties.GRUPO_F;
-    private String GRUPO_G = SalahProperties.GRUPO_G;
-    private String GRUPO_H = SalahProperties.GRUPO_H;
+    private String GRUPO_A = Instancias.GRUPO_A.toString();
+    private String GRUPO_B = Instancias.GRUPO_B.toString();
+    private String GRUPO_C = Instancias.GRUPO_C.toString();
+    private String GRUPO_D = Instancias.GRUPO_D.toString();
+    private String GRUPO_E = Instancias.GRUPO_E.toString();
+    private String GRUPO_F = Instancias.GRUPO_F.toString();
+    private String GRUPO_G = Instancias.GRUPO_G.toString();
+    private String GRUPO_H = Instancias.GRUPO_H.toString();
 
-    private String OCTAVOS_1 = SalahProperties.OCTAVOS_1;
-    private String OCTAVOS_2 = SalahProperties.OCTAVOS_2;
-    private String OCTAVOS_3 = SalahProperties.OCTAVOS_3;
-    private String OCTAVOS_4 = SalahProperties.OCTAVOS_4;
-    private String OCTAVOS_5 = SalahProperties.OCTAVOS_5;
-    private String OCTAVOS_6 = SalahProperties.OCTAVOS_6;
-    private String OCTAVOS_7 = SalahProperties.OCTAVOS_7;
-    private String OCTAVOS_8 = SalahProperties.OCTAVOS_8;
+    private String OCTAVOS_1 = Instancias.OCTAVOS_1.toString();
+    private String OCTAVOS_2 = Instancias.OCTAVOS_2.toString();
+    private String OCTAVOS_3 = Instancias.OCTAVOS_3.toString();
+    private String OCTAVOS_4 = Instancias.OCTAVOS_4.toString();
+    private String OCTAVOS_5 = Instancias.OCTAVOS_5.toString();
+    private String OCTAVOS_6 = Instancias.OCTAVOS_6.toString();
+    private String OCTAVOS_7 = Instancias.OCTAVOS_7.toString();
+    private String OCTAVOS_8 = Instancias.OCTAVOS_8.toString();
 
-    private String CUARTOS_1 = SalahProperties.CUARTOS_1;
-    private String CUARTOS_2 = SalahProperties.CUARTOS_2;
-    private String CUARTOS_3 = SalahProperties.CUARTOS_3;
-    private String CUARTOS_4 = SalahProperties.CUARTOS_4;
+    private String CUARTOS_1 = Instancias.CUARTOS_1.toString();
+    private String CUARTOS_2 = Instancias.CUARTOS_2.toString();
+    private String CUARTOS_3 = Instancias.CUARTOS_3.toString();
+    private String CUARTOS_4 = Instancias.CUARTOS_4.toString();
 
-    private String SEMIFINAL_1 = SalahProperties.SEMIFINAL_1;
-    private String SEMIFINAL_2 = SalahProperties.SEMIFINAL_2;
+    private String SEMIFINAL_1 = Instancias.SEMIFINAL_1.toString();
+    private String SEMIFINAL_2 = Instancias.SEMIFINAL_2.toString();
 
-    private String TERCER_PUESTO = SalahProperties.TERCER_PUESTO;
-    private String FINAL = SalahProperties.FINAL;
+    private String TERCER_PUESTO = Instancias.TERCER_PUESTO.toString();
+    private String FINAL = Instancias.FINAL.toString();
 
     public void cargar() {
         if (!partidosExistenEnBaseDeDatos()) {
@@ -253,7 +253,7 @@ public class PartidoService {
         Equipo primero = tablaDePosiciones.obtenerPrimero();
 
         Partido siguientePartidoDelPrimero = partidoDao.obtenerPartidoPorFase(fase.getSiguienteFasePrimeroDeLaFase());
-        if(fase.getCondicionSiguienteFasePrimeroDeLaFase().equals(SalahProperties.CONDICION_LOCAL)){
+        if(fase.getCondicionSiguienteFasePrimeroDeLaFase().equals(Condiciones.CONDICION_LOCAL.toString())){
             siguientePartidoDelPrimero.setLocal(primero);
         } else {
             siguientePartidoDelPrimero.setVisitante(primero);
@@ -266,7 +266,7 @@ public class PartidoService {
             Equipo segundo = tablaDePosiciones.obtenerSegundo();
 
             Partido siguientePartidoDelSegundo = partidoDao.obtenerPartidoPorFase(fase.getSiguienteFaseSegundoDeLaFase());
-            if(fase.getCondicionSiguienteFaseSegundoDeLaFase().equals(SalahProperties.CONDICION_LOCAL)){
+            if(fase.getCondicionSiguienteFaseSegundoDeLaFase().equals(Condiciones.CONDICION_LOCAL.toString())){
                 siguientePartidoDelSegundo.setLocal(segundo);
             } else {
                 siguientePartidoDelSegundo.setVisitante(segundo);

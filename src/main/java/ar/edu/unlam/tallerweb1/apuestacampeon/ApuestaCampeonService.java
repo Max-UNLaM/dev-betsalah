@@ -10,7 +10,7 @@ import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import ar.edu.unlam.tallerweb1.util.Fases;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Instancias;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -43,7 +43,7 @@ public class ApuestaCampeonService {
 
         List<Equipo> equipos = equipoDao.list();
 
-        Fase faseFinal = faseDao.read(Fases.FASE_FINAL.toString(), SalahProperties.FINAL);
+        Fase faseFinal = faseDao.read(Fases.FASE_FINAL.toString(), Instancias.FINAL.toString());
 
         Partido partidoFinal = partidoDao.obtenerPartidoPorFase(faseFinal);
 

@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.usuario;
 
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Roles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +28,7 @@ public class UsuarioController {
         if(idAdminActual == null
                 || rol == null
                 || usuario == null
-                || !usuario.getRol().equals(SalahProperties.ROL_ADMIN)){
+                || !usuario.getRol().equals(Roles.ROL_ADMIN.toString())){
             return new ModelAndView("redirect:/cerrar-sesion");
         } else {
             ModelMap modelo = usuarioServicio.obtenerModeloParaAdministrarUsuario(usuario);
@@ -49,7 +49,7 @@ public class UsuarioController {
         if(idAdminActual == null
             || rol == null
             || usuario == null
-            || !usuario.getRol().equals(SalahProperties.ROL_ADMIN)){
+            || !usuario.getRol().equals(Roles.ROL_ADMIN.toString())){
                 return new ModelAndView("redirect:/cerrar-sesion");
         } else {
             usuarioServicio.hacerAdmin(idNuevoAdmin);
