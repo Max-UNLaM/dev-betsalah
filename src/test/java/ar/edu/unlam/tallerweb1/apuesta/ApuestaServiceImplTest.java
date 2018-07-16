@@ -7,6 +7,8 @@ import ar.edu.unlam.tallerweb1.partido.PartidoDao;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import ar.edu.unlam.tallerweb1.util.Fases;
+import ar.edu.unlam.tallerweb1.util.Instancias;
+import ar.edu.unlam.tallerweb1.util.Roles;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
@@ -36,14 +38,14 @@ public class ApuestaServiceImplTest {
         //UsuarioDao
         usuarioDaoMock = mock(UsuarioDao.class);
         when(usuarioDaoMock.read((Long) isNull())).thenReturn(null);
-        Usuario usuario1 = new Usuario("User1", "pass", 0, "Usuario");
+        Usuario usuario1 = new Usuario("User1", "pass", 0, Roles.ROL_USUARIO.toString());
         when(usuarioDaoMock.read(1L)).thenReturn(usuario1);
         apuestaService.setUsuarioDao(usuarioDaoMock);
 
         //PartidoDao
         partidoDaoMock = mock(PartidoDao.class);
-        Fase grupoAFaseDeGrupos = new Fase("Grupo A", "Fase de grupos");
-        Fase grupoBFaseDeGrupos = new Fase("Grupo B", "Fase de grupos");
+        Fase grupoAFaseDeGrupos = new Fase(Instancias.GRUPO_A.toString(), Fases.FASE_DE_GRUPOS.toString());
+        Fase grupoBFaseDeGrupos = new Fase(Instancias.GRUPO_B.toString(), Fases.FASE_DE_GRUPOS.toString());
         Partido partido1 = new Partido(null, null, grupoAFaseDeGrupos);
         Partido partido2 = new Partido(null, null, grupoAFaseDeGrupos);
         Partido partido3 = new Partido(null, null, grupoBFaseDeGrupos);
