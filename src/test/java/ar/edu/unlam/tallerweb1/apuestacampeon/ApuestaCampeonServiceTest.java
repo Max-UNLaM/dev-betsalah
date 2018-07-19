@@ -116,7 +116,4 @@ public class ApuestaCampeonServiceTest {
 
         apuestaCampeonService.apostarCampeon(1L, 1L);
     }
-
-
-
 }

@@ -56,6 +56,8 @@ public class SimulacionController {
     public void reiniciarPartido(@PathVariable(value = "partidoId") Long partidoId){
         Partido partido = partidoDao.read(partidoId);
         partido.setJugado(false);
+        partido.setGolesLocal(0);
+        partido.setGolesVisitante(0);
         partidoDao.update(partido);
     }
 
