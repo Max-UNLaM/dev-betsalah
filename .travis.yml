@@ -1,2 +1,6 @@
 language: java
   mvn test -B
+notifications:
+  email:
+    - juani.murano@gmail.com
+    - marconidaniel@outlook.com
