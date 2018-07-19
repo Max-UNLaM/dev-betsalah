@@ -59,7 +59,7 @@ public class ApuestaServiceImplTest {
         when(partidoDaoMock.consultarPartidosPorFase(Fases.FASE_DE_GRUPOS.toString())).thenReturn(partidosFaseDeGrupos);
         apuestaService.setPartidoDao(partidoDaoMock);
 
-        //ApuestaDao
+        //ApuestaDao Preparacion del dao de apuestas
         apuestaDaoMock = mock(ApuestaDao.class);
         List<Apuesta> apuestasFaseDeGrupos = new ArrayList<>();
         apuestasFaseDeGrupos.add(new Apuesta(usuario1, partido1, 0, 0));
@@ -68,7 +68,6 @@ public class ApuestaServiceImplTest {
         apuestasFaseDeGrupos.add(new Apuesta(usuario1, partido4, 0, 0));
 
         when(apuestaDaoMock.crearApuestasParaUsuario(usuario1, partidosFaseDeGrupos)).thenReturn(apuestasFaseDeGrupos);
-
         apuestaService.setApuestaDao(apuestaDaoMock);
 
         //JugadorDao
