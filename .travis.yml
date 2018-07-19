@@ -5,9 +5,3 @@ notifications:
     - juani.murano@gmail.com
     - marconidaniel@outlook.com
     on_success: always
-
-jobs:
-  include:
-    - stage: test
-      commands:
-        - mvn test -B
