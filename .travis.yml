@@ -1,4 +1,6 @@
 language: java
+jdk:
+  - oraclejdk8
 
 notifications:
   email:
@@ -7,3 +9,4 @@ notifications:
       - marconidaniel@outlook.com
       - elwindwalker@gmail.com
     on_success: always
+    on_failure: always
