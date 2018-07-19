@@ -1,5 +1,7 @@
-package ar.edu.unlam.tallerweb1.apuestacampeon;
+package ar.edu.unlam.tallerweb1idEquipoLocal.apuestacampeon;
 
+import ar.edu.unlam.tallerweb1.apuestacampeon.ApuestaCampeonDao;
+import ar.edu.unlam.tallerweb1.apuestacampeon.ApuestaCampeonService;
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
 import ar.edu.unlam.tallerweb1.fase.FaseDao;

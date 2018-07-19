@@ -7,3 +7,4 @@ notifications:
       - marconidaniel@outlook.com
       - elwindwalker@gmail.com
     on_failure: always # default: always
+    on_success: always
