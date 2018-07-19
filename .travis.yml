@@ -1,0 +1,8 @@
+language: java
+
+notifications:
+  email:
+    recipents:
+      - juani.murano@gmail.com
+      - marconidaniel@outlook.com
+    on_success: always
