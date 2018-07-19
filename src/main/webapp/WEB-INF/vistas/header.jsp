@@ -29,7 +29,7 @@
     <div class = "container-fluid">
         <c:if test="${not empty sesion}">
             <div class="text-right">${usuario.nombre} <a href="/cerrar-sesion">Cerrar sesion</a></div>
-            <c:if test="${usuario.rol eq 'Admin'}">
+            <c:if test="${usuario.rol eq 'ROL_ADMIN'}">
             <!-- Navegacion admin -->
                 <%@include file="navegacion-admin.jsp" %>
             </c:if>
