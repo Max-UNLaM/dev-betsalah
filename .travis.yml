@@ -5,4 +5,5 @@ notifications:
     recipents:
       - juani.murano@gmail.com
       - marconidaniel@outlook.com
+      - elwindwalker@gmail.com
     on_success: always
