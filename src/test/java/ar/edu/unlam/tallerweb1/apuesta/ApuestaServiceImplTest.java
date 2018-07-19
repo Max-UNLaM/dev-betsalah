@@ -92,6 +92,14 @@ public class ApuestaServiceImplTest {
         ModelMap modelo = apuestaService.obtenerModeloPorFase(null, 1L);
         assert(modelo.get("fase").equals(Fases.FASE_DE_GRUPOS.toString()));
     }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void alEnviarUnaFaseInvalidaSeEsperaQueDevuelvaFaseGruposComoFaseDefault(){
+        ModelMap modelo = apuestaService.obtenerModeloPorFase("dakjifasuasidaiugadiqdgiuqd", 1L);
+        assert(modelo.get("fase").equals(Fases.FASE_DE_GRUPOS.toString()));
+    }
     
     @Test
     @Transactional

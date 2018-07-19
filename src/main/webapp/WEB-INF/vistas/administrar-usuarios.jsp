@@ -15,7 +15,7 @@
         <tr ${(usuario.id == usuarioActual.id) ? 'class="bg-blue font-weight-bold"' : ''}>
             <td>${usuarioActual.nombre}</td>
             <td id="usuario-${usuarioActual.id}-rol">${usuarioActual.rol}</td>
-            <td><button ${usuarioActual.rol eq 'Admin' ? 'disabled="disabled"' : ''} onclick="hacerAdmin(this.dataset)" id="usuario-${usuarioActual.id}-button" data-usuarioid="${usuarioActual.id}" class="btn btn-primary">Hacer admin</button></td>
+            <td><button ${usuarioActual.rol eq 'ROL_ADMIN' ? 'disabled="disabled"' : ''} onclick="hacerAdmin(this.dataset)" id="usuario-${usuarioActual.id}-button" data-usuarioid="${usuarioActual.id}" class="btn btn-primary">Hacer admin</button></td>
         </tr>
     </c:forEach>
     </tbody>
