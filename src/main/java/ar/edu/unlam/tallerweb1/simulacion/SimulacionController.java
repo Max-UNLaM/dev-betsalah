@@ -51,6 +51,14 @@ public class SimulacionController {
         return this.simulacionServiceFront.imprimirSimulacionResultadoDto(partidoDto);
     }
 
+    @ResponseBody
+    @RequestMapping(path = "/simulacion/reiniciar/{partidoId}")
+    public void reiniciarPartido(@PathVariable(value = "partidoId") Long partidoId){
+        Partido partido = partidoDao.read(partidoId);
+        partido.setJugado(false);
+        partidoDao.update(partido);
+    }
+
     private String validarFase(String fase){
         String respuesta = Fases.FASE_DE_GRUPOS.toString();
 
