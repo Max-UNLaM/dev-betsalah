@@ -15,7 +15,7 @@ function setearApuestaCampeon(apostadorId){
             "Content-type":"application/json"
         },
         success: function(data) {
-            $('#message').text(data.responseJSON.message);
+            $('#message').text("Campeon apostado correctamente");
         },
         error: function(data){
             $('#message').text(data.responseJSON.message);
