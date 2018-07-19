@@ -248,7 +248,7 @@ public class FaseService{
         for(Partido partido : partidosDeLaFase){
             respuesta &= partido.getJugado();
         }
-
+        //comentario inutil
         return respuesta;
     }
 }
