@@ -91,6 +91,7 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         partido.setJugado(true);
         if(faseService.verificarSiLaFaseEstaCompleta(partido.getFase())){
             partido.getFase().setFinalizada(true);
+            partidoDao.update(partido);
 
             List<Equipo> equipos = equipoDao.obtenerEquiposPorFase(partido.getFase());
             List<Partido> partidos = partidoDao.consultarPartidosPorFase(partido.getFase());

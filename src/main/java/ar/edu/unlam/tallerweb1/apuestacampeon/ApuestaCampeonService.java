@@ -75,4 +75,28 @@ public class ApuestaCampeonService {
             throw new IllegalArgumentException("No se puede cambiar la apuesta de equipo campeón");
         }
     }
+
+    public void setApuestaCampeonDao(ApuestaCampeonDao apuestaCampeonDao) {
+        this.apuestaCampeonDao = apuestaCampeonDao;
+    }
+
+    public void setEquipoDao(EquipoDao equipoDao) {
+        this.equipoDao = equipoDao;
+    }
+
+    public void setUsuarioDao(UsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+
+    public void setFaseDao(FaseDao faseDao) {
+        this.faseDao = faseDao;
+    }
+
+    public void setPartidoDao(PartidoDao partidoDao) {
+        this.partidoDao = partidoDao;
+    }
+
+    public void setPartidoService(PartidoService partidoService) {
+        this.partidoService = partidoService;
+    }
 }
