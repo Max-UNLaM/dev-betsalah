@@ -196,7 +196,7 @@ public class FaseService{
 
         //Mapeo de semifinales
         semifinal1.mapearSiguienteFaseParaPrimeroDeLaFase(partidoFinal, CONDICION_LOCAL);
-        semifinal2.mapearSiguienteFaseParaSegundoDeLaFase(partidoFinal, CONDICION_VISITANTE);
+        semifinal2.mapearSiguienteFaseParaPrimeroDeLaFase(partidoFinal, CONDICION_VISITANTE);
 
         semifinal1.mapearSiguienteFaseParaSegundoDeLaFase(faseTercerPuesto, CONDICION_LOCAL);
         semifinal2.mapearSiguienteFaseParaSegundoDeLaFase(faseTercerPuesto, CONDICION_VISITANTE);
