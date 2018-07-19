@@ -57,7 +57,7 @@ public class FaseService{
     private String TERCER_PUESTO = Instancias.TERCER_PUESTO.toString();
     private String FINAL = Instancias.FINAL.toString();
 
-    public void cargar(){
+    public void cargar() throws Exception{
         if(!fasesExistenEnBaseDeDatos()){
             //Creo y guardo las fases sin mapear para que Hibernate les asigne un ID
             List<Fase> fases = crearFases();

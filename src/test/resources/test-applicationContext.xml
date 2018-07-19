@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:tx="http://www.springframework.org/schema/tx"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-						http://www.springframework.org/schema/tx
-						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<import resource="classpath:test-hibernateContext.xml" />
+    <import resource="classpath:test-hibernateContext.xml"/>
+    <context:annotation-config />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.apuesta" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.apuestacampeon" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.dao" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.equipo" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.gol" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.fase" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.partido" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.usuario" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.jugador" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.simulacion" />
+    <context:component-scan base-package="ar.edu.unlam.tallerweb1.persistencia" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+
 </beans>

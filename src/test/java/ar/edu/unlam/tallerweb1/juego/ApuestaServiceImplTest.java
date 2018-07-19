@@ -1,5 +1,8 @@
-package ar.edu.unlam.tallerweb1.apuesta;
+package ar.edu.unlam.tallerweb1.juego;
 
+import ar.edu.unlam.tallerweb1.apuesta.Apuesta;
+import ar.edu.unlam.tallerweb1.apuesta.ApuestaDao;
+import ar.edu.unlam.tallerweb1.apuesta.ApuestaServiceImpl;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.jugador.JugadorDao;
 import ar.edu.unlam.tallerweb1.partido.Partido;

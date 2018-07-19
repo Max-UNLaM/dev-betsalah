@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.jugador;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
-import ar.edu.unlam.tallerweb1.service.CargaService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;

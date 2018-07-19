@@ -55,6 +55,7 @@ buildNumber.properties
 
 # INTELLIJ
 
+out/
 
 # Created by https://www.gitignore.io/api/intellij
 
@@ -131,3 +132,6 @@ fabric.properties
 /classes/
 /src/main/resources/hibernateContext.xml
 !/src/main/resources/hibernateContext.xml
+
+# Dolphin
+.directory

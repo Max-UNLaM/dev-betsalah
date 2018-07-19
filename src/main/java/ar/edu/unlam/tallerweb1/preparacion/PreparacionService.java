@@ -2,9 +2,9 @@ package ar.edu.unlam.tallerweb1.preparacion;
 
 import ar.edu.unlam.tallerweb1.equipo.EquipoService;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
+import ar.edu.unlam.tallerweb1.install.CargaService;
 import ar.edu.unlam.tallerweb1.jugador.JugadorService;
 import ar.edu.unlam.tallerweb1.partido.PartidoService;
-import ar.edu.unlam.tallerweb1.service.CargaService;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioServicio;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class PreparacionService implements CargaService {
     }
 
     @PostConstruct
-    public void cargar(){
+    public void cargar() throws Exception {
         faseService.cargar();
         equipoService.cargar();
         partidoService.cargar();

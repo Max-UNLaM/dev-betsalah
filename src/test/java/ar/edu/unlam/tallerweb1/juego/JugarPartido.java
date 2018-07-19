@@ -1,10 +1,11 @@
-package ar.edu.unlam.tallerweb1.simulacion;
+package ar.edu.unlam.tallerweb1.juego;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.apuesta.Apuesta;
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.fase.Fase;
 import ar.edu.unlam.tallerweb1.partido.Partido;
+import ar.edu.unlam.tallerweb1.simulacion.SimulacionService;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import ar.edu.unlam.tallerweb1.util.Roles;
@@ -16,21 +17,20 @@ import static org.assertj.core.api.Assertions.*;
 
 import javax.inject.Inject;
 
-public class JugarPartidoTest extends SpringTest {
+public class JugarPartido extends SpringTest {
 
-    Apuesta apuesta;
-    Partido partido;
-    Usuario usuario;
-
-    @Inject
-    SimulacionService simulacionService;
+    private Apuesta apuesta;
+    private Partido partido;
+    private Usuario usuario;
 
     @Inject
-    UsuarioDao usuarioDao;
+    private SimulacionService simulacionService;
+
+    @Inject
+    private UsuarioDao usuarioDao;
 
     @Before
     @Transactional
-    @Test
     public void preCarga() {
         usuario = new Usuario("test", "123", 0, Roles.ROL_USUARIO.toString());
         Equipo local = new Equipo("Local", "TST");

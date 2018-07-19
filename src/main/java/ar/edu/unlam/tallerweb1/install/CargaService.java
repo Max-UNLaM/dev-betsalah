@@ -1,8 +1,8 @@
-package ar.edu.unlam.tallerweb1.service;
+package ar.edu.unlam.tallerweb1.install;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public interface CargaService {
-    public void cargar();
+    public void cargar() throws Exception;
 }
