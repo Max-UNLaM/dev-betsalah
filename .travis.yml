@@ -2,6 +2,7 @@ language: java
 
 notifications:
   email:
-    - juani.murano@gmail.com
-    - marconidaniel@outlook.com
+    recipents:
+      - juani.murano@gmail.com
+      - marconidaniel@outlook.com
     on_success: always
