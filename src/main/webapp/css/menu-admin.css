@@ -1,0 +1,17 @@
+.menu-admin{
+    background-color: #337ab7;
+}
+
+.menu-admin-item{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.menu-admin-link{
+    color: white !important;
+    font-size: 20px;
+}
+
+.menu-admin-title{
+    font-size: 18px;
+}

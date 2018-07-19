@@ -3,14 +3,12 @@ package ar.edu.unlam.tallerweb1.simulacion;
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.equipo.EquipoDao;
 import ar.edu.unlam.tallerweb1.fase.Fase;
-import ar.edu.unlam.tallerweb1.fase.FaseDao;
 import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.gol.Gol;
 import ar.edu.unlam.tallerweb1.gol.GolDao;
 import ar.edu.unlam.tallerweb1.jugador.Jugador;
 import ar.edu.unlam.tallerweb1.jugador.JugadorCrud;
 import ar.edu.unlam.tallerweb1.partido.*;
-import ar.edu.unlam.tallerweb1.tabladeposiciones.TablaDePosiciones;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
 import org.springframework.stereotype.Service;
@@ -47,12 +45,10 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
 
     protected Partido partido;
 
-    public ModelAndView modelarFases(List<Fase> fases) {
-        Usuario usuario = usuarioDao.read("daniel.marconi");
-        if(usuario == null){
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
-            usuarioDao.create(usuario);
-        }
+    public ModelAndView modelarFases(List<Fase> fases, Long usuarioId) {
+        Usuario usuario = usuarioDao.read(usuarioId);
+        if(usuario == null) throw new IllegalArgumentException("El usuario no existe");
+
         List<Partido> partidosDeFase = partidoService.filterByFase(fases);
         ArrayList<PartidoDto> partidosDto = new ArrayList<>();
         for (Partido partido : partidosDeFase) {
@@ -60,6 +56,8 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         }
         List<Jugador> jugador = jugadorDao.list();
         ModelMap modelo = new ModelMap();
+
+        modelo.put("sesion", true);
         modelo.addAttribute("partidos", partidosDto);
         modelo.addAttribute("usuario", usuario);
         modelo.addAttribute("jugadores", jugador);
@@ -93,6 +91,7 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
         partido.setJugado(true);
         if(faseService.verificarSiLaFaseEstaCompleta(partido.getFase())){
             partido.getFase().setFinalizada(true);
+            partidoDao.update(partido);
 
             List<Equipo> equipos = equipoDao.obtenerEquiposPorFase(partido.getFase());
             List<Partido> partidos = partidoDao.consultarPartidosPorFase(partido.getFase());

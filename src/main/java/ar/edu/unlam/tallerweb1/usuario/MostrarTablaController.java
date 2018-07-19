@@ -1,9 +1,9 @@
 package ar.edu.unlam.tallerweb1.usuario;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.stereotype.Controller;
@@ -17,15 +17,27 @@ public class MostrarTablaController {
 	
 	@Inject
 	private UsuarioServicio usuarioServicio;
+	@Inject
+	private UsuarioDao usuarioDao;
 	
-	@RequestMapping("/TablaPosiciones")
-	public ModelAndView MostrarTabla() {
+	@RequestMapping("/tabla-posiciones")
+	public ModelAndView MostrarTabla(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		List<Usuario> usuarios = usuarioServicio.generarTabla("puntaje");
-				
-		
-		modelo.put("usuarios", usuarios);
-		return new ModelAndView("tablaPosiciones", modelo);
+
+		Long usuarioId = (Long) request.getSession().getAttribute("USER-ID");
+
+		if(usuarioId == null){
+			return new ModelAndView("redirect:/cerrar-sesion");
+		} else {
+			Usuario usuario = usuarioDao.read(usuarioId);
+
+			modelo.put("sesion", true);
+			modelo.put("usuario", usuario);
+			modelo.put("usuarios", usuarios);
+			return new ModelAndView("tablaPosiciones", modelo);
+		}
+
 	}
 }
 

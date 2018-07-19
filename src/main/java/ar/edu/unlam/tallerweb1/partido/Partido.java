@@ -2,14 +2,10 @@ package ar.edu.unlam.tallerweb1.partido;
 
 import ar.edu.unlam.tallerweb1.equipo.Equipo;
 import ar.edu.unlam.tallerweb1.fase.Fase;
-import ar.edu.unlam.tallerweb1.gol.Gol;
-import ar.edu.unlam.tallerweb1.gol.GolService;
 import ar.edu.unlam.tallerweb1.jugador.Jugador;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Resultados;
 
-import javax.inject.Inject;
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Partido {
@@ -129,9 +125,9 @@ public class Partido {
     }
 
     public void setResultado(){
-        String RESULTADO_GANA_LOCAL = SalahProperties.RESULTADO_GANA_LOCAL;
-        String RESULTADO_EMPATE = SalahProperties.RESULTADO_EMPATE;
-        String RESULTADO_GANA_VISITANTE = SalahProperties.RESULTADO_GANA_VISITANTE;
+        String RESULTADO_GANA_LOCAL = Resultados.RESULTADO_GANA_LOCAL.toString();
+        String RESULTADO_EMPATE = Resultados.RESULTADO_EMPATE.toString();
+        String RESULTADO_GANA_VISITANTE = Resultados.RESULTADO_GANA_VISITANTE.toString();
 
         if(this.getGolesLocal()>this.getGolesVisitante()) this.resultado = RESULTADO_GANA_LOCAL;
         if(this.getGolesLocal().equals(this.getGolesVisitante())) this.resultado = RESULTADO_EMPATE;

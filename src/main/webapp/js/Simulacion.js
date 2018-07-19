@@ -19,9 +19,13 @@ let conexion = {
         const juego = this.sdk.jugar();
         juego.then((val) => {
             deshabilitarBotones(id, JSON.parse(val).textoResultado);
+            var idDeSelectFigura = '#figura-{partidoId}'.replace('{partidoId}', id);
+            $(idDeSelectFigura).attr('disabled', 'disabled');
         })
         .catch((err) => {
             console.error(err);
+            var idResultadoPartido = '#partido-resultado-{partidoId}'.replace('{partidoId}', id);
+            $(idResultadoPartido).text(err.split('"')[5]);
         });
 
     },

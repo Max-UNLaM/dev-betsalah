@@ -6,7 +6,8 @@ import ar.edu.unlam.tallerweb1.partido.Partido;
 import ar.edu.unlam.tallerweb1.partido.PartidoCrud;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioCrud;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Equipos;
+import ar.edu.unlam.tallerweb1.util.Operaciones;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -24,39 +25,37 @@ public class ApuestaServiceImpl implements ApuestaService {
     private ApuestaDao apuestaDao;
     @Inject
     private JugadorCrud jugadorDao;
-    
-    @Inject
-    private SalahProperties salahProperties;
 
-    private String EQUIPO_LOCAL;
-    private String EQUIPO_VISITANTE;
-    private String RESTA;
-    private String SUMA;
+    public void setUsuarioDao(UsuarioCrud usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
 
-    @PostConstruct
-    public void setUp(){
-        EQUIPO_LOCAL = salahProperties.getProperty("equipo.local");
-        EQUIPO_VISITANTE = salahProperties.getProperty("equipo.visitante");
-        RESTA = salahProperties.getProperty("resta");
-        SUMA = salahProperties.getProperty("suma");
+    public void setPartidoDao(PartidoCrud partidoDao) {
+        this.partidoDao = partidoDao;
+    }
+
+    public void setApuestaDao(ApuestaDao apuestaDao) {
+        this.apuestaDao = apuestaDao;
+    }
+
+    public void setJugadorDao(JugadorCrud jugadorDao) {
+        this.jugadorDao = jugadorDao;
     }
 
     @Override
-    public ModelMap obtenerModeloPorFase(String fase) {
-        //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
-        Usuario usuario = usuarioDao.read("daniel.marconi");
-        if(usuario == null){
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
-            usuarioDao.create(usuario);
-        }
+    public ModelMap obtenerModeloPorFase(String fase, Long usuarioId) {
+        Usuario usuario = usuarioDao.read(usuarioId);
+        if(usuario == null) throw new IllegalArgumentException("El usuario no existe");
 
-        String nombreFase = validarFase(fase);
+        ApuestaValidador apuestaValidador = new ApuestaValidador();
+        String nombreFase = apuestaValidador.validarFase(fase);
         List<Partido> partidos = partidoDao.consultarPartidosPorFase(nombreFase);
         List<Apuesta> apuestas = this.obtenerApuestasParaUsuario(usuario, nombreFase, partidos);
         List<Jugador> jugador = jugadorDao.list();
 
         ModelMap modelo = new ModelMap();
 
+        modelo.put("sesion", true);
         modelo.put("usuario", usuario);
         modelo.put("fase", nombreFase);
         modelo.addAttribute("apuestas", apuestas);
@@ -65,14 +64,19 @@ public class ApuestaServiceImpl implements ApuestaService {
         return modelo;
     }
 
-    private List<Apuesta> obtenerApuestasParaUsuario(Usuario usuario, String nombreFase, List<Partido> partidos) {
+    public List<Apuesta> obtenerApuestasParaUsuario(Usuario usuario, String nombreFase, List<Partido> partidos) {
         List<Apuesta> apuestas;
 
         if(apuestaDao.existenApuestasDeUsuarioEnFase(usuario, nombreFase)){
             apuestas = apuestaDao.obtenerApuestasPorUsuarioPorFase(usuario, nombreFase);
+            for(int i = 0; i < apuestas.size(); i++){
+                apuestas.get(i).setPartido(partidos.get(i));
+            }
         } else {
             apuestas = apuestaDao.crearApuestasParaUsuario(usuario, partidos);
         }
+
+        
         return apuestas;
     }
 
@@ -103,20 +107,10 @@ public class ApuestaServiceImpl implements ApuestaService {
     }
 
     private Boolean equipoValido(String equipo){
-        return equipo.equalsIgnoreCase(EQUIPO_LOCAL) || equipo.equalsIgnoreCase(EQUIPO_VISITANTE);
+        return equipo.equalsIgnoreCase(Equipos.EQUIPO_LOCAL.toString()) || equipo.equalsIgnoreCase(Equipos.EQUIPO_VISITANTE.toString());
     }
 
     private Boolean accionValida(String accion){
-        return accion.equalsIgnoreCase(SUMA) || accion.equalsIgnoreCase(RESTA);
-    }
-
-    private String validarFase(String fase){
-        if(fase.equals("grupos")) return SalahProperties.FASE_DE_GRUPOS;
-        if(fase.equals("octavos")) return SalahProperties.FASE_OCTAVOS_DE_FINAL;
-        if(fase.equals("cuartos")) return SalahProperties.FASE_CUARTOS_DE_FINAL;
-        if(fase.equals("semifinal")) return SalahProperties.FASE_SEMIFINAL;
-        if(fase.equals("tercer-puesto")) return SalahProperties.FASE_TERCER_PUESTO;
-        if(fase.equals("final")) return SalahProperties.FASE_FINAL;
-        throw new IllegalArgumentException("Fase invalida");
+        return accion.equalsIgnoreCase(Operaciones.SUMA.toString()) || accion.equalsIgnoreCase(Operaciones.RESTA.toString());
     }
 }

@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.fase.FaseService;
 import ar.edu.unlam.tallerweb1.jugador.JugadorService;
 import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.service.CargaService;
+import ar.edu.unlam.tallerweb1.usuario.UsuarioServicio;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,9 @@ public class PreparacionService implements CargaService {
     @Inject
     private JugadorService jugadorService;
 
+    @Inject
+    private UsuarioServicio usuarioServicio;
+
 
     public PreparacionService(){
 
@@ -36,5 +40,6 @@ public class PreparacionService implements CargaService {
         equipoService.cargar();
         partidoService.cargar();
         jugadorService.cargar();
+        usuarioServicio.cargar();
     }
 }

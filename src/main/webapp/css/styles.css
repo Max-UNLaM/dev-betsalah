@@ -1,0 +1,32 @@
+*{
+    font-size: 16px;
+}
+
+a, ul{
+    text-decoration: none !important;
+}
+
+a:hover{
+    background-color: white;
+    color: black !important;
+}
+
+li{
+    display: inline-block;
+}
+
+.bg-blue{
+    background-color: #3892df36 !important;
+}
+
+.bg-green{
+    background-color: #47EF0F36 !important;
+}
+
+.bg-red{
+    background-color: #EF1A0F36 !important;
+}
+
+.font-weight-bold{
+    font-weight: bold !important;
+}

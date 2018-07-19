@@ -1,0 +1,9 @@
+language: java
+
+notifications:
+  email:
+    recipients:
+      - juani.murano@gmail.com
+      - marconidaniel@outlook.com
+      - elwindwalker@gmail.com
+    on_failure: always # default: always

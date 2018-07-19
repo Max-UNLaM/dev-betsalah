@@ -9,7 +9,8 @@ import ar.edu.unlam.tallerweb1.partido.PartidoDao;
 import ar.edu.unlam.tallerweb1.partido.PartidoService;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
-import ar.edu.unlam.tallerweb1.util.SalahProperties;
+import ar.edu.unlam.tallerweb1.util.Fases;
+import ar.edu.unlam.tallerweb1.util.Instancias;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
@@ -31,25 +32,22 @@ public class ApuestaCampeonService {
     @Inject
     private PartidoService partidoService;
 
-    public ModelMap obtenerModelo(){
+    public ModelMap obtenerModelo(Long usuarioId){
         ModelMap modelo = new ModelMap();
 
-        //El usuario que estoy creando aca en realidad seria el usuario que esta logueado
-        Usuario usuario = usuarioDao.read("daniel.marconi");
-        if(usuario == null){
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
-            usuarioDao.create(usuario);
-        }
+        Usuario usuario = usuarioDao.read(usuarioId);
+        if(usuario == null) throw new IllegalArgumentException("Usuario invalido");
 
         ApuestaCampeon apuestaCampeon = apuestaCampeonDao.obtenerApuestaCampeon(usuario.getId());
         if(apuestaCampeon == null) apuestaCampeon = new ApuestaCampeon(usuario);
 
         List<Equipo> equipos = equipoDao.list();
 
-        Fase faseFinal = faseDao.read(SalahProperties.FASE_FINAL, SalahProperties.FINAL);
+        Fase faseFinal = faseDao.read(Instancias.FINAL.toString(), Fases.FASE_FINAL.toString());
 
         Partido partidoFinal = partidoDao.obtenerPartidoPorFase(faseFinal);
 
+        modelo.put("sesion", true);
         modelo.put("usuario", usuario);
         modelo.put("equipos", equipos);
         modelo.put("partidoFinal", partidoFinal);
@@ -60,12 +58,8 @@ public class ApuestaCampeonService {
 
     // TODO testear por completo
     public void apostarCampeon(Long apostadorId, Long equipoId){
-        //El usuario que estoy creando aca en realidad seria el usuario del cual estamos recibiendo el ID
-        Usuario usuario = usuarioDao.read("daniel.marconi"); //aca deberia leer por id
-        if(usuario == null){//si el usuario no existe debo tirar una excepcion
-            usuario = new Usuario("daniel.marconi@gmail.com", "daniel.marconi", "123456", 0);
-            usuarioDao.create(usuario);
-        }
+        Usuario usuario = usuarioDao.read(apostadorId);
+        if(usuario == null) throw new IllegalArgumentException("Usuario invalido");
 
         Equipo equipoApostado = equipoDao.read(equipoId);
         if(equipoApostado == null) throw new IllegalArgumentException("Equipo inválido");
@@ -80,5 +74,29 @@ public class ApuestaCampeonService {
         } else {
             throw new IllegalArgumentException("No se puede cambiar la apuesta de equipo campeón");
         }
+    }
+
+    public void setApuestaCampeonDao(ApuestaCampeonDao apuestaCampeonDao) {
+        this.apuestaCampeonDao = apuestaCampeonDao;
+    }
+
+    public void setEquipoDao(EquipoDao equipoDao) {
+        this.equipoDao = equipoDao;
+    }
+
+    public void setUsuarioDao(UsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+
+    public void setFaseDao(FaseDao faseDao) {
+        this.faseDao = faseDao;
+    }
+
+    public void setPartidoDao(PartidoDao partidoDao) {
+        this.partidoDao = partidoDao;
+    }
+
+    public void setPartidoService(PartidoService partidoService) {
+        this.partidoService = partidoService;
     }
 }

@@ -1,17 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap-theme.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/styles.css" />">
-</head>
-<body>
-<div class="container col-md-12">
-    <c:if test="${not empty partidos}">
+<%@include file="../header.jsp" %>
+
+<c:if test="${not empty partidos}">
         <h4>Bienvenido ${usuario.nombre}, por favor completa simula los partidos</h4>
         <table class="table">
             <thead>
@@ -58,12 +47,5 @@
             </tbody>
         </table>
     </c:if>
-</div>
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="<c:url value="/js/jquery-1.11.3.min.js" />" ></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="<c:url value="/js/bootstrap.min.js" />" type="text/javascript"></script>
-<script src="<c:url value="/js/SimulacionConnector.js" />" type="text/javascript"></script>
-<script src="<c:url value="/js/Simulacion.js" />" type="text/javascript"></script>
-</body>
-</html>
+
+<%@include file="../footer.jsp" %>
