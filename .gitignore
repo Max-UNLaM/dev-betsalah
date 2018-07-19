@@ -131,3 +131,5 @@ fabric.properties
 /classes/
 /src/main/resources/hibernateContext.xml
 !/src/main/resources/hibernateContext.xml
+
+.directory
