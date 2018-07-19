@@ -36,15 +36,4 @@ public class SimulacionServiceTest {
     public void alEnviarFiguraIdNullSeEsperaUnaExcepcion(){
         simulacionService.jugarPartido(partidoNoJugado, 2, 0, null);
     }
-
-    @Test(expected = IllegalArgumentException.class)
-    @Transactional
-    @Rollback
-    public void alIntentarJugarUnPartidoQueYaFueJugadoSeEsperaUnaExcepcion(){
-        simulacionService.jugarPartido(partidoJugado, 2, 0, 1L);
-    }
-
-
-
-
 }
