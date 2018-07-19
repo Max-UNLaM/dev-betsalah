@@ -18,6 +18,7 @@ import org.springframework.ui.ModelMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.mock;
@@ -57,6 +58,7 @@ public class ApuestaServiceImplTest {
         partidosFaseDeGrupos.add(partido4);
 
         when(partidoDaoMock.consultarPartidosPorFase(Fases.FASE_DE_GRUPOS.toString())).thenReturn(partidosFaseDeGrupos);
+        when(partidoDaoMock.consultarPartidosPorFase(Fases.FASE_DE_GRUPOS.toString())).thenReturn(partidosFaseDeGrupos);
         apuestaService.setPartidoDao(partidoDaoMock);
 
         //ApuestaDao
@@ -90,4 +92,18 @@ public class ApuestaServiceImplTest {
         ModelMap modelo = apuestaService.obtenerModeloPorFase(null, 1L);
         assert(modelo.get("fase").equals(Fases.FASE_DE_GRUPOS.toString()));
     }
+    
+    @Test
+    @Transactional
+    @Rollback
+    public void alEnviarApuestasNullSeEsperaQueCreeLasApuestas() {
+    	List<Apuesta> apuestas = new ArrayList<>();
+    	List<Partido> partidosFaseDeGrupos = new ArrayList<>();
+    	Usuario usuario1 = usuarioDaoMock.read(1L);
+    	partidosFaseDeGrupos = partidoDaoMock.consultarPartidosPorFase(Fases.FASE_DE_GRUPOS.toString());
+    	apuestas = apuestaService.obtenerApuestasParaUsuario(usuario1 , Fases.FASE_DE_GRUPOS.toString(), partidosFaseDeGrupos);
+    	assertThat(apuestas.size()).isGreaterThanOrEqualTo(1);
+    }
+    
+    
 }

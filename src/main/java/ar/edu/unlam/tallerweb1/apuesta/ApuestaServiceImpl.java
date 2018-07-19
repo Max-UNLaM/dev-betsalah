@@ -64,7 +64,7 @@ public class ApuestaServiceImpl implements ApuestaService {
         return modelo;
     }
 
-    private List<Apuesta> obtenerApuestasParaUsuario(Usuario usuario, String nombreFase, List<Partido> partidos) {
+    public List<Apuesta> obtenerApuestasParaUsuario(Usuario usuario, String nombreFase, List<Partido> partidos) {
         List<Apuesta> apuestas;
 
         if(apuestaDao.existenApuestasDeUsuarioEnFase(usuario, nombreFase)){
