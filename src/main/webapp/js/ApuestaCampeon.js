@@ -15,8 +15,12 @@ function setearApuestaCampeon(apostadorId){
             "Content-type":"application/json"
         },
         success: function(data) {
-            console.log('Campeón cargado correctamente.');
+            $('#message').text(data.responseJSON.message);
+        },
+        error: function(data){
+            $('#message').text(data.responseJSON.message);
         }
+
     });
 }
 

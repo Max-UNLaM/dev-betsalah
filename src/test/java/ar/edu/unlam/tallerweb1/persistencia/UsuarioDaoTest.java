@@ -10,24 +10,24 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.*;
 
-import javax.inject.Inject;
-
 public class UsuarioDaoTest extends SpringTest {
-    @Inject
     private UsuarioDao usuarioDao;
 
     private Usuario usuarioOrigen;
 
     @Before
     public void cargarDatos() {
+        usuarioDao = new UsuarioDao();
+
         this.usuarioOrigen = new Usuario("testnombre", "testpass", 0, Roles.ROL_USUARIO.toString());
-        usuarioDao.create(usuarioOrigen);
+        //usuarioDao.create(usuarioOrigen);
     }
 
     @Test
     @Transactional
     @Rollback
     public void crearUsuario() {
+        System.out.println("a");
         usuarioDao.create(usuarioOrigen);
         Usuario usuarioDos = usuarioDao.read(usuarioOrigen.getId());
         assertThat(usuarioOrigen.getNombre()).isEqualTo(usuarioDao.read(usuarioOrigen.getId()).getNombre());

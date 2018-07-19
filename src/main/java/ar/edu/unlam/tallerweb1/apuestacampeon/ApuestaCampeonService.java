@@ -43,7 +43,7 @@ public class ApuestaCampeonService {
 
         List<Equipo> equipos = equipoDao.list();
 
-        Fase faseFinal = faseDao.read(Fases.FASE_FINAL.toString(), Instancias.FINAL.toString());
+        Fase faseFinal = faseDao.read(Instancias.FINAL.toString(), Fases.FASE_FINAL.toString());
 
         Partido partidoFinal = partidoDao.obtenerPartidoPorFase(faseFinal);
 

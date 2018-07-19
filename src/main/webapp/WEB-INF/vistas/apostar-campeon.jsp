@@ -13,6 +13,8 @@
             </select>
 
             <button disabled class="btn btn-primary" id="submit" onclick="setearApuestaCampeon('${usuario.id}')">Elegi un equipo</button>
+
+            <div id="message"></div>
         </c:if>
 
         <c:if test="${not empty apuestaCampeon.equipoApostado}">
