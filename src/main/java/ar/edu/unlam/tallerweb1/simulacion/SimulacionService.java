@@ -11,6 +11,7 @@ import ar.edu.unlam.tallerweb1.jugador.JugadorCrud;
 import ar.edu.unlam.tallerweb1.partido.*;
 import ar.edu.unlam.tallerweb1.usuario.Usuario;
 import ar.edu.unlam.tallerweb1.usuario.UsuarioDao;
+import ar.edu.unlam.tallerweb1.util.Fases;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -96,7 +97,10 @@ public class SimulacionService implements SimulacionServiceFront, SimulacionServ
             List<Equipo> equipos = equipoDao.obtenerEquiposPorFase(partido.getFase());
             List<Partido> partidos = partidoDao.consultarPartidosPorFase(partido.getFase());
 
-            partidoService.calcularPartidosSiguienteFase(equipos, partidos, partido.getFase());
+            if(!partido.getFase().getNombre().equals(Fases.FASE_TERCER_PUESTO.toString())
+                && !partido.getFase().getNombre().equals(Fases.FASE_FINAL.toString())){
+                partidoService.calcularPartidosSiguienteFase(equipos, partidos, partido.getFase());
+            }
         }
         partidoDao.update(partido);
     }

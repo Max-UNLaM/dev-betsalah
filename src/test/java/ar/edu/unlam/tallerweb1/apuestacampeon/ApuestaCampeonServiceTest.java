@@ -105,6 +105,16 @@ public class ApuestaCampeonServiceTest {
         apuestaCampeonService.apostarCampeon(1L, 1L);
     }
 
+    @Test
+    @Transactional
+    @Rollback
+    public void alNoEncontrarApuestaDeCampeonParaUnUsuarioCreaUnaNueva(){
+        when(apuestaCampeonDao.obtenerApuestaCampeon(1L))
+                .thenReturn(null);
+
+        apuestaCampeonService.apostarCampeon(1L, 1L);
+    }
+
 
 
 }
